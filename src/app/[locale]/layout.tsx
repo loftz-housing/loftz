@@ -70,6 +70,30 @@ export default async function LocaleLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable}`}
     >
       <body className="min-h-screen flex flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([
+              {
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                name: "LOFTZ",
+                url: SITE_URL,
+                sameAs: [
+                  "https://www.facebook.com/loftzhousing",
+                  "https://www.linkedin.com/company/loftzhousing",
+                ],
+              },
+              {
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                name: "LOFTZ",
+                url: SITE_URL,
+                inLanguage: locale,
+              },
+            ]),
+          }}
+        />
         <NextIntlClientProvider>
           <Header />
           <main className="flex-1">{children}</main>

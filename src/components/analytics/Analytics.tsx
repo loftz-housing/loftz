@@ -20,6 +20,8 @@ export function Analytics() {
   const [consent, setConsentState] = useState<ConsentChoice | null>(null);
 
   useEffect(() => {
+    // Read persisted consent after mount + subscribe to changes (external store).
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setConsentState(getConsent());
     const handler = (e: Event) => {
       const choice = (e as CustomEvent<ConsentChoice>).detail;

@@ -1,0 +1,40 @@
+name: Daily DB backup
+
+# Daily pg_dump of the LOFTZ Supabase database → compressed GitHub artifact (D-20).
+# Requires one repo secret: DATABASE_URL (the direct Postgres connection string,
+# same value as in .env.local / Vercel). Add via repo Settings → Secrets → Actions.
+# Upgrade path: push to a Supabase private bucket / S3 once a service key exists.
+
+on:
+  schedule:
+    - cron: "0 3 * * *" # 03:00 UTC daily
+  workflow_dispatch: {}
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install PostgreSQL 17 client
+        run: |
+          sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+          curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/pgdg.gpg
+          sudo apt-get update
+          sudo apt-get install -y postgresql-client-17
+
+      - name: Dump database
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          if [ -z "$DATABASE_URL" ]; then echo "DATABASE_URL secret not set"; exit 1; fi
+          ts=$(date -u +%Y-%m-%d)
+          /usr/lib/postgresql/17/bin/pg_dump "$DATABASE_URL" \
+            --no-owner --no-privileges --format=plain \
+            | gzip > "loftz-${ts}.sql.gz"
+          ls -lh loftz-*.sql.gz
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: loftz-db-backup
+          path: "*.sql.gz"
+          retention-days: 90

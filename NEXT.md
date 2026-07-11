@@ -4,6 +4,18 @@
 Branch `build/phase-1` on `loftz-housing/website`. `npm run build` passes; verified on a
 local prod server.
 
+## Tracking + hardening (2026-07-11, pass A+B)
+- **GA4 conversion events:** `booking_request`, `visit_request`, `contact_message`,
+  `search_rooms` (consent-mode safe) — `src/lib/track.ts`.
+- **Structured data:** Organization + WebSite (site-wide), Accommodation+Offer (rooms),
+  FAQPage (FAQ); per-room canonical + OG image.
+- **Daily DB backup:** `.github/workflows/backup.yml` (pg_dump → gzip → 90-day artifact).
+  ⚠️ Add repo secret **`DATABASE_URL`** (Settings → Secrets → Actions) to arm it.
+- **Security pass:** RLS on all tables ✓, temp storage upload policy dropped ✓, no secrets
+  tracked ✓, admin actions all `requireAdmin` + parameterized SQL ✓. Accepted MVP residual:
+  `submit_request`/`replace_availability` are anon-executable (spam/overwrite; low value,
+  nightly-refreshed) — revisit with rate-limiting/secret when it matters. Lint clean.
+
 ## Phase 2 + brand (2026-07-11)
 - **Brand skin (D-29):** teal + coral, Poppins headings, pill CTAs, teal footer.
 - **Admin at `/admin`** — password gate (D-27). Credentials in `.env.local` +

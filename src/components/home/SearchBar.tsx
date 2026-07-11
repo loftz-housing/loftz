@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
 import { IconSearch } from "@/components/icons";
+import { track } from "@/lib/track";
 
 export function SearchBar() {
   const t = useTranslations("home");
@@ -17,6 +18,7 @@ export function SearchBar() {
     if (from) params.set("from", from);
     if (to) params.set("to", to);
     const qs = params.toString();
+    track("search_rooms", { from, to });
     router.push(`/book-now${qs ? `?${qs}` : ""}`);
   }
 

@@ -40,13 +40,23 @@ export async function generateMetadata({
   const { locale, slug } = await params;
   const room = await getRoomBySlug(slug);
   if (!room) return {};
-  const residence = await getResidenceById(room.residence_id);
+  const [residence, photos] = await Promise.all([
+    getResidenceById(room.residence_id),
+    getPhotosForRoom(room.id),
+  ]);
   const t = await getTranslations({ locale, namespace: "room" });
+  const title = t("detailMetaTitle", {
+    residence: residence?.name ?? "LOFTZ",
+    room: room.name,
+  });
   return {
-    title: t("detailMetaTitle", {
-      residence: residence?.name ?? "LOFTZ",
-      room: room.name,
-    }),
+    title,
+    alternates: { canonical: `/${locale}/rooms/${room.slug}` },
+    openGraph: {
+      title,
+      type: "website",
+      images: photos[0]?.url ? [{ url: photos[0].url }] : undefined,
+    },
   };
 }
 
@@ -79,8 +89,34 @@ export default async function RoomDetailPage({
     ([, url]) => !!url
   ) as [PlatformKey, string][];
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Accommodation",
+    name: `${residence?.name ?? "LOFTZ"} · ${room.name}`,
+    description: room.description ?? undefined,
+    image: photos[0]?.url,
+    ...(residence?.address
+      ? { address: { "@type": "PostalAddress", streetAddress: residence.address, addressLocality: "Lisbon", addressCountry: "PT" } }
+      : {}),
+    ...(room.monthly_price
+      ? {
+          offers: {
+            "@type": "Offer",
+            price: room.monthly_price,
+            priceCurrency: "EUR",
+            availability: "https://schema.org/InStock",
+            url: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://loftz.net"}/${locale}/rooms/${room.slug}`,
+          },
+        }
+      : {}),
+  };
+
   return (
     <div className="container-page py-8 md:py-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Breadcrumb */}
       <div className="mb-5 flex items-center gap-2 text-sm text-muted">
         <Link href="/book-now" className="hover:text-accent">

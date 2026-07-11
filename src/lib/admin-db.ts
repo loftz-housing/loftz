@@ -5,7 +5,6 @@ import { Pool } from "pg";
 // Uses DATABASE_URL (server-only env). A module-level pool is reused across
 // requests in the Node runtime.
 declare global {
-  // eslint-disable-next-line no-var
   var _loftzPool: Pool | undefined;
 }
 

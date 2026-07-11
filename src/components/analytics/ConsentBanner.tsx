@@ -10,6 +10,9 @@ export function ConsentBanner() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    // Consent lives in localStorage (client-only) — read after mount to avoid a
+    // hydration mismatch. Intentional one-shot setState.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setVisible(getConsent() === null);
   }, []);
 

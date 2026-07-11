@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { IconCheck } from "@/components/icons";
+import { track } from "@/lib/track";
 import type { EligibilityReason } from "@/lib/eligibility";
 
 type Mode = "booking" | "visit";
@@ -59,7 +60,10 @@ export function RequestForm({
         body: JSON.stringify(payload),
       });
       const data = await res.json();
-      if (data.status === "ok") setResult({ status: "ok" });
+      if (data.status === "ok") {
+        track(mode === "booking" ? "booking_request" : "visit_request", { room_id: roomId });
+        setResult({ status: "ok" });
+      }
       else if (data.status === "blocked")
         setResult({ status: "blocked", reasons: data.reasons ?? [] });
       else setResult({ status: "error" });

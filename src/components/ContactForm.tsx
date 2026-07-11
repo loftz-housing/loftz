@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { IconCheck } from "@/components/icons";
+import { track } from "@/lib/track";
 
 const OWNER_EMAIL = "henriquesantana@loftz.net";
 
@@ -26,6 +27,7 @@ export function ContactForm({ topic }: { topic?: string }) {
           topic,
         }),
       });
+      if (res.ok) track("contact_message", { topic });
       setState(res.ok ? "ok" : "error");
     } catch {
       setState("error");

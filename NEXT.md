@@ -1,8 +1,8 @@
 # LOFTZ — build state & next steps
 
 **Status: Phase 1 (1.1–1.6) + Phase 2 (admin, iCal, availability) complete + brand skin.**
-Branch `build/phase-1` on `loftz-housing/website`. `npm run build` passes; verified on a
-local prod server.
+Branch **`main`** on `loftz-housing/loftz` (production branch; Vercel auto-deploys on push).
+`npm run build` passes; verified on a local prod server.
 
 ## Tracking + hardening (2026-07-11, pass A+B)
 - **GA4 conversion events:** `booking_request`, `visit_request`, `contact_message`,
@@ -40,6 +40,11 @@ local prod server.
   also-featured-in, booking+visit forms), landlords, partnerships, FAQ, about, legal.
 - Booking + visit forms → eligibility check (D-18/19) → DB → Resend emails.
 - GA4 Consent Mode + cookie banner, sitemap, robots, per-page meta/OG, FAQ JSON-LD.
+
+## ⚠️ CRUCIAL pre-launch (A-15)
+The repo was made **PUBLIC** on 2026-07-11 to deploy free on Vercel **Hobby**. Before real
+commercial launch, both MUST happen: **(1) upgrade Vercel to Pro** (Hobby is non-commercial
+per ToS) and **(2) set the repo PRIVATE again** (reverts D-10). Same for EL at its launch.
 
 ## Follow-ups (in rough priority)
 

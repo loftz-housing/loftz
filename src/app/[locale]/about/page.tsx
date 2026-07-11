@@ -38,6 +38,7 @@ export default async function AboutPage({
           <p>{t("body1")}</p>
           <p>{t("body2")}</p>
           <p>{t("body3")}</p>
+          <p>{t("body4")}</p>
         </div>
       </section>
 

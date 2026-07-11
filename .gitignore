@@ -51,3 +51,7 @@ scripts/uploaded_photos.json
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Claude Code — machine-personal prefs (acceptEdits + allowlist). The committed
+# .claude/settings.json (safety ask-rules) DOES travel with the repo.
+.claude/settings.local.json

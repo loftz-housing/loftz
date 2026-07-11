@@ -4,6 +4,16 @@ Public marketing + direct-booking site for **LOFTZ** (65 rooms / 9 residences, L
 Phase 1 of the plan in `../../docs/01-DEVELOPMENT-PLAN.md`. Project constitution:
 `../../CLAUDE.md` and `../../BACKLOG.md` (decisions D-*, questions Q-*) still govern.
 
+## Repo layout & where outputs go (D-30)
+This is the **`loftz-housing/loftz`** repo. The **Next.js app is at the repo root** (this
+folder). Business artifacts live in siblings — put new outputs there, not in the app:
+- `research/` — competitor/market research (+ screenshots)
+- `ops/` — ops & process notes · `content/` — copy & brand assets · `data/` — data extracts
+
+Company-wide **decisions/specs/questions** are NOT here — they live in the **`loftz-housing/workspace`**
+repo (`../../` from this clone): `BACKLOG.md` there is the **source of truth for D-/Q- numbers**.
+Add a decision there, then reference it here.
+
 > ⚠️ **Next.js 16 — read `AGENTS.md`.** APIs differ from older Next: middleware is now
 > `proxy.ts`; `params`/`searchParams`/`cookies`/`headers` are async (Promises); Turbopack
 > is the default builder. When unsure, read `node_modules/next/dist/docs/`.

@@ -1,0 +1,22 @@
+{
+  "//": "Brand-repo safety rules (travels with the repo, D-14/D-30). A session opening in this repo as its own root does NOT inherit the workspace .claude/. No Website/ guard hook here — Website/ only exists in the workspace repo.",
+  "permissions": {
+    "ask": [
+      "Bash(rm:*)",
+      "Bash(rmdir:*)",
+      "Bash(unlink:*)",
+      "Bash(shred:*)",
+      "Bash(git rm:*)",
+      "Bash(git clean:*)",
+      "PowerShell(Remove-Item:*)",
+      "PowerShell(Remove-ChildItem:*)",
+      "PowerShell(Clear-Content:*)",
+      "Bash(gh:*)",
+      "Bash(curl:*)",
+      "Bash(wget:*)",
+      "Bash(npm publish:*)",
+      "PowerShell(Invoke-WebRequest:*)",
+      "PowerShell(Invoke-RestMethod:*)"
+    ]
+  }
+}

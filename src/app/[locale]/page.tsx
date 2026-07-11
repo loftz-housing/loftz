@@ -5,7 +5,7 @@ import { SearchBar } from "@/components/home/SearchBar";
 import { ValueProps } from "@/components/home/ValueProps";
 import { Stats } from "@/components/home/Stats";
 import { ResidenceMap } from "@/components/ResidenceMap";
-import { getResidences, getStats, getHeroPhotos } from "@/lib/data";
+import { getResidences, getStats, getHeroPhotos, getSettings } from "@/lib/data";
 import type { Metadata } from "next";
 
 // ISR: catalog data lives in Supabase and changes outside deploys (admin, iCal
@@ -31,10 +31,11 @@ export default async function HomePage({
   setRequestLocale(locale);
   const t = await getTranslations("home");
 
-  const [residences, stats, heroImages] = await Promise.all([
+  const [residences, stats, heroImages, settings] = await Promise.all([
     getResidences(),
     getStats(),
     getHeroPhotos(),
+    getSettings(),
   ]);
 
   return (
@@ -61,7 +62,7 @@ export default async function HomePage({
         </div>
       </Hero>
 
-      <Stats residences={stats.residences} rooms={stats.rooms} />
+      <Stats residences={stats.residences} rooms={stats.rooms} settings={settings} />
       <ValueProps />
       <ResidenceMap residences={residences} />
 

@@ -5,6 +5,7 @@ import { Link } from "@/i18n/navigation";
 import { Gallery } from "@/components/room/Gallery";
 import { RequestForm } from "@/components/room/RequestForm";
 import { ConditionsList } from "@/components/room/ConditionsList";
+import { AvailabilityCalendar } from "@/components/room/AvailabilityCalendar";
 import { RoomCard } from "@/components/RoomCard";
 import { IconMapPin, IconBed, IconBath, IconRuler, IconArrowRight } from "@/components/icons";
 import { routing } from "@/i18n/routing";
@@ -19,6 +20,7 @@ import {
   getPhotosForRoom,
   getEligibilityForRoom,
   getRoomCoverPhotos,
+  getAvailabilityForRoom,
 } from "@/lib/data";
 
 export const revalidate = 3600;
@@ -63,11 +65,12 @@ export default async function RoomDetailPage({
   if (!room || room.status !== "active") notFound();
 
   const residence = await getResidenceById(room.residence_id);
-  const [photos, conditions, siblings, covers] = await Promise.all([
+  const [photos, conditions, siblings, covers, availability] = await Promise.all([
     getPhotosForRoom(room.id),
     getEligibilityForRoom(room.id),
     getRoomsByResidence(room.residence_id),
     getRoomCoverPhotos(),
+    getAvailabilityForRoom(room.id),
   ]);
   const related = siblings.filter((r) => r.id !== room.id).slice(0, 3);
   const price = formatPrice(room.monthly_price, locale);
@@ -190,7 +193,8 @@ export default async function RoomDetailPage({
 
           <div>
             <h2 className="text-2xl">{t("availability")}</h2>
-            <p className="prose-muted mt-2 text-sm">{t("availabilityNote")}</p>
+            <p className="prose-muted mt-2 mb-4 text-sm">{t("availabilityNote")}</p>
+            <AvailabilityCalendar events={availability} />
           </div>
 
           {platforms.length > 0 && (

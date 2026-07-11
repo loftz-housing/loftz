@@ -1,30 +1,25 @@
 import { useTranslations } from "next-intl";
 
-// Real counts (residences, rooms) come from the DB. The rest are PLACEHOLDERS
-// until Henrique supplies real figures (feedback pass 1) — kept here so they're
-// trivial to swap.
-const PLACEHOLDER = {
-  guests: "2,000+",
-  nationalities: "50+",
-  rating: "4.9",
-};
-
+// Real counts (residences, rooms) come from the DB; the softer numbers come from
+// site_settings (editable in /admin/settings), with sensible fallbacks.
 export function Stats({
   residences,
   rooms,
+  settings,
 }: {
   residences: number;
   rooms: number;
+  settings: Record<string, string>;
 }) {
   const t = useTranslations("home");
 
   const items = [
     { value: String(residences || 9), label: t("statResidences") },
     { value: String(rooms || 65), label: t("statRooms") },
-    { value: PLACEHOLDER.guests, label: t("statGuests") },
-    { value: PLACEHOLDER.nationalities, label: t("statNationalities") },
-    { value: `★ ${PLACEHOLDER.rating}`, label: t("statRating") },
-    { value: "8+", label: t("statYears") },
+    { value: settings.stat_guests || "2,000+", label: t("statGuests") },
+    { value: settings.stat_nationalities || "50+", label: t("statNationalities") },
+    { value: `★ ${settings.stat_rating || "4.9"}`, label: t("statRating") },
+    { value: settings.stat_years || "8+", label: t("statYears") },
   ];
 
   return (

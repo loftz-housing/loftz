@@ -162,6 +162,18 @@ export const getHeroPhotos = cache(async (): Promise<string[]> => {
     .map((p) => p.url);
 });
 
+export const getAvailabilityForRoom = cache(
+  async (roomId: string): Promise<{ start_date: string; end_date: string }[]> => {
+    const { data, error } = await supabase
+      .from("availability")
+      .select("start_date, end_date")
+      .eq("room_id", roomId)
+      .order("start_date");
+    if (error || !data) return [];
+    return data;
+  }
+);
+
 export const getEligibilityForRoom = cache(
   async (roomId: string): Promise<EligibilityConditions | null> => {
     const { data, error } = await supabase
@@ -171,6 +183,14 @@ export const getEligibilityForRoom = cache(
       .maybeSingle();
     if (error) return null;
     return data;
+  }
+);
+
+export const getSettings = cache(
+  async (): Promise<Record<string, string>> => {
+    const { data, error } = await supabase.from("site_settings").select("key,value");
+    if (error || !data) return {};
+    return Object.fromEntries(data.map((r) => [r.key, r.value as string]));
   }
 );
 

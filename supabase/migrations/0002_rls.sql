@@ -11,15 +11,20 @@ alter table public.eligibility_conditions enable row level security;
 alter table public.guest_profiles         enable row level security;
 alter table public.requests               enable row level security;
 
--- Public catalog: read-only for anon + authenticated.
+-- Public catalog: read-only for anon + authenticated. (idempotent)
+drop policy if exists "public read residences" on public.residences;
 create policy "public read residences" on public.residences
   for select using (true);
+drop policy if exists "public read rooms" on public.rooms;
 create policy "public read rooms" on public.rooms
   for select using (status = 'active');
+drop policy if exists "public read photos" on public.photos;
 create policy "public read photos" on public.photos
   for select using (true);
+drop policy if exists "public read availability" on public.availability;
 create policy "public read availability" on public.availability
   for select using (true);
+drop policy if exists "public read eligibility" on public.eligibility_conditions;
 create policy "public read eligibility" on public.eligibility_conditions
   for select using (true);
 

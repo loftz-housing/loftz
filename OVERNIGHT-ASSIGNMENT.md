@@ -24,33 +24,38 @@ D-numbers live in the `loftz-housing/workspace` repo at `../../` (BACKLOG.md).
 - Next 16: read `node_modules/next/dist/docs/` when unsure (proxy.ts, async params, Turbopack).
 
 ## Locked decisions (do NOT re-ask)
-- Design = refine the 2020 wireframe, **hug it closely**, keep teal+coral (D-29). Reference
-  the mockups at `/test/home` and `/test/room`.
-- Illustrations = generate **simple in-house inline SVGs** (teal), no external stock/fonts-CDN.
-- Logo = "LOFTZ" wordmark.
-- Extra languages = **ES, IT, FR, DE**.
-- Stats numbers = keep placeholders (admin-editable).
-- Testimonials = omit (no fakes).
-- Blog = 4–5 Lisbon/"Erasmus in Lisbon" guides, EN+PT, drafted (mark draft).
+- Design = **faithful refinement** of the 2020 wireframe (reference `/test/home`, `/test/room`),
+  keep **teal + coral**. Apply this to the live site.
+- **Palette-options deliverable:** produce **up to 3 alternative palettes** applied to a home
+  mockup → `content/palette-options.pdf` (review-only; do NOT change the site — teal+coral ships).
+- Illustrations = keep illustrated figures, **flat style**, hand-made inline SVGs (no external stock).
+- Logo = refined **wordmark + a small symbol/mark**. Site ships the wordmark; final art swaps in
+  after Henrique picks. **Logo-options deliverable:** **up to 10 variations** → `content/logo-options.pdf`.
+- PDFs: generate real PDFs if a headless renderer/pdf skill is available; else output print-ready
+  HTML + SVG in `content/` and note it. Non-blocking — never stop the pass for these.
+- Extra languages = **ES, IT, FR, DE**, full-site translation.
+- Stats numbers = placeholders. Testimonials = omit. **No blog/guides.**
 
 ## Work order (priority; each = its own commit(s))
-1. **Design pass** — apply the wireframe-faithful skin across every page + component
-   (header, hero, 8 value props, stats band, residences, book-now list, room detail incl.
-   sticky booking bar + availability calendar, landlords, about, faq, footer, legal, forms).
-   Mobile-first, light mode. Reuse/extend design tokens in `globals.css`; don't hardcode hex.
+1. **Design pass** — apply the wireframe-faithful skin (teal+coral) across every page +
+   component (header, hero, 8 value props, stats band, residences, book-now list, room detail
+   incl. sticky booking bar + availability calendar, landlords, about, faq, footer, legal,
+   forms) + flat illustrations + refined wordmark. Mobile-first, light mode. Reuse/extend
+   tokens in `globals.css`; don't hardcode hex. Then produce the two review deliverables:
+   `content/logo-options.pdf` (≤10 logo variations) and `content/palette-options.pdf`
+   (≤3 alt palettes on a home mockup). Site stays teal+coral + wordmark regardless.
 2. **Room pages** — bring to wireframe fidelity (gallery, facts, contents grid, transports,
-   location, availability, similar rooms, also-featured-in). Fold in here.
-3. **MA2 photos** — a `MA2` folder now exists in Drive `2. Apartments`. Add it to
-   `scripts/migrate_photos.py` `CODE_MAP` (`"MA2": ("MA2","ma-2")`), then run:
+   location, availability, similar rooms, also-featured-in).
+3. **MA2 photos** — MA2 folder now exists in Drive `2. Apartments` (name may be `MA2`, `MA 2`
+   or `LOFTZ | MA2`). Add matching keys to `scripts/migrate_photos.py` `CODE_MAP`
+   (`"MA2"` and `"MA 2"` → `("MA2","ma-2")`); log folders found so a mismatch is visible. Then run:
    `setup-storage.mjs --open` → `migrate_photos.py` → `load-photos.mjs` → `setup-storage.mjs --close`.
    Verify MA2's 7 rooms get photos.
 4. **Languages ES/IT/FR/DE** — add to `src/i18n/routing.ts`; create `messages/{es,it,fr,de}.json`
    (translate from `en.json`, full parity); language switcher already scales. Verify build.
 5. **Automated tests** — unit tests for `lib/eligibility.ts` + `lib/ical.ts` (add a test runner,
    e.g. `vitest`); a smoke test hitting key routes. Wire `npm test`.
-6. **SEO content** — a `/[locale]/guides` section: 4–5 AI-drafted Lisbon/Erasmus guides
-   (EN+PT), linked in nav/footer, in sitemap, per-page meta + Article JSON-LD. Mark draft.
-7. **A11y/perf sweep** — alt text, labels, focus, heading order, image sizes; fix findings.
+6. **A11y/perf sweep** — alt text, labels, focus, heading order, image sizes; fix findings.
 
 ## Verify before "done"
 `npm run build` + `npm run lint` green; drive changed pages on a local prod server

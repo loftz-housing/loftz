@@ -1,9 +1,22 @@
 # LOFTZ — build state & next steps
 
-**Status: Phase 1 build scope (plan items 1.1–1.6) complete.** Branch `build/phase-1`
-pushed to `loftz-housing/website`. `npm run build` passes; app verified end-to-end on a
-local production server (all pages render with real photos in EN + PT; booking/visit
-pipeline writes to the DB via the `submit_request` RPC).
+**Status: Phase 1 (1.1–1.6) + Phase 2 (admin, iCal, availability) complete + brand skin.**
+Branch `build/phase-1` on `loftz-housing/website`. `npm run build` passes; verified on a
+local prod server.
+
+## Phase 2 + brand (2026-07-11)
+- **Brand skin (D-29):** teal + coral, Poppins headings, pill CTAs, teal footer.
+- **Admin at `/admin`** — password gate (D-27). Credentials in `.env.local` +
+  `~/.claude/secrets/loftz-admin.txt` (also set `ADMIN_PASSWORD`, `ADMIN_SESSION_SECRET`,
+  `DATABASE_URL` in Vercel at deploy). CRUD: rooms, residences, per-room eligibility,
+  requests inbox, editable homepage stats.
+- **iCal:** export `/api/ical/{slug}.ics`; `replace_availability` RPC; `scripts/sync-ical.mjs`
+  (ran: 141 busy periods). Room pages show an 8-month availability calendar.
+- **n8n nightly sync** (Flatio n8n cloud, workflow `Cu8QRLVDygjuXjyi`, **active**, daily
+  04:00 Lisbon) — fetches 65 Google feeds → `replace_availability`. Verified via a manual run.
+- **1:1 wireframe mockups** at `/test/home` and `/test/room` (comparison only).
+
+## Phase 1
 
 ## What's live in this repo
 - Next.js 16 (App Router, TS, Turbopack) + Tailwind v4 neutral design system (D-22).

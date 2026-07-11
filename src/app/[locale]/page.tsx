@@ -5,8 +5,12 @@ import { SearchBar } from "@/components/home/SearchBar";
 import { ValueProps } from "@/components/home/ValueProps";
 import { Stats } from "@/components/home/Stats";
 import { ResidenceMap } from "@/components/ResidenceMap";
-import { getResidences, getStats } from "@/lib/data";
+import { getResidences, getStats, getHeroPhotos } from "@/lib/data";
 import type { Metadata } from "next";
+
+// ISR: catalog data lives in Supabase and changes outside deploys (admin, iCal
+// sync). Revalidate hourly so pages stay fresh without a rebuild.
+export const revalidate = 3600;
 
 export async function generateMetadata({
   params,
@@ -27,11 +31,15 @@ export default async function HomePage({
   setRequestLocale(locale);
   const t = await getTranslations("home");
 
-  const [residences, stats] = await Promise.all([getResidences(), getStats()]);
+  const [residences, stats, heroImages] = await Promise.all([
+    getResidences(),
+    getStats(),
+    getHeroPhotos(),
+  ]);
 
   return (
     <>
-      <Hero images={[]}>
+      <Hero images={heroImages}>
         <div className="max-w-2xl">
           <p className="text-sm font-semibold uppercase tracking-widest text-white/80">
             LOFTZ · Lisbon

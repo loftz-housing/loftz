@@ -28,9 +28,12 @@ npm run build          # production build — MUST pass before "done"
 npm run start          # serve the production build
 npm run lint           # eslint
 
-node scripts/apply-migrations.mjs   # apply supabase/migrations/*.sql (direct pg)
-node scripts/seed-data.mjs          # seed residences + rooms + prices + OTA links
-node scripts/migrate-photos.mjs     # Drive → Supabase Storage (resumable)
+node scripts/apply-migrations.mjs        # apply supabase/migrations/*.sql (direct pg)
+node scripts/seed-data.mjs               # seed residences + rooms + prices + OTA links
+node scripts/setup-storage.mjs --open    # create room-photos bucket + temp upload policy
+python scripts/migrate_photos.py         # Drive → downscale → Supabase Storage (resumable)
+node scripts/load-photos.mjs             # insert photo rows from uploaded_photos.json
+node scripts/setup-storage.mjs --close   # drop the temporary anon upload policy
 ```
 
 Secrets are read at runtime from `~/.claude/secrets/` (never committed). Runtime env is in

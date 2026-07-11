@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { PageIntro } from "@/components/PageIntro";
 import { ResidenceCard } from "@/components/ResidenceCard";
-import { getResidences, getRooms } from "@/lib/data";
+import { getResidences, getRooms, getResidenceCoverPhotos } from "@/lib/data";
+
+export const revalidate = 3600;
 
 export async function generateMetadata({
   params,
@@ -23,7 +25,11 @@ export default async function ResidencesPage({
   setRequestLocale(locale);
   const t = await getTranslations("residences");
 
-  const [residences, rooms] = await Promise.all([getResidences(), getRooms()]);
+  const [residences, rooms, covers] = await Promise.all([
+    getResidences(),
+    getRooms(),
+    getResidenceCoverPhotos(),
+  ]);
   const countByResidence = rooms.reduce<Record<string, number>>((acc, r) => {
     acc[r.residence_id] = (acc[r.residence_id] ?? 0) + 1;
     return acc;
@@ -43,6 +49,7 @@ export default async function ResidencesPage({
                   key={r.id}
                   residence={r}
                   roomCount={countByResidence[r.id] ?? 0}
+                  cover={covers[r.id]}
                 />
               ))}
             </div>

@@ -38,6 +38,13 @@ yarn-error.log*
 *.secret
 secrets/
 
+# local script artifacts / scratch (keep scripts/_secrets.mjs)
+scripts/_chk*.mjs
+scripts/_smoke*.mjs
+scripts/photo_manifest.json
+scripts/photo_progress.json
+scripts/uploaded_photos.json
+
 # vercel
 .vercel
 

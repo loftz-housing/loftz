@@ -12,6 +12,8 @@ import {
   getRoomCoverPhotos,
 } from "@/lib/data";
 
+export const revalidate = 3600;
+
 export async function generateStaticParams() {
   const residences = await getResidences();
   return routing.locales.flatMap((locale) =>

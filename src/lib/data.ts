@@ -135,6 +135,33 @@ export const getRoomCoverPhotos = cache(
   }
 );
 
+// One representative photo per residence (prefers a common-area photo).
+export const getResidenceCoverPhotos = cache(
+  async (): Promise<Record<string, Photo>> => {
+    const { data, error } = await supabase
+      .from("photos")
+      .select("*")
+      .order("sort_index");
+    if (error || !data) return {};
+    const covers: Record<string, Photo> = {};
+    for (const p of data as Photo[]) {
+      const existing = covers[p.residence_id];
+      if (!existing || (existing.room_id !== null && p.room_id === null)) {
+        covers[p.residence_id] = p;
+      }
+    }
+    return covers;
+  }
+);
+
+// A handful of photos for the homepage hero slideshow (one per residence).
+export const getHeroPhotos = cache(async (): Promise<string[]> => {
+  const covers = await getResidenceCoverPhotos();
+  return Object.values(covers)
+    .slice(0, 6)
+    .map((p) => p.url);
+});
+
 export const getEligibilityForRoom = cache(
   async (roomId: string): Promise<EligibilityConditions | null> => {
     const { data, error } = await supabase

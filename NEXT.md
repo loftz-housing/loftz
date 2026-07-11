@@ -28,7 +28,12 @@ Each topic: build + lint green, then commit + push. Progress:
       `messages/{es,it,fr,de}.json` at **full parity** (326 keys each, 0 missing/extra, ICU tokens
       intact). Layout `alternates.languages` now derives from `routing.locales`. Build prerenders
       **509 static pages** across 6 locales, no ICU errors; switcher already scales.
-- [ ] 5. Unit tests · [ ] 6. OG images
+- [x] **5. Automated tests** — added **vitest** (`vitest.config.ts`, `@` alias). Unit tests:
+      `eligibility.test.ts` (13) + `ical.test.ts` (7) = **20 passing** (one caught a wrong test
+      assumption about RFC 5545 unfolding — fixed the test, lib was right). Route **smoke test**
+      (`test/smoke.test.ts`) boots `next start` and asserts 10 public routes + a room page + a 404 =
+      12 passing. Scripts: `npm test` (unit, fast), `test:watch`, `test:smoke`.
+- [ ] 6. OG images
 - [ ] 7. Availability-aware booking · [ ] 8. Abuse guard · [ ] 9. Admin upgrades · [ ] 10. Polish
 - [ ] 11. E2E tests · [ ] 12. A11y/perf sweep (last)
 

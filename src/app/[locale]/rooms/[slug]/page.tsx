@@ -50,23 +50,17 @@ export async function generateMetadata({
   const { locale, slug } = await params;
   const room = await getRoomBySlug(slug);
   if (!room) return {};
-  const [residence, photos] = await Promise.all([
-    getResidenceById(room.residence_id),
-    getPhotosForRoom(room.id),
-  ]);
+  const residence = await getResidenceById(room.residence_id);
   const t = await getTranslations({ locale, namespace: "room" });
   const title = t("detailMetaTitle", {
     residence: residence?.name ?? "LOFTZ",
     room: room.name,
   });
   return {
+    // OG image is supplied by the sibling opengraph-image.tsx (dynamic card).
     title,
     alternates: { canonical: `/${locale}/rooms/${room.slug}` },
-    openGraph: {
-      title,
-      type: "website",
-      images: photos[0]?.url ? [{ url: photos[0].url }] : undefined,
-    },
+    openGraph: { title, type: "website" },
   };
 }
 

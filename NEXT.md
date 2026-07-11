@@ -33,7 +33,11 @@ Each topic: build + lint green, then commit + push. Progress:
       assumption about RFC 5545 unfolding — fixed the test, lib was right). Route **smoke test**
       (`test/smoke.test.ts`) boots `next start` and asserts 10 public routes + a room page + a 404 =
       12 passing. Scripts: `npm test` (unit, fast), `test:watch`, `test:smoke`.
-- [ ] 6. OG images
+- [x] **6. Dynamic OG images** — branded 1200×630 cards via the Next 16 `opengraph-image` file
+      convention (async params) for **rooms** and **residences** (`src/lib/og.tsx` shared card:
+      real photo + teal gradient + wordmark + eyebrow + coral price pill). Removed the room page's
+      manual `openGraph.images` so the dynamic card is the referenced image. Verified: both routes
+      return valid `image/png`, `og:image` meta points at them.
 - [ ] 7. Availability-aware booking · [ ] 8. Abuse guard · [ ] 9. Admin upgrades · [ ] 10. Polish
 - [ ] 11. E2E tests · [ ] 12. A11y/perf sweep (last)
 

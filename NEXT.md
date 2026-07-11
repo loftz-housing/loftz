@@ -13,7 +13,14 @@ Each topic: build + lint green, then commit + push. Progress:
       defined the site-wide `.prose-muted` utility (was referenced everywhere but undefined → muted body
       copy now actually renders). Deliverables: `content/logo-options.pdf` (10 variations) +
       `content/palette-options.pdf` (teal+coral baseline + 3 alternatives). Teal+coral + wordmark still ship.
-- [ ] 2. Room pages · [ ] 3. MA2 photos · [ ] 4. ES/IT/FR/DE · [ ] 5. Unit tests · [ ] 6. OG images
+- [x] **2. Room pages** — added an "at a glance" facts grid (location/type/occupancy/size),
+      an "In the apartment" facilities list, a single-pin **Location map** (`RoomMap.tsx`) +
+      Get-directions link, a check-grid for room contents, and a mobile **sticky booking bar**
+      (`StickyBookingBar.tsx` → scrolls to `#request`). Also fixed a site-wide SEO bug: page
+      titles double-suffixed (`… | LOFTZ | LOFTZ`) because meta strings *and* the layout template
+      both added the brand — removed the suffix from the strings (EN+PT). Transports section skipped
+      (no distance data in the schema).
+- [ ] 3. MA2 photos · [ ] 4. ES/IT/FR/DE · [ ] 5. Unit tests · [ ] 6. OG images
 - [ ] 7. Availability-aware booking · [ ] 8. Abuse guard · [ ] 9. Admin upgrades · [ ] 10. Polish
 - [ ] 11. E2E tests · [ ] 12. A11y/perf sweep (last)
 

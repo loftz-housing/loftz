@@ -85,7 +85,7 @@
     "contract_body": "Contrato de arrendamento registado, com recibos — útil para vistos e residência."
   },
   "residences": {
-    "metaTitle": "As nossas residências em Lisboa | LOFTZ",
+    "metaTitle": "As nossas residências em Lisboa",
     "metaDescription": "Explore as nove residências LOFTZ em Lisboa — moradas, comodidades e quartos disponíveis.",
     "title": "As nossas residências",
     "subtitle": "Nove edifícios em Lisboa, cada um com a sua identidade e conjunto de quartos.",
@@ -97,11 +97,11 @@
     "location": "Localização",
     "viewOnMap": "Ver no mapa",
     "noRooms": "Ainda não há quartos listados aqui — volte em breve.",
-    "detailMetaTitle": "{name} — residência em {neighborhood} | LOFTZ",
+    "detailMetaTitle": "{name} — residência em {neighborhood}",
     "aboutResidence": "Sobre esta residência"
   },
   "book": {
-    "metaTitle": "Reservar um quarto em Lisboa | LOFTZ",
+    "metaTitle": "Reservar um quarto em Lisboa",
     "metaDescription": "Veja todos os quartos LOFTZ disponíveis em Lisboa. Filtre por bairro, datas, preço e características e peça a reserva diretamente.",
     "title": "Encontre o seu quarto",
     "subtitle": "{count, plural, =0 {Sem quartos disponíveis} one {# quarto disponível} other {# quartos disponíveis}}",
@@ -121,7 +121,7 @@
     "resultsCount": "{count, plural, =0 {Sem quartos} one {# quarto} other {# quartos}}"
   },
   "room": {
-    "detailMetaTitle": "{residence} · {room} — quarto para arrendar em Lisboa | LOFTZ",
+    "detailMetaTitle": "{residence} · {room} — quarto para arrendar em Lisboa",
     "overview": "Descrição",
     "size": "Área",
     "bed": "Cama",
@@ -131,6 +131,15 @@
     "ref": "Referência",
     "roomContents": "Neste quarto",
     "residenceContents": "No apartamento",
+    "facts": "Num relance",
+    "location": "Localização",
+    "roomType": "Tipo de quarto",
+    "occupancy": "Ocupação",
+    "occupancyValue": "{count, plural, one {Até # pessoa} other {Até # pessoas}}",
+    "singleRoom": "Quarto individual",
+    "doubleRoom": "Quarto duplo",
+    "furnishedRoom": "Quarto mobilado",
+    "viewOnMap": "Como chegar",
     "availability": "Disponibilidade",
     "availabilityNote": "A disponibilidade é sincronizada todas as noites a partir de todas as plataformas onde o quarto está listado.",
     "conditions": "Condições de reserva",
@@ -204,7 +213,7 @@
     "adjust": "Ajuste as datas ou os dados, ou veja outros quartos compatíveis."
   },
   "landlords": {
-    "metaTitle": "Rendimento garantido para o seu apartamento em Lisboa | LOFTZ",
+    "metaTitle": "Rendimento garantido para o seu apartamento em Lisboa",
     "metaDescription": "Confie-nos o seu apartamento em Lisboa e receba um rendimento mensal garantido, sem preocupações. Mobilamos, divulgamos, gerimos inquilinos, mantemos e pagamos-lhe — todos os meses, ocupado ou não.",
     "eyebrow": "Para proprietários",
     "title": "O seu apartamento a render — sem trabalho",
@@ -257,7 +266,7 @@
     "orEmail": "Ou escreva-nos para"
   },
   "faq": {
-    "metaTitle": "Perguntas frequentes | LOFTZ",
+    "metaTitle": "Perguntas frequentes",
     "metaDescription": "Respostas sobre reservas, renda, contratos, cauções e viver numa residência LOFTZ.",
     "title": "Perguntas frequentes",
     "subtitle": "Tudo o que precisa de saber sobre arrendar com a LOFTZ.",

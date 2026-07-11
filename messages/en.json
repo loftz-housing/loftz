@@ -85,7 +85,7 @@
     "contract_body": "A proper, registered tenancy contract with receipts — useful for visas and residency."
   },
   "residences": {
-    "metaTitle": "Our residences in Lisbon | LOFTZ",
+    "metaTitle": "Our residences in Lisbon",
     "metaDescription": "Explore the nine LOFTZ residences across Lisbon — addresses, facilities and available rooms.",
     "title": "Our residences",
     "subtitle": "Nine buildings across Lisbon, each with its own identity and set of rooms.",
@@ -97,11 +97,11 @@
     "location": "Location",
     "viewOnMap": "View on map",
     "noRooms": "No rooms are listed here yet — check back soon.",
-    "detailMetaTitle": "{name} — residence in {neighborhood} | LOFTZ",
+    "detailMetaTitle": "{name} — residence in {neighborhood}",
     "aboutResidence": "About this residence"
   },
   "book": {
-    "metaTitle": "Book a room in Lisbon | LOFTZ",
+    "metaTitle": "Book a room in Lisbon",
     "metaDescription": "Browse every available LOFTZ room in Lisbon. Filter by neighbourhood, dates, price and features, then request a booking directly.",
     "title": "Find your room",
     "subtitle": "{count, plural, =0 {No rooms available} one {# room available} other {# rooms available}}",
@@ -121,7 +121,7 @@
     "resultsCount": "{count, plural, =0 {No rooms} one {# room} other {# rooms}}"
   },
   "room": {
-    "detailMetaTitle": "{residence} · {room} — Lisbon room for rent | LOFTZ",
+    "detailMetaTitle": "{residence} · {room} — Lisbon room for rent",
     "overview": "Overview",
     "size": "Size",
     "bed": "Bed",
@@ -131,6 +131,15 @@
     "ref": "Reference",
     "roomContents": "In this room",
     "residenceContents": "In the apartment",
+    "facts": "At a glance",
+    "location": "Location",
+    "roomType": "Room type",
+    "occupancy": "Occupancy",
+    "occupancyValue": "{count, plural, one {Up to # person} other {Up to # people}}",
+    "singleRoom": "Single room",
+    "doubleRoom": "Double room",
+    "furnishedRoom": "Furnished room",
+    "viewOnMap": "Get directions",
     "availability": "Availability",
     "availabilityNote": "Availability is synchronised nightly from every platform this room is listed on.",
     "conditions": "Booking conditions",
@@ -204,7 +213,7 @@
     "adjust": "Adjust your dates or details, or browse other rooms that fit."
   },
   "landlords": {
-    "metaTitle": "Guaranteed rental income for your Lisbon apartment | LOFTZ",
+    "metaTitle": "Guaranteed rental income for your Lisbon apartment",
     "metaDescription": "Hand us your Lisbon apartment and earn guaranteed monthly income with zero hassle. We furnish, market, manage tenants, maintain and pay you — every month, occupied or not.",
     "eyebrow": "For property owners",
     "title": "Your apartment, earning — without the hassle",
@@ -257,7 +266,7 @@
     "orEmail": "Or email us at"
   },
   "faq": {
-    "metaTitle": "Frequently asked questions | LOFTZ",
+    "metaTitle": "Frequently asked questions",
     "metaDescription": "Answers about booking, rent, contracts, deposits and living in a LOFTZ residence.",
     "title": "Frequently asked questions",
     "subtitle": "Everything you need to know about renting with LOFTZ.",

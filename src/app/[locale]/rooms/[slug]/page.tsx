@@ -6,10 +6,20 @@ import { Gallery } from "@/components/room/Gallery";
 import { RequestForm } from "@/components/room/RequestForm";
 import { ConditionsList } from "@/components/room/ConditionsList";
 import { AvailabilityCalendar } from "@/components/room/AvailabilityCalendar";
+import { RoomMap } from "@/components/room/RoomMap";
+import { StickyBookingBar } from "@/components/room/StickyBookingBar";
 import { RoomCard } from "@/components/RoomCard";
-import { IconMapPin, IconBed, IconBath, IconRuler, IconArrowRight } from "@/components/icons";
+import {
+  IconMapPin,
+  IconBed,
+  IconBath,
+  IconRuler,
+  IconArrowRight,
+  IconCheck,
+  IconBuilding,
+} from "@/components/icons";
 import { routing } from "@/i18n/routing";
-import { formatPrice, PLATFORM_LABELS } from "@/lib/format";
+import { formatPrice, formatDate, PLATFORM_LABELS } from "@/lib/format";
 import { hasConditions } from "@/lib/eligibility";
 import type { PlatformKey } from "@/lib/types";
 import {
@@ -85,6 +95,28 @@ export default async function RoomDetailPage({
   const related = siblings.filter((r) => r.id !== room.id).slice(0, 3);
   const price = formatPrice(room.monthly_price, locale);
 
+  // Derived facts for the "at a glance" grid.
+  const roomTypeLabel =
+    room.bed_type === "double"
+      ? t("doubleRoom")
+      : room.bed_type === "single"
+        ? t("singleRoom")
+        : t("furnishedRoom");
+  const occupancy = room.bed_type === "double" ? 2 : 1;
+  const availableFromIso = room.available_from;
+  const availableLabel = (() => {
+    if (!availableFromIso) return common("availableNow");
+    // Compare as dates without importing a clock into the render.
+    const from = new Date(availableFromIso);
+    const now = new Date();
+    if (from <= now) return common("availableNow");
+    return `${common("availableFrom")} ${formatDate(availableFromIso, locale)}`;
+  })();
+  const mapsHref =
+    residence?.latitude != null && residence?.longitude != null
+      ? `https://www.google.com/maps/search/?api=1&query=${residence.latitude},${residence.longitude}`
+      : null;
+
   const platforms = Object.entries(room.platform_links).filter(
     ([, url]) => !!url
   ) as [PlatformKey, string][];
@@ -112,7 +144,7 @@ export default async function RoomDetailPage({
   };
 
   return (
-    <div className="container-page py-8 md:py-12">
+    <div className="container-page py-8 pb-28 md:py-12 lg:pb-12">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -178,6 +210,20 @@ export default async function RoomDetailPage({
             )}
           </div>
 
+          {/* At a glance — labelled facts grid (wireframe) */}
+          <div className="grid grid-cols-2 gap-x-4 gap-y-5 rounded-2xl border border-line bg-surface p-5 sm:grid-cols-4">
+            <Fact label={t("location")}>
+              {residence?.neighborhood ?? residence?.city ?? "Lisbon"}
+            </Fact>
+            <Fact label={t("roomType")}>{roomTypeLabel}</Fact>
+            <Fact label={t("occupancy")}>
+              {t("occupancyValue", { count: occupancy })}
+            </Fact>
+            <Fact label={t("size")}>
+              {room.size_m2 != null ? `${room.size_m2} m²` : "—"}
+            </Fact>
+          </div>
+
           {room.description && (
             <div>
               <h2 className="text-2xl">{t("overview")}</h2>
@@ -196,9 +242,26 @@ export default async function RoomDetailPage({
           {room.room_contents.length > 0 && (
             <div>
               <h2 className="text-2xl">{t("roomContents")}</h2>
-              <ul className="mt-3 grid grid-cols-2 gap-2 text-sm text-ink-soft sm:grid-cols-3">
+              <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-3 text-sm text-ink-soft sm:grid-cols-3">
                 {room.room_contents.map((c) => (
-                  <li key={c}>{c}</li>
+                  <li key={c} className="flex items-center gap-2">
+                    <IconCheck className="shrink-0 text-base text-accent" />
+                    <span>{c}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {residence && residence.facilities.length > 0 && (
+            <div>
+              <h2 className="text-2xl">{t("residenceContents")}</h2>
+              <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-3 text-sm text-ink-soft sm:grid-cols-3">
+                {residence.facilities.map((f) => (
+                  <li key={f} className="flex items-center gap-2">
+                    <IconBuilding className="shrink-0 text-base text-accent" />
+                    <span>{f}</span>
+                  </li>
                 ))}
               </ul>
             </div>
@@ -233,6 +296,35 @@ export default async function RoomDetailPage({
             <AvailabilityCalendar events={availability} />
           </div>
 
+          {residence?.latitude != null && residence?.longitude != null && (
+            <div>
+              <div className="flex items-end justify-between gap-4">
+                <h2 className="text-2xl">{t("location")}</h2>
+                {mapsHref && (
+                  <a
+                    href={mapsHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-sm font-medium text-accent hover:text-accent-hover"
+                  >
+                    <IconMapPin className="text-base" />
+                    {t("viewOnMap")}
+                  </a>
+                )}
+              </div>
+              {residence.address && (
+                <p className="prose-muted mt-2 text-sm">{residence.address}</p>
+              )}
+              <div className="card mt-4 overflow-hidden">
+                <RoomMap
+                  lat={residence.latitude}
+                  lng={residence.longitude}
+                  label={`Map showing ${residence.name}`}
+                />
+              </div>
+            </div>
+          )}
+
           {platforms.length > 0 && (
             <div>
               <h2 className="text-2xl">{t("alsoFeaturedIn")}</h2>
@@ -255,7 +347,7 @@ export default async function RoomDetailPage({
         </div>
 
         {/* Sticky booking sidebar */}
-        <div>
+        <div id="request" className="scroll-mt-24">
           <div className="lg:sticky lg:top-20">
             <RequestForm roomId={room.id} />
           </div>
@@ -288,6 +380,24 @@ export default async function RoomDetailPage({
           </div>
         </div>
       )}
+
+      <StickyBookingBar price={price} availableLabel={availableLabel} />
+    </div>
+  );
+}
+
+// Labelled key/value cell for the "at a glance" facts grid.
+function Fact({
+  label,
+  children,
+}: {
+  label: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div>
+      <div className="text-xs uppercase tracking-wide text-muted">{label}</div>
+      <div className="mt-0.5 font-medium text-ink">{children}</div>
     </div>
   );
 }

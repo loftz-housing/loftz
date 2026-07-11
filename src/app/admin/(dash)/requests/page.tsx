@@ -32,7 +32,14 @@ export default async function AdminRequests() {
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold">Requests</h1>
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <h1 className="text-2xl font-semibold">Requests</h1>
+        {rows.length > 0 && (
+          <a href="/admin/requests/export" download className="btn btn-outline">
+            Export CSV
+          </a>
+        )}
+      </div>
       {rows.length === 0 && <p className="prose-muted mt-3">No requests yet.</p>}
 
       <div className="mt-6 space-y-3">

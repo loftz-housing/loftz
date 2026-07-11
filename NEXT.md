@@ -49,7 +49,14 @@ Each topic: build + lint green, then commit + push. Progress:
       payload length caps. Wired into `/api/requests` + `/api/contact`; honeypot field added to both
       forms. 6 unit tests. Verified live: honeypot→200 no-op; 7th request→429. Serverless caveat:
       in-memory limiter is per-instance (honeypot + caps are not); durable KV/table is the upgrade path.
-- [ ] 9. Admin upgrades · [ ] 10. Polish
+- [x] **9. Admin upgrades** — (a) **Requests CSV export**: `/admin/requests/export` route (admin-only,
+      401 otherwise) → CSV with all fields + a button on the requests page. (b) **iCal sync status**:
+      table on the dashboard (busy-period count + last-synced per room, from `max(availability.created_at)`).
+      (c) **Photo management** (`/admin/photos`): reorder (up/down, reindex-based), set-cover, remove —
+      all direct-pg. Upload is gated on a Supabase **service key** (`SUPABASE_SERVICE_KEY`, absent →
+      clear in-UI note; NEXT.md follow-up #6) since no service key exists yet. Verified live with a
+      computed admin cookie.
+- [ ] 10. Polish
 - [ ] 11. E2E tests · [ ] 12. A11y/perf sweep (last)
 
 ## Tracking + hardening (2026-07-11, pass A+B)

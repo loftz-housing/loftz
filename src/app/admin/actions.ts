@@ -140,6 +140,64 @@ export async function setRequestStatus(formData: FormData) {
   revalidatePath("/admin/requests");
 }
 
+// ---- Photos (reorder / cover / remove) ----
+// Dense, contiguous sort_index per room so up/down swaps are unambiguous.
+async function reindexRoomPhotos(roomId: string) {
+  await query(
+    `with ordered as (
+       select id, row_number() over (order by sort_index, created_at) - 1 as rn
+       from photos where room_id = $1
+     )
+     update photos p set sort_index = o.rn from ordered o where p.id = o.id`,
+    [roomId]
+  );
+}
+
+export async function movePhoto(formData: FormData) {
+  await requireAdmin();
+  const id = String(formData.get("id"));
+  const roomId = String(formData.get("room_id"));
+  const dir = String(formData.get("dir")); // 'up' | 'down'
+  await reindexRoomPhotos(roomId);
+  const [cur] = await query<{ sort_index: number }>(
+    `select sort_index from photos where id = $1`,
+    [id]
+  );
+  if (!cur) return;
+  const op = dir === "up" ? "<" : ">";
+  const ord = dir === "up" ? "desc" : "asc";
+  const [nb] = await query<{ id: string; sort_index: number }>(
+    `select id, sort_index from photos
+     where room_id = $1 and sort_index ${op} $2
+     order by sort_index ${ord} limit 1`,
+    [roomId, cur.sort_index]
+  );
+  if (!nb) return;
+  await query(`update photos set sort_index = $2 where id = $1`, [id, nb.sort_index]);
+  await query(`update photos set sort_index = $2 where id = $1`, [nb.id, cur.sort_index]);
+  revalidatePath("/admin/photos");
+}
+
+export async function setCoverPhoto(formData: FormData) {
+  await requireAdmin();
+  const id = String(formData.get("id"));
+  const roomId = String(formData.get("room_id"));
+  await query(`update photos set sort_index = -1 where id = $1`, [id]);
+  await reindexRoomPhotos(roomId);
+  revalidatePath("/admin/photos");
+}
+
+export async function removePhoto(formData: FormData) {
+  await requireAdmin();
+  const id = String(formData.get("id"));
+  const roomId = String(formData.get("room_id"));
+  // Removes the DB row (hides it from the site). The storage object is left in
+  // place (harmless orphan) — a full storage delete needs the service key.
+  await query(`delete from photos where id = $1`, [id]);
+  await reindexRoomPhotos(roomId);
+  revalidatePath("/admin/photos");
+}
+
 // ---- Settings (homepage stats) ----
 export async function updateSettings(formData: FormData) {
   await requireAdmin();

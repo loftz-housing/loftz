@@ -53,9 +53,25 @@ D-numbers live in the `loftz-housing/workspace` repo at `../../` (BACKLOG.md).
    Verify MA2's 7 rooms get photos.
 4. **Languages ES/IT/FR/DE** — add to `src/i18n/routing.ts`; create `messages/{es,it,fr,de}.json`
    (translate from `en.json`, full parity); language switcher already scales. Verify build.
-5. **Automated tests** — unit tests for `lib/eligibility.ts` + `lib/ical.ts` (add a test runner,
+5. **Automated tests** — unit tests for `lib/eligibility.ts` + `lib/ical.ts` (add a runner,
    e.g. `vitest`); a smoke test hitting key routes. Wire `npm test`.
-6. **A11y/perf sweep** — alt text, labels, focus, heading order, image sizes; fix findings.
+6. **Dynamic OG images** — per-room + per-residence `opengraph-image` (Next 16 file convention,
+   async params). Verify they render and are referenced in metadata.
+7. **Availability-aware booking** — use the synced `availability` data to block/flag
+   unavailable check-in/out dates in the booking form + show them on the room calendar
+   (min date, disable/mark busy ranges). Server-validate in `/api/requests`.
+8. **Abuse guard on public writes** — add lightweight rate-limiting / basic validation to
+   `submit_request` + `/api/contact` (e.g. per-IP throttle via a small table or in-memory +
+   honeypot field). Closes the security residual. No new external service.
+9. **Admin upgrades** — requests **CSV export**; **photo reorder + upload** (via the
+   `room-photos` bucket, admin-only, direct-pg + storage); **iCal sync status** (last-synced /
+   busy-count per room).
+10. **Polish** — `loading.tsx` skeletons for data routes; branded `not-found` + `error.tsx`;
+    image blur placeholders (`placeholder="blur"` where feasible).
+11. **Deeper tests (e2e)** — Playwright flows for home → book-now → room → submit request
+    (mock/guard the email), language switch, admin login. Wire into `npm test` or `npm run e2e`.
+12. **A11y/perf sweep** — alt text, labels, focus, heading order, image sizes; fix findings.
+    Do this LAST (sweeps everything above).
 
 ## Verify before "done"
 `npm run build` + `npm run lint` green; drive changed pages on a local prod server

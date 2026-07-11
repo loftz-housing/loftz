@@ -230,3 +230,20 @@
     color: var(--color-accent);
   }
 }
+
+/* Leaflet custom pin (branded dot) */
+.loftz-pin__dot {
+  display: block;
+  width: 16px;
+  height: 16px;
+  border-radius: 9999px;
+  background: var(--color-accent);
+  border: 3px solid #fff;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.35);
+}
+.leaflet-container {
+  font-family: var(--font-sans);
+}
+.leaflet-popup-content-wrapper {
+  border-radius: var(--radius-md);
+}

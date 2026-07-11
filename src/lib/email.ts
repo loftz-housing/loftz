@@ -65,6 +65,36 @@ export async function sendOwnerNotification(d: RequestEmailData) {
   });
 }
 
+// General contact / enquiry message (About + FAQ + landlord CTA fallback).
+export async function sendContactMessage(d: {
+  name: string;
+  email: string;
+  message: string;
+  topic?: string;
+}) {
+  if (!resend) return { skipped: true };
+  const subject = d.topic
+    ? `Website enquiry (${d.topic}): ${d.name}`
+    : `Website enquiry: ${d.name}`;
+  const html = `
+    <div style="font-family:system-ui,sans-serif;max-width:560px;margin:auto;color:#1b1a18">
+      <h2 style="font-size:18px">New enquiry from loftz.net</h2>
+      <table style="border-collapse:collapse;font-size:14px;margin-top:8px">
+        ${row("Name", d.name)}
+        ${row("Email", d.email)}
+        ${row("Topic", d.topic)}
+      </table>
+      <p style="margin-top:12px;white-space:pre-line">${d.message}</p>
+    </div>`;
+  return resend.emails.send({
+    from: FROM,
+    to: NOTIFY,
+    replyTo: d.email,
+    subject,
+    html,
+  });
+}
+
 // Branded confirmation to the guest.
 export async function sendGuestConfirmation(d: RequestEmailData) {
   if (!resend) return { skipped: true };

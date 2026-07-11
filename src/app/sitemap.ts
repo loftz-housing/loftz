@@ -8,7 +8,6 @@ const STATIC_PATHS = [
   "/residences",
   "/book-now",
   "/landlords",
-  "/partnerships",
   "/faq",
   "/about",
 ];

@@ -1,7 +1,12 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import { IconFacebook, IconLinkedin } from "@/components/icons";
 
 const COMPLAINTS_URL = "https://www.livroreclamacoes.pt/inicio";
+const SOCIALS = [
+  { href: "https://www.facebook.com/loftzhousing", label: "Facebook", Icon: IconFacebook },
+  { href: "https://www.linkedin.com/company/loftzhousing", label: "LinkedIn", Icon: IconLinkedin },
+];
 
 export function Footer() {
   const t = useTranslations("footer");
@@ -15,6 +20,20 @@ export function Footer() {
         <div>
           <div className="font-display text-2xl font-semibold">LOFTZ</div>
           <p className="prose-muted mt-3 max-w-xs text-sm">{t("tagline")}</p>
+          <div className="mt-5 flex gap-3">
+            {SOCIALS.map(({ href, label, Icon }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-line text-lg text-ink-soft transition-colors hover:border-accent hover:text-accent"
+              >
+                <Icon />
+              </a>
+            ))}
+          </div>
         </div>
 
         <div>
@@ -23,7 +42,6 @@ export function Footer() {
             <li><Link className="hover:text-accent" href="/residences">{nav("residences")}</Link></li>
             <li><Link className="hover:text-accent" href="/book-now">{nav("bookNow")}</Link></li>
             <li><Link className="hover:text-accent" href="/landlords">{nav("landlords")}</Link></li>
-            <li><Link className="hover:text-accent" href="/partnerships">{nav("partnerships")}</Link></li>
           </ul>
         </div>
 
@@ -58,7 +76,6 @@ export function Footer() {
       <div className="border-t border-line">
         <div className="container-page flex flex-col items-center justify-between gap-2 py-6 text-xs text-muted sm:flex-row">
           <p>© {year} LOFTZ. {t("rights")}</p>
-          <p>{t("entity")}</p>
         </div>
       </div>
     </footer>

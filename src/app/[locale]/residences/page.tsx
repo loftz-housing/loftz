@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { PageIntro } from "@/components/PageIntro";
-import { ResidenceCard } from "@/components/ResidenceCard";
-import { getResidences, getRooms, getResidenceCoverPhotos } from "@/lib/data";
+import { ResidenceBlock } from "@/components/ResidenceBlock";
+import { getResidences, getRooms, getRoomCoverPhotos } from "@/lib/data";
 
 export const revalidate = 3600;
 
@@ -28,10 +28,10 @@ export default async function ResidencesPage({
   const [residences, rooms, covers] = await Promise.all([
     getResidences(),
     getRooms(),
-    getResidenceCoverPhotos(),
+    getRoomCoverPhotos(),
   ]);
-  const countByResidence = rooms.reduce<Record<string, number>>((acc, r) => {
-    acc[r.residence_id] = (acc[r.residence_id] ?? 0) + 1;
+  const roomsByResidence = rooms.reduce<Record<string, typeof rooms>>((acc, r) => {
+    (acc[r.residence_id] ??= []).push(r);
     return acc;
   }, {});
 
@@ -43,13 +43,13 @@ export default async function ResidencesPage({
           {residences.length === 0 ? (
             <p className="prose-muted">{t("noRooms")}</p>
           ) : (
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="space-y-12">
               {residences.map((r) => (
-                <ResidenceCard
+                <ResidenceBlock
                   key={r.id}
                   residence={r}
-                  roomCount={countByResidence[r.id] ?? 0}
-                  cover={covers[r.id]}
+                  rooms={roomsByResidence[r.id] ?? []}
+                  covers={covers}
                 />
               ))}
             </div>

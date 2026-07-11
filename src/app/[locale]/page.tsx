@@ -51,16 +51,16 @@ export default async function HomePage({
             {t("heroSubtitle")}
           </p>
         </div>
-        <div className="mt-8">
+        <div className="mt-8 max-w-2xl">
           <p className="mb-3 text-sm font-medium text-white/80">
             {t("searchTitle")}
           </p>
-          <SearchBar residences={residences} />
+          <SearchBar />
         </div>
       </Hero>
 
+      <Stats residences={stats.residences} rooms={stats.rooms} />
       <ValueProps />
-      <Stats stats={stats} />
       <ResidenceMap residences={residences} />
 
       {/* SEO text + CTA */}

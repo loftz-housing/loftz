@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { PageIntro } from "@/components/PageIntro";
+import { ContactForm } from "@/components/ContactForm";
 import { IconChevronDown } from "@/components/icons";
 
 interface FaqItem {
@@ -63,16 +64,9 @@ export default async function FaqPage({
           </div>
 
           <aside className="lg:sticky lg:top-20 lg:h-fit">
-            <div className="card bg-surface p-6">
-              <h2 className="text-xl">{t("stillTitle")}</h2>
-              <p className="prose-muted mt-2 text-sm">{t("stillBody")}</p>
-              <a
-                href="mailto:henriquesantana@loftz.net"
-                className="btn btn-primary mt-4 w-full"
-              >
-                {t("stillTitle")}
-              </a>
-            </div>
+            <h2 className="text-xl">{t("stillTitle")}</h2>
+            <p className="prose-muted mt-2 mb-4 text-sm">{t("stillBody")}</p>
+            <ContactForm topic="faq" />
           </aside>
         </div>
       </section>

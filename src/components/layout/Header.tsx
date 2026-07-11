@@ -8,9 +8,7 @@ import { IconMenu, IconClose } from "@/components/icons";
 
 const NAV = [
   { href: "/residences", key: "residences" },
-  { href: "/book-now", key: "bookNow" },
   { href: "/landlords", key: "landlords" },
-  { href: "/partnerships", key: "partnerships" },
   { href: "/faq", key: "faq" },
   { href: "/about", key: "about" },
 ] as const;

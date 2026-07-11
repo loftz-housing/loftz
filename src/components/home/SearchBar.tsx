@@ -4,19 +4,16 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
 import { IconSearch } from "@/components/icons";
-import type { Residence } from "@/lib/types";
 
-export function SearchBar({ residences }: { residences: Residence[] }) {
+export function SearchBar() {
   const t = useTranslations("home");
   const router = useRouter();
-  const [residence, setResidence] = useState("");
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
 
   function submit(e: React.FormEvent) {
     e.preventDefault();
     const params = new URLSearchParams();
-    if (residence) params.set("residence", residence);
     if (from) params.set("from", from);
     if (to) params.set("to", to);
     const qs = params.toString();
@@ -26,25 +23,8 @@ export function SearchBar({ residences }: { residences: Residence[] }) {
   return (
     <form
       onSubmit={submit}
-      className="card grid gap-3 p-4 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_auto] lg:items-end"
+      className="card grid gap-3 p-4 sm:grid-cols-[1fr_1fr_auto] sm:items-end"
     >
-      <div>
-        <label className="label" htmlFor="s-loc">{t("searchLocation")}</label>
-        <select
-          id="s-loc"
-          className="field"
-          value={residence}
-          onChange={(e) => setResidence(e.target.value)}
-        >
-          <option value="">{t("searchLocationAny")}</option>
-          {residences.map((r) => (
-            <option key={r.id} value={r.slug}>
-              {r.name}
-              {r.neighborhood ? ` — ${r.neighborhood}` : ""}
-            </option>
-          ))}
-        </select>
-      </div>
       <div>
         <label className="label" htmlFor="s-in">{t("searchCheckIn")}</label>
         <input

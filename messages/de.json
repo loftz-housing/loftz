@@ -200,7 +200,10 @@
     "errorTitle": "Etwas ist schiefgelaufen",
     "error": "Wir konnten deine Anfrage nicht senden. Bitte versuch es erneut oder schreib uns direkt eine E-Mail.",
     "tabBooking": "Buchen",
-    "tabVisit": "Besichtigen"
+    "tabVisit": "Besichtigen",
+    "dateOrderError": "Das Auschecken muss nach dem Einchecken liegen.",
+    "unavailableTitle": "Diese Daten sind nicht verfügbar",
+    "unavailableBody": "Einige der gewählten Nächte sind bereits gebucht. Bitte wähle andere Daten — der Kalender unten zeigt, was frei ist."
   },
   "eligibility": {
     "blockedTitle": "Dieses Zimmer passt nicht",
@@ -225,11 +228,21 @@
     "guaranteed_title": "Garantiertes Einkommen",
     "guaranteed_tagline": "Eine feste Miete, jeden Monat — vermietet oder leer",
     "guaranteed_body": "Wir schließen einen langfristigen Mietvertrag für deine Wohnung ab und zahlen dir jeden einzelnen Monat einen festen Betrag, egal ob die Zimmer belegt sind oder nicht. Wir tragen das gesamte Leerstands- und Mieterrisiko. Du erhältst planbares, sorgenfreies Einkommen und eine Immobilie, die professionell gepflegt und in bestem Zustand zurückgegeben wird.",
-    "guaranteed_points": ["Feste monatliche Zahlung, Leerstand ist unser Problem", "Langfristiger Vertrag — Stabilität über Jahre", "Wir möblieren und modernisieren auf unsere Kosten", "Immobilie gepflegt und in Top-Zustand zurückgegeben"],
+    "guaranteed_points": [
+      "Feste monatliche Zahlung, Leerstand ist unser Problem",
+      "Langfristiger Vertrag — Stabilität über Jahre",
+      "Wir möblieren und modernisieren auf unsere Kosten",
+      "Immobilie gepflegt und in Top-Zustand zurückgegeben"
+    ],
     "managed_title": "Vollverwaltung",
     "managed_tagline": "Behalte die Rendite, gib den Aufwand ab",
     "managed_body": "Du möchtest lieber die Mietrendite behalten? Wir betreiben deine Wohnung von A bis Z für eine einzige Verwaltungsgebühr: Möblierung, professionelle Fotos, Listung auf den Top-Plattformen, Mieterprüfung, Verträge, Mietinkasso, Reinigung und Instandhaltung. Du erhältst ein Eigentümer-Dashboard und einen festen Ansprechpartner.",
-    "managed_points": ["Vermarktet auf Uniplaces, Spotahome, HousingAnywhere u. v. m.", "Geprüfte Mieter und angemeldete Verträge", "Mietinkasso, Reinigung und Instandhaltung übernommen", "Transparente monatliche Berichte"],
+    "managed_points": [
+      "Vermarktet auf Uniplaces, Spotahome, HousingAnywhere u. v. m.",
+      "Geprüfte Mieter und angemeldete Verträge",
+      "Mietinkasso, Reinigung und Instandhaltung übernommen",
+      "Transparente monatliche Berichte"
+    ],
     "whyTitle": "Warum Eigentümer sich für LOFTZ entscheiden",
     "why1_title": "Kein Leerstand, kein Hinterherlaufen",
     "why1_body": "Wir halten die Zimmer belegt und die Miete am Fließen — Inkasso, Zahlungsverzug und leere Monate sind unsere Aufgabe, nicht deine.",
@@ -273,19 +286,58 @@
     "stillTitle": "Noch eine Frage?",
     "stillBody": "Du findest nicht, wonach du suchst? Schick uns eine Nachricht und wir helfen dir.",
     "items": [
-      { "q": "Wie buche ich ein Zimmer?", "a": "Durchstöbere die verfügbaren Zimmer, öffne das, das dir gefällt, und schick eine Buchungsanfrage mit deinen Angaben und Terminen. Wir bestätigen die Verfügbarkeit und die nächsten Schritte per E-Mail — kein Konto nötig." },
-      { "q": "Zahle ich Buchungsgebühren?", "a": "Nein. Die Direktbuchung bei LOFTZ ist kostenlos — es gibt keine Service- oder Buchungsgebühren, anders als bei den Listing-Plattformen. Du zahlst deine Miete und eine Kaution, sonst nichts an uns für die Buchung." },
-      { "q": "Was ist in der Miete enthalten?", "a": "Die Miete ist all-inclusive: Wasser, Strom, Gas, Reinigung der Gemeinschaftsbereiche und schnelles Internet sind abgedeckt. Deine monatliche Zahlung ist der Betrag, den du auf der Zimmerseite siehst." },
-      { "q": "Gibt es eine Kaution?", "a": "Ja, in der Regel ist eine Kaution erforderlich, die am Ende deines Aufenthalts je nach Zustand des Zimmers zurückerstattet wird. Die genaue Höhe und die Bedingungen stehen in deinem Vertrag." },
-      { "q": "Bekomme ich einen angemeldeten Vertrag?", "a": "Ja. Jedes Mietverhältnis kommt mit einem ordentlichen, angemeldeten Mietvertrag und Quittungen — nützlich für Visa-, Aufenthalts- und NIF-Anträge." },
-      { "q": "Wie lange ist der Mindestaufenthalt?", "a": "Der Mindestaufenthalt variiert je nach Zimmer und wird in den Buchungsbedingungen auf jeder Zimmerseite angezeigt. Die meisten Zimmer eignen sich für einen Aufenthalt über ein Semester oder ein akademisches Jahr." },
-      { "q": "Wie zahle ich die Miete?", "a": "Die Miete wird monatlich gezahlt, in der Regel per Banküberweisung. Wir teilen dir die Zahlungsdetails und den Zeitplan mit, sobald deine Buchung bestätigt ist." },
-      { "q": "Kann ich vor der Buchung besichtigen?", "a": "Auf jeden Fall. Nutze die Option „Besichtigung vereinbaren“ auf jeder Zimmerseite und wir stimmen einen Termin ab — vor Ort oder als Video-Rundgang, wenn du im Ausland bist." },
-      { "q": "Ich ziehe aus einem anderen Land um — kann ich aus dem Ausland buchen?", "a": "Ja. Die meisten unserer Gäste buchen vor ihrer Ankunft in Lissabon. Wir regeln alles aus der Ferne, einschließlich des Vertrags, damit dein Zimmer bereit ist, wenn du landest." },
-      { "q": "Wie lautet die Hausordnung?", "a": "Jedes Zimmer führt seine eigenen Bedingungen auf (zum Beispiel Mindestalter, Mindestaufenthalt und Regeln zu Rauchen, Partys oder Haustieren). Du siehst sie auf der Zimmerseite und bestätigst sie, wenn du eine Buchung anfragst." },
-      { "q": "Wer wohnt in den Residenzen?", "a": "Überwiegend Studierende und Young Professionals im Alter von 18–30 Jahren, sowohl aus Portugal als auch international — eine freundliche, respektvolle Gemeinschaft." },
-      { "q": "Was, wenn etwas kaputtgeht?", "a": "Sag uns einfach Bescheid. Instandhaltung ist inklusive — unser Team behebt Probleme schnell, damit du dich nicht darum kümmern musst." },
-      { "q": "Wie schnell höre ich nach einer Anfrage von euch?", "a": "In der Regel innerhalb eines Werktags. Wir schreiben dir eine E-Mail, um die Verfügbarkeit zu bestätigen und dich durch die nächsten Schritte zu führen." }
+      {
+        "q": "Wie buche ich ein Zimmer?",
+        "a": "Durchstöbere die verfügbaren Zimmer, öffne das, das dir gefällt, und schick eine Buchungsanfrage mit deinen Angaben und Terminen. Wir bestätigen die Verfügbarkeit und die nächsten Schritte per E-Mail — kein Konto nötig."
+      },
+      {
+        "q": "Zahle ich Buchungsgebühren?",
+        "a": "Nein. Die Direktbuchung bei LOFTZ ist kostenlos — es gibt keine Service- oder Buchungsgebühren, anders als bei den Listing-Plattformen. Du zahlst deine Miete und eine Kaution, sonst nichts an uns für die Buchung."
+      },
+      {
+        "q": "Was ist in der Miete enthalten?",
+        "a": "Die Miete ist all-inclusive: Wasser, Strom, Gas, Reinigung der Gemeinschaftsbereiche und schnelles Internet sind abgedeckt. Deine monatliche Zahlung ist der Betrag, den du auf der Zimmerseite siehst."
+      },
+      {
+        "q": "Gibt es eine Kaution?",
+        "a": "Ja, in der Regel ist eine Kaution erforderlich, die am Ende deines Aufenthalts je nach Zustand des Zimmers zurückerstattet wird. Die genaue Höhe und die Bedingungen stehen in deinem Vertrag."
+      },
+      {
+        "q": "Bekomme ich einen angemeldeten Vertrag?",
+        "a": "Ja. Jedes Mietverhältnis kommt mit einem ordentlichen, angemeldeten Mietvertrag und Quittungen — nützlich für Visa-, Aufenthalts- und NIF-Anträge."
+      },
+      {
+        "q": "Wie lange ist der Mindestaufenthalt?",
+        "a": "Der Mindestaufenthalt variiert je nach Zimmer und wird in den Buchungsbedingungen auf jeder Zimmerseite angezeigt. Die meisten Zimmer eignen sich für einen Aufenthalt über ein Semester oder ein akademisches Jahr."
+      },
+      {
+        "q": "Wie zahle ich die Miete?",
+        "a": "Die Miete wird monatlich gezahlt, in der Regel per Banküberweisung. Wir teilen dir die Zahlungsdetails und den Zeitplan mit, sobald deine Buchung bestätigt ist."
+      },
+      {
+        "q": "Kann ich vor der Buchung besichtigen?",
+        "a": "Auf jeden Fall. Nutze die Option „Besichtigung vereinbaren“ auf jeder Zimmerseite und wir stimmen einen Termin ab — vor Ort oder als Video-Rundgang, wenn du im Ausland bist."
+      },
+      {
+        "q": "Ich ziehe aus einem anderen Land um — kann ich aus dem Ausland buchen?",
+        "a": "Ja. Die meisten unserer Gäste buchen vor ihrer Ankunft in Lissabon. Wir regeln alles aus der Ferne, einschließlich des Vertrags, damit dein Zimmer bereit ist, wenn du landest."
+      },
+      {
+        "q": "Wie lautet die Hausordnung?",
+        "a": "Jedes Zimmer führt seine eigenen Bedingungen auf (zum Beispiel Mindestalter, Mindestaufenthalt und Regeln zu Rauchen, Partys oder Haustieren). Du siehst sie auf der Zimmerseite und bestätigst sie, wenn du eine Buchung anfragst."
+      },
+      {
+        "q": "Wer wohnt in den Residenzen?",
+        "a": "Überwiegend Studierende und Young Professionals im Alter von 18–30 Jahren, sowohl aus Portugal als auch international — eine freundliche, respektvolle Gemeinschaft."
+      },
+      {
+        "q": "Was, wenn etwas kaputtgeht?",
+        "a": "Sag uns einfach Bescheid. Instandhaltung ist inklusive — unser Team behebt Probleme schnell, damit du dich nicht darum kümmern musst."
+      },
+      {
+        "q": "Wie schnell höre ich nach einer Anfrage von euch?",
+        "a": "In der Regel innerhalb eines Werktags. Wir schreiben dir eine E-Mail, um die Verfügbarkeit zu bestätigen und dich durch die nächsten Schritte zu führen."
+      }
     ]
   },
   "about": {

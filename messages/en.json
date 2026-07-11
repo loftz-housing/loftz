@@ -200,7 +200,10 @@
     "errorTitle": "Something went wrong",
     "error": "We couldn't send your request. Please try again, or email us directly.",
     "tabBooking": "Book",
-    "tabVisit": "Visit"
+    "tabVisit": "Visit",
+    "dateOrderError": "Check-out must be after check-in.",
+    "unavailableTitle": "Those dates aren't available",
+    "unavailableBody": "Some nights you selected are already booked. Please choose different dates — the calendar below shows what's free."
   },
   "eligibility": {
     "blockedTitle": "This room isn't a match",
@@ -225,11 +228,21 @@
     "guaranteed_title": "Guaranteed Income",
     "guaranteed_tagline": "A fixed rent, every month — occupied or empty",
     "guaranteed_body": "We sign a long-term lease for your apartment and pay you a fixed amount every single month, whether or not the rooms are filled. We carry all the vacancy and tenant risk. You get predictable, worry-free income and a property that's professionally looked after and returned in great condition.",
-    "guaranteed_points": ["Fixed monthly payment, voids are our problem", "Long-term contract — stability for years", "We furnish and upgrade at our cost", "Property maintained and returned in top shape"],
+    "guaranteed_points": [
+      "Fixed monthly payment, voids are our problem",
+      "Long-term contract — stability for years",
+      "We furnish and upgrade at our cost",
+      "Property maintained and returned in top shape"
+    ],
     "managed_title": "Full Management",
     "managed_tagline": "Keep the upside, lose the workload",
     "managed_body": "Prefer to keep the rental upside? We run your apartment end to end for a single management fee: furnishing, professional photos, listing across the top platforms, tenant screening, contracts, rent collection, cleaning and maintenance. You get an owner dashboard and one point of contact.",
-    "managed_points": ["Marketed across Uniplaces, Spotahome, HousingAnywhere & more", "Vetted tenants and registered contracts", "Rent collection, cleaning and maintenance handled", "Transparent monthly reporting"],
+    "managed_points": [
+      "Marketed across Uniplaces, Spotahome, HousingAnywhere & more",
+      "Vetted tenants and registered contracts",
+      "Rent collection, cleaning and maintenance handled",
+      "Transparent monthly reporting"
+    ],
     "whyTitle": "Why owners choose LOFTZ",
     "why1_title": "No voids, no chasing",
     "why1_body": "We keep rooms filled and rent flowing — collections, late payments and empty months are our job, not yours.",
@@ -273,19 +286,58 @@
     "stillTitle": "Still have a question?",
     "stillBody": "Can't find what you're looking for? Send us a message and we'll help.",
     "items": [
-      { "q": "How do I book a room?", "a": "Browse available rooms, open the one you like and send a booking request with your details and dates. We'll confirm availability and next steps by email — no account needed." },
-      { "q": "Do I pay any booking fees?", "a": "No. Booking directly with LOFTZ is free — there are no service or booking fees, unlike the listing platforms. You pay your rent and a security deposit, nothing extra to us for booking." },
-      { "q": "What's included in the rent?", "a": "Rent is all-inclusive: water, electricity, gas, cleaning of common areas and high-speed internet are covered. Your monthly payment is what you see on the room page." },
-      { "q": "Is there a deposit?", "a": "Yes, a security deposit is typically required and refunded at the end of your stay, subject to the condition of the room. The exact amount and terms are in your contract." },
-      { "q": "Do I get a registered contract?", "a": "Yes. Every tenancy comes with a proper, registered rental contract and receipts — useful for visa, residency and NIF applications." },
-      { "q": "What is the minimum stay?", "a": "Minimum stay varies by room and is shown in the booking conditions on each room page. Most rooms suit a semester or academic-year stay." },
-      { "q": "How do I pay the rent?", "a": "Rent is paid monthly, usually by bank transfer. We'll share the payment details and schedule once your booking is confirmed." },
-      { "q": "Can I visit before booking?", "a": "Absolutely. Use the \"Schedule a visit\" option on any room page and we'll arrange a time — in person or a video walkthrough if you're abroad." },
-      { "q": "I'm moving from another country — can I book from abroad?", "a": "Yes. Most of our guests book before arriving in Lisbon. We handle everything remotely, including the contract, so your room is ready when you land." },
-      { "q": "What are the house rules?", "a": "Each room lists its own conditions (for example minimum age, minimum stay, and rules on smoking, parties or pets). You'll see them on the room page and confirm them when you request to book." },
-      { "q": "Who lives in the residences?", "a": "Mostly students and young professionals aged 18–30, both Portuguese and international — a friendly, respectful community." },
-      { "q": "What if something breaks?", "a": "Just tell us. Maintenance is included — our team fixes issues quickly so you don't have to deal with it." },
-      { "q": "How soon will I hear back after requesting?", "a": "Usually within one business day. We'll email you to confirm availability and walk you through the next steps." }
+      {
+        "q": "How do I book a room?",
+        "a": "Browse available rooms, open the one you like and send a booking request with your details and dates. We'll confirm availability and next steps by email — no account needed."
+      },
+      {
+        "q": "Do I pay any booking fees?",
+        "a": "No. Booking directly with LOFTZ is free — there are no service or booking fees, unlike the listing platforms. You pay your rent and a security deposit, nothing extra to us for booking."
+      },
+      {
+        "q": "What's included in the rent?",
+        "a": "Rent is all-inclusive: water, electricity, gas, cleaning of common areas and high-speed internet are covered. Your monthly payment is what you see on the room page."
+      },
+      {
+        "q": "Is there a deposit?",
+        "a": "Yes, a security deposit is typically required and refunded at the end of your stay, subject to the condition of the room. The exact amount and terms are in your contract."
+      },
+      {
+        "q": "Do I get a registered contract?",
+        "a": "Yes. Every tenancy comes with a proper, registered rental contract and receipts — useful for visa, residency and NIF applications."
+      },
+      {
+        "q": "What is the minimum stay?",
+        "a": "Minimum stay varies by room and is shown in the booking conditions on each room page. Most rooms suit a semester or academic-year stay."
+      },
+      {
+        "q": "How do I pay the rent?",
+        "a": "Rent is paid monthly, usually by bank transfer. We'll share the payment details and schedule once your booking is confirmed."
+      },
+      {
+        "q": "Can I visit before booking?",
+        "a": "Absolutely. Use the \"Schedule a visit\" option on any room page and we'll arrange a time — in person or a video walkthrough if you're abroad."
+      },
+      {
+        "q": "I'm moving from another country — can I book from abroad?",
+        "a": "Yes. Most of our guests book before arriving in Lisbon. We handle everything remotely, including the contract, so your room is ready when you land."
+      },
+      {
+        "q": "What are the house rules?",
+        "a": "Each room lists its own conditions (for example minimum age, minimum stay, and rules on smoking, parties or pets). You'll see them on the room page and confirm them when you request to book."
+      },
+      {
+        "q": "Who lives in the residences?",
+        "a": "Mostly students and young professionals aged 18–30, both Portuguese and international — a friendly, respectful community."
+      },
+      {
+        "q": "What if something breaks?",
+        "a": "Just tell us. Maintenance is included — our team fixes issues quickly so you don't have to deal with it."
+      },
+      {
+        "q": "How soon will I hear back after requesting?",
+        "a": "Usually within one business day. We'll email you to confirm availability and walk you through the next steps."
+      }
     ]
   },
   "about": {

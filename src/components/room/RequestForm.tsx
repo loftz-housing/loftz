@@ -6,20 +6,31 @@ import { Link } from "@/i18n/navigation";
 import { IconCheck } from "@/components/icons";
 import { track } from "@/lib/track";
 import type { EligibilityReason } from "@/lib/eligibility";
+import {
+  type BusyRange,
+  isValidRange,
+  rangeOverlapsBusy,
+  minCheckIn,
+} from "@/lib/availability";
 
 type Mode = "booking" | "visit";
 type Result =
   | { status: "ok" }
   | { status: "blocked"; reasons: EligibilityReason[] }
+  | { status: "unavailable" }
   | { status: "error" }
   | null;
 
 export function RequestForm({
   roomId,
   defaultMode = "booking",
+  busy = [],
+  availableFrom = null,
 }: {
   roomId: string;
   defaultMode?: Mode;
+  busy?: BusyRange[];
+  availableFrom?: string | null;
 }) {
   const t = useTranslations("forms");
   const el = useTranslations("eligibility");
@@ -28,9 +39,23 @@ export function RequestForm({
   const [mode, setMode] = useState<Mode>(defaultMode);
   const [submitting, setSubmitting] = useState(false);
   const [result, setResult] = useState<Result>(null);
+  const [checkIn, setCheckIn] = useState("");
+  const [checkOut, setCheckOut] = useState("");
+
+  const minIn = minCheckIn(availableFrom);
+  // Local date validity: order + no overlap with a booked night.
+  const dateOrderBad =
+    mode === "booking" && checkIn !== "" && checkOut !== "" && !isValidRange(checkIn, checkOut);
+  const overlapsBusy =
+    mode === "booking" && isValidRange(checkIn, checkOut) && rangeOverlapsBusy(checkIn, checkOut, busy);
+  const datesBlocked = dateOrderBad || overlapsBusy;
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (mode === "booking" && datesBlocked) {
+      setResult({ status: "unavailable" });
+      return;
+    }
     setSubmitting(true);
     setResult(null);
     const fd = new FormData(e.currentTarget);
@@ -66,6 +91,8 @@ export function RequestForm({
       }
       else if (data.status === "blocked")
         setResult({ status: "blocked", reasons: data.reasons ?? [] });
+      else if (data.status === "unavailable")
+        setResult({ status: "unavailable" });
       else setResult({ status: "error" });
     } catch {
       setResult({ status: "error" });
@@ -142,9 +169,57 @@ export function RequestForm({
         </div>
 
         {mode === "booking" ? (
-          <div className="grid gap-4 sm:grid-cols-2">
-            <Field name="check_in" type="date" label={t("checkIn")} required />
-            <Field name="check_out" type="date" label={t("checkOut")} required />
+          <div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div>
+                <label className="label" htmlFor="check_in">
+                  {t("checkIn")}
+                  <span className="text-[var(--color-danger)]"> *</span>
+                </label>
+                <input
+                  id="check_in"
+                  name="check_in"
+                  type="date"
+                  required
+                  className="field"
+                  min={minIn}
+                  value={checkIn}
+                  onChange={(e) => {
+                    setCheckIn(e.target.value);
+                    if (checkOut && e.target.value >= checkOut) setCheckOut("");
+                  }}
+                />
+              </div>
+              <div>
+                <label className="label" htmlFor="check_out">
+                  {t("checkOut")}
+                  <span className="text-[var(--color-danger)]"> *</span>
+                </label>
+                <input
+                  id="check_out"
+                  name="check_out"
+                  type="date"
+                  required
+                  className="field"
+                  min={checkIn || minIn}
+                  value={checkOut}
+                  onChange={(e) => setCheckOut(e.target.value)}
+                />
+              </div>
+            </div>
+            {dateOrderBad && (
+              <p className="mt-2 text-sm text-[var(--color-danger)]">
+                {t("dateOrderError")}
+              </p>
+            )}
+            {overlapsBusy && (
+              <div className="mt-3 rounded-lg border border-[var(--color-danger)] bg-danger-soft p-3 text-sm">
+                <p className="font-medium text-[var(--color-danger)]">
+                  {t("unavailableTitle")}
+                </p>
+                <p className="mt-1 text-ink-soft">{t("unavailableBody")}</p>
+              </div>
+            )}
           </div>
         ) : (
           <div className="grid gap-4 sm:grid-cols-2">
@@ -185,6 +260,12 @@ export function RequestForm({
             <p className="mt-2 text-ink-soft">{el("adjust")}</p>
           </div>
         )}
+        {result?.status === "unavailable" && (
+          <div className="rounded-lg border border-[var(--color-danger)] bg-danger-soft p-4 text-sm">
+            <p className="font-medium text-[var(--color-danger)]">{t("unavailableTitle")}</p>
+            <p className="mt-1 text-ink-soft">{t("unavailableBody")}</p>
+          </div>
+        )}
         {result?.status === "error" && (
           <div className="rounded-lg border border-[var(--color-danger)] bg-danger-soft p-4 text-sm">
             <p className="font-medium text-[var(--color-danger)]">{t("errorTitle")}</p>
@@ -192,7 +273,11 @@ export function RequestForm({
           </div>
         )}
 
-        <button type="submit" className="btn btn-primary btn-lg w-full" disabled={submitting}>
+        <button
+          type="submit"
+          className="btn btn-primary btn-lg w-full"
+          disabled={submitting || (mode === "booking" && datesBlocked)}
+        >
           {submitting
             ? t("submitting")
             : mode === "booking"

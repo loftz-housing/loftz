@@ -38,7 +38,13 @@ Each topic: build + lint green, then commit + push. Progress:
       real photo + teal gradient + wordmark + eyebrow + coral price pill). Removed the room page's
       manual `openGraph.images` so the dynamic card is the referenced image. Verified: both routes
       return valid `image/png`, `og:image` meta points at them.
-- [ ] 7. Availability-aware booking · [ ] 8. Abuse guard · [ ] 9. Admin upgrades · [ ] 10. Polish
+- [x] **7. Availability-aware booking** — shared `lib/availability.ts` (daysBooked, isValidRange,
+      rangeOverlapsBusy, minCheckIn). Booking form now: `min` = max(today, available_from), auto-clears
+      check-out when it precedes check-in, shows an inline "dates aren't available" warning and disables
+      submit when the range overlaps a booked night. `/api/requests` server-validates the same (returns
+      `unavailable`) so a stale/crafted request can't book a taken room. Calendar reuses the shared helper.
+      Verified: server returns `unavailable` for an overlapping range; form warns + disables submit.
+- [ ] 8. Abuse guard · [ ] 9. Admin upgrades · [ ] 10. Polish
 - [ ] 11. E2E tests · [ ] 12. A11y/perf sweep (last)
 
 ## Tracking + hardening (2026-07-11, pass A+B)

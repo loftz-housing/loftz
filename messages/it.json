@@ -200,7 +200,10 @@
     "errorTitle": "Qualcosa è andato storto",
     "error": "Non siamo riusciti a inviare la tua richiesta. Riprova oppure scrivici direttamente via email.",
     "tabBooking": "Prenota",
-    "tabVisit": "Visita"
+    "tabVisit": "Visita",
+    "dateOrderError": "Il check-out deve essere successivo al check-in.",
+    "unavailableTitle": "Quelle date non sono disponibili",
+    "unavailableBody": "Alcune notti selezionate sono già prenotate. Scegli altre date — il calendario qui sotto mostra le disponibilità."
   },
   "eligibility": {
     "blockedTitle": "Questa stanza non fa per te",
@@ -225,11 +228,21 @@
     "guaranteed_title": "Reddito Garantito",
     "guaranteed_tagline": "Un affitto fisso, ogni mese — occupato o vuoto",
     "guaranteed_body": "Firmiamo un contratto di locazione a lungo termine per il tuo appartamento e ti paghiamo un importo fisso ogni singolo mese, indipendentemente dal fatto che le stanze siano occupate o meno. Ci facciamo carico noi di tutto il rischio di sfitto e degli inquilini. Tu ottieni un reddito prevedibile e senza preoccupazioni, e un immobile curato professionalmente e restituito in ottime condizioni.",
-    "guaranteed_points": ["Pagamento mensile fisso, gli sfitti sono un nostro problema", "Contratto a lungo termine — stabilità per anni", "Arrediamo e miglioriamo a nostre spese", "Immobile mantenuto e restituito in ottime condizioni"],
+    "guaranteed_points": [
+      "Pagamento mensile fisso, gli sfitti sono un nostro problema",
+      "Contratto a lungo termine — stabilità per anni",
+      "Arrediamo e miglioriamo a nostre spese",
+      "Immobile mantenuto e restituito in ottime condizioni"
+    ],
     "managed_title": "Gestione Completa",
     "managed_tagline": "Tieni per te i guadagni, lascia a noi il lavoro",
     "managed_body": "Preferisci tenere per te i guadagni dell'affitto? Gestiamo il tuo appartamento dall'inizio alla fine per un'unica commissione di gestione: arredamento, foto professionali, pubblicazione sulle migliori piattaforme, selezione degli inquilini, contratti, riscossione dell'affitto, pulizie e manutenzione. Ottieni una dashboard per il proprietario e un unico punto di contatto.",
-    "managed_points": ["Promosso su Uniplaces, Spotahome, HousingAnywhere e altre", "Inquilini selezionati e contratti registrati", "Riscossione dell'affitto, pulizie e manutenzione gestite", "Rendicontazione mensile trasparente"],
+    "managed_points": [
+      "Promosso su Uniplaces, Spotahome, HousingAnywhere e altre",
+      "Inquilini selezionati e contratti registrati",
+      "Riscossione dell'affitto, pulizie e manutenzione gestite",
+      "Rendicontazione mensile trasparente"
+    ],
     "whyTitle": "Perché i proprietari scelgono LOFTZ",
     "why1_title": "Nessuno sfitto, nessuna rincorsa",
     "why1_body": "Manteniamo le stanze occupate e l'affitto che scorre — riscossioni, pagamenti in ritardo e mesi vuoti sono un nostro compito, non tuo.",
@@ -273,19 +286,58 @@
     "stillTitle": "Hai ancora una domanda?",
     "stillBody": "Non trovi quello che cerchi? Inviaci un messaggio e ti aiuteremo.",
     "items": [
-      { "q": "Come prenoto una stanza?", "a": "Sfoglia le stanze disponibili, apri quella che ti piace e invia una richiesta di prenotazione con i tuoi dati e le date. Ti confermeremo la disponibilità e i passi successivi via email — nessun account necessario." },
-      { "q": "Devo pagare commissioni di prenotazione?", "a": "No. Prenotare direttamente con LOFTZ è gratuito — non ci sono commissioni di servizio o di prenotazione, a differenza delle piattaforme di annunci. Paghi l'affitto e un deposito cauzionale, nient'altro a noi per la prenotazione." },
-      { "q": "Cosa è incluso nell'affitto?", "a": "L'affitto è tutto incluso: acqua, elettricità, gas, pulizia delle aree comuni e internet ad alta velocità sono compresi. Il tuo pagamento mensile è quello che vedi nella pagina della stanza." },
-      { "q": "È previsto un deposito?", "a": "Sì, di norma è richiesto un deposito cauzionale, che viene restituito al termine del soggiorno in base allo stato della stanza. L'importo esatto e le condizioni sono indicati nel tuo contratto." },
-      { "q": "Ricevo un contratto registrato?", "a": "Sì. Ogni locazione include un vero contratto di affitto registrato con ricevute — utile per le pratiche di visto, permesso di soggiorno e NIF." },
-      { "q": "Qual è il soggiorno minimo?", "a": "Il soggiorno minimo varia in base alla stanza ed è indicato nelle condizioni di prenotazione di ogni pagina. La maggior parte delle stanze è adatta a un soggiorno di un semestre o di un anno accademico." },
-      { "q": "Come pago l'affitto?", "a": "L'affitto si paga mensilmente, di solito tramite bonifico bancario. Ti forniremo i dettagli di pagamento e le scadenze una volta confermata la prenotazione." },
-      { "q": "Posso visitare prima di prenotare?", "a": "Assolutamente. Usa l'opzione \"Prenota una visita\" su qualsiasi pagina di una stanza e organizzeremo un orario — di persona o con una visita in video se sei all'estero." },
-      { "q": "Mi trasferisco da un altro Paese — posso prenotare dall'estero?", "a": "Sì. La maggior parte dei nostri ospiti prenota prima di arrivare a Lisbona. Gestiamo tutto a distanza, contratto incluso, così la tua stanza è pronta quando atterri." },
-      { "q": "Qual è il regolamento della casa?", "a": "Ogni stanza indica le proprie condizioni (per esempio età minima, soggiorno minimo e regole su fumo, feste o animali). Le vedrai nella pagina della stanza e le confermerai al momento della richiesta di prenotazione." },
-      { "q": "Chi vive nelle residenze?", "a": "Perlopiù studenti e giovani professionisti tra i 18 e i 30 anni, sia portoghesi che internazionali — una comunità cordiale e rispettosa." },
-      { "q": "Cosa succede se qualcosa si rompe?", "a": "Basta dircelo. La manutenzione è inclusa — il nostro team risolve i problemi rapidamente, così non devi occupartene tu." },
-      { "q": "Quanto ci vuole per avere una risposta dopo la richiesta?", "a": "Di solito entro un giorno lavorativo. Ti scriveremo via email per confermare la disponibilità e guidarti nei passi successivi." }
+      {
+        "q": "Come prenoto una stanza?",
+        "a": "Sfoglia le stanze disponibili, apri quella che ti piace e invia una richiesta di prenotazione con i tuoi dati e le date. Ti confermeremo la disponibilità e i passi successivi via email — nessun account necessario."
+      },
+      {
+        "q": "Devo pagare commissioni di prenotazione?",
+        "a": "No. Prenotare direttamente con LOFTZ è gratuito — non ci sono commissioni di servizio o di prenotazione, a differenza delle piattaforme di annunci. Paghi l'affitto e un deposito cauzionale, nient'altro a noi per la prenotazione."
+      },
+      {
+        "q": "Cosa è incluso nell'affitto?",
+        "a": "L'affitto è tutto incluso: acqua, elettricità, gas, pulizia delle aree comuni e internet ad alta velocità sono compresi. Il tuo pagamento mensile è quello che vedi nella pagina della stanza."
+      },
+      {
+        "q": "È previsto un deposito?",
+        "a": "Sì, di norma è richiesto un deposito cauzionale, che viene restituito al termine del soggiorno in base allo stato della stanza. L'importo esatto e le condizioni sono indicati nel tuo contratto."
+      },
+      {
+        "q": "Ricevo un contratto registrato?",
+        "a": "Sì. Ogni locazione include un vero contratto di affitto registrato con ricevute — utile per le pratiche di visto, permesso di soggiorno e NIF."
+      },
+      {
+        "q": "Qual è il soggiorno minimo?",
+        "a": "Il soggiorno minimo varia in base alla stanza ed è indicato nelle condizioni di prenotazione di ogni pagina. La maggior parte delle stanze è adatta a un soggiorno di un semestre o di un anno accademico."
+      },
+      {
+        "q": "Come pago l'affitto?",
+        "a": "L'affitto si paga mensilmente, di solito tramite bonifico bancario. Ti forniremo i dettagli di pagamento e le scadenze una volta confermata la prenotazione."
+      },
+      {
+        "q": "Posso visitare prima di prenotare?",
+        "a": "Assolutamente. Usa l'opzione \"Prenota una visita\" su qualsiasi pagina di una stanza e organizzeremo un orario — di persona o con una visita in video se sei all'estero."
+      },
+      {
+        "q": "Mi trasferisco da un altro Paese — posso prenotare dall'estero?",
+        "a": "Sì. La maggior parte dei nostri ospiti prenota prima di arrivare a Lisbona. Gestiamo tutto a distanza, contratto incluso, così la tua stanza è pronta quando atterri."
+      },
+      {
+        "q": "Qual è il regolamento della casa?",
+        "a": "Ogni stanza indica le proprie condizioni (per esempio età minima, soggiorno minimo e regole su fumo, feste o animali). Le vedrai nella pagina della stanza e le confermerai al momento della richiesta di prenotazione."
+      },
+      {
+        "q": "Chi vive nelle residenze?",
+        "a": "Perlopiù studenti e giovani professionisti tra i 18 e i 30 anni, sia portoghesi che internazionali — una comunità cordiale e rispettosa."
+      },
+      {
+        "q": "Cosa succede se qualcosa si rompe?",
+        "a": "Basta dircelo. La manutenzione è inclusa — il nostro team risolve i problemi rapidamente, così non devi occupartene tu."
+      },
+      {
+        "q": "Quanto ci vuole per avere una risposta dopo la richiesta?",
+        "a": "Di solito entro un giorno lavorativo. Ti scriveremo via email per confermare la disponibilità e guidarti nei passi successivi."
+      }
     ]
   },
   "about": {

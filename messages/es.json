@@ -200,7 +200,10 @@
     "errorTitle": "Algo ha salido mal",
     "error": "No hemos podido enviar tu solicitud. Inténtalo de nuevo o escríbenos directamente por correo electrónico.",
     "tabBooking": "Reservar",
-    "tabVisit": "Visitar"
+    "tabVisit": "Visitar",
+    "dateOrderError": "La salida debe ser posterior a la entrada.",
+    "unavailableTitle": "Esas fechas no están disponibles",
+    "unavailableBody": "Algunas noches que has seleccionado ya están reservadas. Elige otras fechas — el calendario de abajo muestra lo que está libre."
   },
   "eligibility": {
     "blockedTitle": "Esta habitación no encaja",
@@ -225,11 +228,21 @@
     "guaranteed_title": "Ingresos Garantizados",
     "guaranteed_tagline": "Un alquiler fijo cada mes, ocupado o vacío",
     "guaranteed_body": "Firmamos un contrato de arrendamiento a largo plazo por tu piso y te pagamos una cantidad fija todos los meses, estén las habitaciones ocupadas o no. Asumimos todo el riesgo de vacantes y de inquilinos. Tú obtienes unos ingresos predecibles y sin preocupaciones, y una propiedad cuidada profesionalmente y devuelta en excelente estado.",
-    "guaranteed_points": ["Pago mensual fijo, las vacantes son nuestro problema", "Contrato a largo plazo: estabilidad durante años", "Amueblamos y mejoramos a nuestro cargo", "Propiedad mantenida y devuelta en óptimo estado"],
+    "guaranteed_points": [
+      "Pago mensual fijo, las vacantes son nuestro problema",
+      "Contrato a largo plazo: estabilidad durante años",
+      "Amueblamos y mejoramos a nuestro cargo",
+      "Propiedad mantenida y devuelta en óptimo estado"
+    ],
     "managed_title": "Gestión Integral",
     "managed_tagline": "Conserva las ganancias, olvídate del trabajo",
     "managed_body": "¿Prefieres quedarte con las ganancias del alquiler? Gestionamos tu piso de principio a fin por una única comisión de gestión: amueblado, fotos profesionales, publicación en las mejores plataformas, selección de inquilinos, contratos, cobro del alquiler, limpieza y mantenimiento. Tú dispones de un panel para propietarios y un único punto de contacto.",
-    "managed_points": ["Promocionado en Uniplaces, Spotahome, HousingAnywhere y más", "Inquilinos verificados y contratos registrados", "Cobro del alquiler, limpieza y mantenimiento resueltos", "Informes mensuales transparentes"],
+    "managed_points": [
+      "Promocionado en Uniplaces, Spotahome, HousingAnywhere y más",
+      "Inquilinos verificados y contratos registrados",
+      "Cobro del alquiler, limpieza y mantenimiento resueltos",
+      "Informes mensuales transparentes"
+    ],
     "whyTitle": "Por qué los propietarios eligen LOFTZ",
     "why1_title": "Sin vacantes, sin perseguir pagos",
     "why1_body": "Mantenemos las habitaciones ocupadas y el alquiler fluyendo: los cobros, los pagos atrasados y los meses vacíos son nuestro trabajo, no el tuyo.",
@@ -273,19 +286,58 @@
     "stillTitle": "¿Aún tienes alguna pregunta?",
     "stillBody": "¿No encuentras lo que buscas? Envíanos un mensaje y te ayudaremos.",
     "items": [
-      { "q": "¿Cómo reservo una habitación?", "a": "Explora las habitaciones disponibles, abre la que te guste y envía una solicitud de reserva con tus datos y fechas. Te confirmaremos la disponibilidad y los siguientes pasos por correo electrónico, sin necesidad de crear una cuenta." },
-      { "q": "¿Pago alguna comisión de reserva?", "a": "No. Reservar directamente con LOFTZ es gratis: no hay comisiones de servicio ni de reserva, a diferencia de las plataformas de anuncios. Pagas tu alquiler y una fianza, nada más por reservar con nosotros." },
-      { "q": "¿Qué incluye el alquiler?", "a": "El alquiler es con todo incluido: agua, electricidad, gas, limpieza de zonas comunes e internet de alta velocidad están cubiertos. Tu pago mensual es el que ves en la página de la habitación." },
-      { "q": "¿Hay que pagar fianza?", "a": "Sí, normalmente se requiere una fianza que se devuelve al final de tu estancia, sujeta al estado de la habitación. El importe y las condiciones exactas figuran en tu contrato." },
-      { "q": "¿Recibo un contrato registrado?", "a": "Sí. Cada arrendamiento incluye un contrato de alquiler adecuado y registrado con recibos, útil para solicitudes de visado, residencia y NIF." },
-      { "q": "¿Cuál es la estancia mínima?", "a": "La estancia mínima varía según la habitación y se indica en las condiciones de reserva de cada página de habitación. La mayoría se adaptan a una estancia de un semestre o un curso académico." },
-      { "q": "¿Cómo pago el alquiler?", "a": "El alquiler se paga mensualmente, normalmente por transferencia bancaria. Te facilitaremos los datos de pago y el calendario una vez confirmada tu reserva." },
-      { "q": "¿Puedo visitarla antes de reservar?", "a": "Por supuesto. Usa la opción «Agendar una visita» en cualquier página de habitación y organizaremos una cita, en persona o mediante un recorrido en vídeo si estás en el extranjero." },
-      { "q": "Me mudo desde otro país, ¿puedo reservar desde el extranjero?", "a": "Sí. La mayoría de nuestros huéspedes reservan antes de llegar a Lisboa. Nos encargamos de todo a distancia, incluido el contrato, para que tu habitación esté lista cuando aterrices." },
-      { "q": "¿Cuáles son las normas de la casa?", "a": "Cada habitación indica sus propias condiciones (por ejemplo, edad mínima, estancia mínima y normas sobre fumar, fiestas o mascotas). Las verás en la página de la habitación y las confirmarás al solicitar la reserva." },
-      { "q": "¿Quién vive en las residencias?", "a": "Sobre todo estudiantes y jóvenes profesionales de entre 18 y 30 años, tanto portugueses como internacionales: una comunidad cercana y respetuosa." },
-      { "q": "¿Qué pasa si algo se estropea?", "a": "Solo tienes que avisarnos. El mantenimiento está incluido: nuestro equipo soluciona las incidencias rápido para que no tengas que ocuparte." },
-      { "q": "¿En cuánto tiempo recibiré respuesta tras solicitar?", "a": "Normalmente en un día laborable. Te escribiremos por correo electrónico para confirmar la disponibilidad y guiarte por los siguientes pasos." }
+      {
+        "q": "¿Cómo reservo una habitación?",
+        "a": "Explora las habitaciones disponibles, abre la que te guste y envía una solicitud de reserva con tus datos y fechas. Te confirmaremos la disponibilidad y los siguientes pasos por correo electrónico, sin necesidad de crear una cuenta."
+      },
+      {
+        "q": "¿Pago alguna comisión de reserva?",
+        "a": "No. Reservar directamente con LOFTZ es gratis: no hay comisiones de servicio ni de reserva, a diferencia de las plataformas de anuncios. Pagas tu alquiler y una fianza, nada más por reservar con nosotros."
+      },
+      {
+        "q": "¿Qué incluye el alquiler?",
+        "a": "El alquiler es con todo incluido: agua, electricidad, gas, limpieza de zonas comunes e internet de alta velocidad están cubiertos. Tu pago mensual es el que ves en la página de la habitación."
+      },
+      {
+        "q": "¿Hay que pagar fianza?",
+        "a": "Sí, normalmente se requiere una fianza que se devuelve al final de tu estancia, sujeta al estado de la habitación. El importe y las condiciones exactas figuran en tu contrato."
+      },
+      {
+        "q": "¿Recibo un contrato registrado?",
+        "a": "Sí. Cada arrendamiento incluye un contrato de alquiler adecuado y registrado con recibos, útil para solicitudes de visado, residencia y NIF."
+      },
+      {
+        "q": "¿Cuál es la estancia mínima?",
+        "a": "La estancia mínima varía según la habitación y se indica en las condiciones de reserva de cada página de habitación. La mayoría se adaptan a una estancia de un semestre o un curso académico."
+      },
+      {
+        "q": "¿Cómo pago el alquiler?",
+        "a": "El alquiler se paga mensualmente, normalmente por transferencia bancaria. Te facilitaremos los datos de pago y el calendario una vez confirmada tu reserva."
+      },
+      {
+        "q": "¿Puedo visitarla antes de reservar?",
+        "a": "Por supuesto. Usa la opción «Agendar una visita» en cualquier página de habitación y organizaremos una cita, en persona o mediante un recorrido en vídeo si estás en el extranjero."
+      },
+      {
+        "q": "Me mudo desde otro país, ¿puedo reservar desde el extranjero?",
+        "a": "Sí. La mayoría de nuestros huéspedes reservan antes de llegar a Lisboa. Nos encargamos de todo a distancia, incluido el contrato, para que tu habitación esté lista cuando aterrices."
+      },
+      {
+        "q": "¿Cuáles son las normas de la casa?",
+        "a": "Cada habitación indica sus propias condiciones (por ejemplo, edad mínima, estancia mínima y normas sobre fumar, fiestas o mascotas). Las verás en la página de la habitación y las confirmarás al solicitar la reserva."
+      },
+      {
+        "q": "¿Quién vive en las residencias?",
+        "a": "Sobre todo estudiantes y jóvenes profesionales de entre 18 y 30 años, tanto portugueses como internacionales: una comunidad cercana y respetuosa."
+      },
+      {
+        "q": "¿Qué pasa si algo se estropea?",
+        "a": "Solo tienes que avisarnos. El mantenimiento está incluido: nuestro equipo soluciona las incidencias rápido para que no tengas que ocuparte."
+      },
+      {
+        "q": "¿En cuánto tiempo recibiré respuesta tras solicitar?",
+        "a": "Normalmente en un día laborable. Te escribiremos por correo electrónico para confirmar la disponibilidad y guiarte por los siguientes pasos."
+      }
     ]
   },
   "about": {

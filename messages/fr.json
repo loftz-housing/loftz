@@ -200,7 +200,10 @@
     "errorTitle": "Une erreur est survenue",
     "error": "Nous n'avons pas pu envoyer votre demande. Veuillez réessayer ou nous écrire directement par e-mail.",
     "tabBooking": "Réserver",
-    "tabVisit": "Visiter"
+    "tabVisit": "Visiter",
+    "dateOrderError": "Le départ doit être postérieur à l'arrivée.",
+    "unavailableTitle": "Ces dates ne sont pas disponibles",
+    "unavailableBody": "Certaines nuits que vous avez choisies sont déjà réservées. Choisissez d'autres dates — le calendrier ci-dessous indique les disponibilités."
   },
   "eligibility": {
     "blockedTitle": "Cette chambre ne correspond pas",
@@ -225,11 +228,21 @@
     "guaranteed_title": "Revenu garanti",
     "guaranteed_tagline": "Un loyer fixe, chaque mois — occupé ou vide",
     "guaranteed_body": "Nous signons un bail longue durée pour votre appartement et vous versons un montant fixe chaque mois, que les chambres soient occupées ou non. Nous assumons tout le risque de vacance et de locataire. Vous obtenez un revenu prévisible et sans souci, et un bien entretenu par des professionnels et rendu en excellent état.",
-    "guaranteed_points": ["Paiement mensuel fixe, les vacances sont notre problème", "Contrat longue durée — une stabilité sur des années", "Nous meublons et améliorons à nos frais", "Bien entretenu et rendu en parfait état"],
+    "guaranteed_points": [
+      "Paiement mensuel fixe, les vacances sont notre problème",
+      "Contrat longue durée — une stabilité sur des années",
+      "Nous meublons et améliorons à nos frais",
+      "Bien entretenu et rendu en parfait état"
+    ],
     "managed_title": "Gestion complète",
     "managed_tagline": "Gardez les bénéfices, oubliez la charge de travail",
     "managed_body": "Vous préférez conserver les bénéfices locatifs ? Nous gérons votre appartement de A à Z pour des frais de gestion uniques : ameublement, photos professionnelles, mise en ligne sur les meilleures plateformes, sélection des locataires, contrats, encaissement des loyers, ménage et entretien. Vous disposez d'un tableau de bord propriétaire et d'un interlocuteur unique.",
-    "managed_points": ["Commercialisé sur Uniplaces, Spotahome, HousingAnywhere et plus", "Locataires vérifiés et contrats enregistrés", "Encaissement des loyers, ménage et entretien pris en charge", "Rapports mensuels transparents"],
+    "managed_points": [
+      "Commercialisé sur Uniplaces, Spotahome, HousingAnywhere et plus",
+      "Locataires vérifiés et contrats enregistrés",
+      "Encaissement des loyers, ménage et entretien pris en charge",
+      "Rapports mensuels transparents"
+    ],
     "whyTitle": "Pourquoi les propriétaires choisissent LOFTZ",
     "why1_title": "Aucune vacance, aucune relance",
     "why1_body": "Nous gardons les chambres occupées et les loyers rentrent — les encaissements, les retards de paiement et les mois vides sont notre affaire, pas la vôtre.",
@@ -273,19 +286,58 @@
     "stillTitle": "Vous avez encore une question ?",
     "stillBody": "Vous ne trouvez pas ce que vous cherchez ? Envoyez-nous un message et nous vous aiderons.",
     "items": [
-      { "q": "Comment réserver une chambre ?", "a": "Parcourez les chambres disponibles, ouvrez celle qui vous plaît et envoyez une demande de réservation avec vos informations et vos dates. Nous confirmerons la disponibilité et les étapes suivantes par e-mail — aucun compte requis." },
-      { "q": "Dois-je payer des frais de réservation ?", "a": "Non. Réserver directement avec LOFTZ est gratuit — il n'y a aucuns frais de service ni de réservation, contrairement aux plateformes de mise en ligne. Vous payez votre loyer et un dépôt de garantie, rien de plus pour la réservation." },
-      { "q": "Qu'est-ce qui est inclus dans le loyer ?", "a": "Le loyer est tout compris : l'eau, l'électricité, le gaz, le ménage des parties communes et l'internet haut débit sont couverts. Votre paiement mensuel correspond à ce que vous voyez sur la page de la chambre." },
-      { "q": "Y a-t-il un dépôt de garantie ?", "a": "Oui, un dépôt de garantie est généralement demandé et remboursé à la fin de votre séjour, selon l'état de la chambre. Le montant exact et les conditions figurent dans votre contrat." },
-      { "q": "Est-ce que j'obtiens un contrat enregistré ?", "a": "Oui. Chaque location s'accompagne d'un vrai contrat de location enregistré et de quittances — utile pour les demandes de visa, de résidence et de NIF." },
-      { "q": "Quelle est la durée minimum de séjour ?", "a": "La durée minimum de séjour varie selon la chambre et figure dans les conditions de réservation de chaque page de chambre. La plupart des chambres conviennent à un séjour d'un semestre ou d'une année universitaire." },
-      { "q": "Comment payer le loyer ?", "a": "Le loyer se paie mensuellement, généralement par virement bancaire. Nous vous communiquerons les coordonnées de paiement et l'échéancier une fois votre réservation confirmée." },
-      { "q": "Puis-je visiter avant de réserver ?", "a": "Absolument. Utilisez l'option « Planifier une visite » sur n'importe quelle page de chambre et nous conviendrons d'un créneau — en personne ou par visite vidéo si vous êtes à l'étranger." },
-      { "q": "Je déménage depuis un autre pays — puis-je réserver depuis l'étranger ?", "a": "Oui. La plupart de nos locataires réservent avant d'arriver à Lisbonne. Nous gérons tout à distance, y compris le contrat, pour que votre chambre soit prête à votre arrivée." },
-      { "q": "Quel est le règlement intérieur ?", "a": "Chaque chambre indique ses propres conditions (par exemple l'âge minimum, la durée minimum de séjour, et les règles concernant le tabac, les fêtes ou les animaux). Vous les verrez sur la page de la chambre et les confirmerez lors de votre demande de réservation." },
-      { "q": "Qui habite dans les résidences ?", "a": "Principalement des étudiants et de jeunes actifs de 18 à 30 ans, portugais comme internationaux — une communauté conviviale et respectueuse." },
-      { "q": "Que se passe-t-il si quelque chose tombe en panne ?", "a": "Dites-le-nous simplement. L'entretien est inclus — notre équipe résout les problèmes rapidement pour que vous n'ayez pas à vous en occuper." },
-      { "q": "Sous combien de temps aurai-je une réponse après ma demande ?", "a": "Généralement sous un jour ouvré. Nous vous écrirons par e-mail pour confirmer la disponibilité et vous guider dans les étapes suivantes." }
+      {
+        "q": "Comment réserver une chambre ?",
+        "a": "Parcourez les chambres disponibles, ouvrez celle qui vous plaît et envoyez une demande de réservation avec vos informations et vos dates. Nous confirmerons la disponibilité et les étapes suivantes par e-mail — aucun compte requis."
+      },
+      {
+        "q": "Dois-je payer des frais de réservation ?",
+        "a": "Non. Réserver directement avec LOFTZ est gratuit — il n'y a aucuns frais de service ni de réservation, contrairement aux plateformes de mise en ligne. Vous payez votre loyer et un dépôt de garantie, rien de plus pour la réservation."
+      },
+      {
+        "q": "Qu'est-ce qui est inclus dans le loyer ?",
+        "a": "Le loyer est tout compris : l'eau, l'électricité, le gaz, le ménage des parties communes et l'internet haut débit sont couverts. Votre paiement mensuel correspond à ce que vous voyez sur la page de la chambre."
+      },
+      {
+        "q": "Y a-t-il un dépôt de garantie ?",
+        "a": "Oui, un dépôt de garantie est généralement demandé et remboursé à la fin de votre séjour, selon l'état de la chambre. Le montant exact et les conditions figurent dans votre contrat."
+      },
+      {
+        "q": "Est-ce que j'obtiens un contrat enregistré ?",
+        "a": "Oui. Chaque location s'accompagne d'un vrai contrat de location enregistré et de quittances — utile pour les demandes de visa, de résidence et de NIF."
+      },
+      {
+        "q": "Quelle est la durée minimum de séjour ?",
+        "a": "La durée minimum de séjour varie selon la chambre et figure dans les conditions de réservation de chaque page de chambre. La plupart des chambres conviennent à un séjour d'un semestre ou d'une année universitaire."
+      },
+      {
+        "q": "Comment payer le loyer ?",
+        "a": "Le loyer se paie mensuellement, généralement par virement bancaire. Nous vous communiquerons les coordonnées de paiement et l'échéancier une fois votre réservation confirmée."
+      },
+      {
+        "q": "Puis-je visiter avant de réserver ?",
+        "a": "Absolument. Utilisez l'option « Planifier une visite » sur n'importe quelle page de chambre et nous conviendrons d'un créneau — en personne ou par visite vidéo si vous êtes à l'étranger."
+      },
+      {
+        "q": "Je déménage depuis un autre pays — puis-je réserver depuis l'étranger ?",
+        "a": "Oui. La plupart de nos locataires réservent avant d'arriver à Lisbonne. Nous gérons tout à distance, y compris le contrat, pour que votre chambre soit prête à votre arrivée."
+      },
+      {
+        "q": "Quel est le règlement intérieur ?",
+        "a": "Chaque chambre indique ses propres conditions (par exemple l'âge minimum, la durée minimum de séjour, et les règles concernant le tabac, les fêtes ou les animaux). Vous les verrez sur la page de la chambre et les confirmerez lors de votre demande de réservation."
+      },
+      {
+        "q": "Qui habite dans les résidences ?",
+        "a": "Principalement des étudiants et de jeunes actifs de 18 à 30 ans, portugais comme internationaux — une communauté conviviale et respectueuse."
+      },
+      {
+        "q": "Que se passe-t-il si quelque chose tombe en panne ?",
+        "a": "Dites-le-nous simplement. L'entretien est inclus — notre équipe résout les problèmes rapidement pour que vous n'ayez pas à vous en occuper."
+      },
+      {
+        "q": "Sous combien de temps aurai-je une réponse après ma demande ?",
+        "a": "Généralement sous un jour ouvré. Nous vous écrirons par e-mail pour confirmer la disponibilité et vous guider dans les étapes suivantes."
+      }
     ]
   },
   "about": {

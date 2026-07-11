@@ -343,7 +343,11 @@ export default async function RoomDetailPage({
         {/* Sticky booking sidebar */}
         <div id="request" className="scroll-mt-24">
           <div className="lg:sticky lg:top-20">
-            <RequestForm roomId={room.id} />
+            <RequestForm
+              roomId={room.id}
+              busy={availability}
+              availableFrom={room.available_from}
+            />
           </div>
         </div>
       </div>

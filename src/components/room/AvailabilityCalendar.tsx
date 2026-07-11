@@ -1,19 +1,8 @@
 import { useLocale } from "next-intl";
+import { daysBooked, type BusyRange } from "@/lib/availability";
 
 // Static 12-month availability calendar. Booked days (from merged iCal feeds)
-// are shaded; everything else reads as available. Server component.
-function daysBooked(events: { start_date: string; end_date: string }[]): Set<string> {
-  const set = new Set<string>();
-  for (const e of events) {
-    const start = new Date(e.start_date + "T00:00:00");
-    const end = new Date(e.end_date + "T00:00:00"); // exclusive
-    for (let d = new Date(start); d < end; d.setDate(d.getDate() + 1)) {
-      set.add(d.toISOString().slice(0, 10));
-    }
-  }
-  return set;
-}
-
+// are shaded; everything else reads as available.
 function iso(y: number, m: number, d: number) {
   return `${y}-${String(m + 1).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
 }
@@ -22,7 +11,7 @@ export function AvailabilityCalendar({
   events,
   monthsToShow = 8,
 }: {
-  events: { start_date: string; end_date: string }[];
+  events: BusyRange[];
   monthsToShow?: number;
 }) {
   const locale = useLocale();

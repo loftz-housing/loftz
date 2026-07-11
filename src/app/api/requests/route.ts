@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { supabase } from "@/lib/supabase";
 import { checkEligibility } from "@/lib/eligibility";
+import { isValidRange, rangeOverlapsBusy } from "@/lib/availability";
 import { sendOwnerNotification, sendGuestConfirmation } from "@/lib/email";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://loftz.net";
@@ -61,6 +62,22 @@ export async function POST(req: Request) {
 
   if (!room) {
     return NextResponse.json({ status: "error" }, { status: 404 });
+  }
+
+  // Availability check (booking only): reject invalid ranges or dates that
+  // overlap a synced busy period. Mirrors the client-side guard so a stale or
+  // hand-crafted request can't slip a booked room through.
+  if (body.type === "booking") {
+    if (!isValidRange(body.check_in, body.check_out)) {
+      return NextResponse.json({ status: "error" }, { status: 422 });
+    }
+    const { data: busy } = await supabase
+      .from("availability")
+      .select("start_date, end_date")
+      .eq("room_id", body.roomId);
+    if (rangeOverlapsBusy(body.check_in, body.check_out, busy ?? [])) {
+      return NextResponse.json({ status: "unavailable" });
+    }
   }
 
   const { data: conditions } = await supabase

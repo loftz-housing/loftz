@@ -40,22 +40,24 @@ export default async function HomePage({
   return (
     <>
       <Hero images={heroImages}>
-        <div className="max-w-2xl">
-          <p className="text-sm font-semibold uppercase tracking-widest text-white/80">
-            LOFTZ · Lisbon
-          </p>
-          <h1 className="mt-4 text-4xl font-semibold text-white sm:text-5xl md:text-6xl">
-            {t("heroTagline")}
-          </h1>
-          <p className="mt-5 max-w-xl text-lg text-white/90">
-            {t("heroSubtitle")}
-          </p>
-        </div>
-        <div className="mt-8 max-w-2xl">
-          <p className="mb-3 text-sm font-medium text-white/80">
-            {t("searchTitle")}
-          </p>
-          <SearchBar />
+        <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-widest text-white/80">
+              LOFTZ · Lisbon
+            </p>
+            <h1 className="mt-4 text-4xl font-semibold text-white sm:text-5xl md:text-6xl">
+              {t("heroTagline")}
+            </h1>
+            <p className="mt-5 max-w-xl text-lg text-white/90">
+              {t("heroSubtitle")}
+            </p>
+          </div>
+          <div>
+            <p className="mb-3 text-sm font-medium text-white/90">
+              {t("searchTitle")}
+            </p>
+            <SearchBar />
+          </div>
         </div>
       </Hero>
 

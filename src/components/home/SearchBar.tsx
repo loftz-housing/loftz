@@ -21,32 +21,31 @@ export function SearchBar() {
   }
 
   return (
-    <form
-      onSubmit={submit}
-      className="card grid gap-3 p-4 sm:grid-cols-[1fr_1fr_auto] sm:items-end"
-    >
-      <div>
-        <label className="label" htmlFor="s-in">{t("searchCheckIn")}</label>
-        <input
-          id="s-in"
-          type="date"
-          className="field"
-          value={from}
-          onChange={(e) => setFrom(e.target.value)}
-        />
+    <form onSubmit={submit} className="card p-4">
+      <div className="grid grid-cols-2 gap-3">
+        <div>
+          <label className="label" htmlFor="s-in">{t("searchCheckIn")}</label>
+          <input
+            id="s-in"
+            type="date"
+            className="field"
+            value={from}
+            onChange={(e) => setFrom(e.target.value)}
+          />
+        </div>
+        <div>
+          <label className="label" htmlFor="s-out">{t("searchCheckOut")}</label>
+          <input
+            id="s-out"
+            type="date"
+            className="field"
+            value={to}
+            min={from || undefined}
+            onChange={(e) => setTo(e.target.value)}
+          />
+        </div>
       </div>
-      <div>
-        <label className="label" htmlFor="s-out">{t("searchCheckOut")}</label>
-        <input
-          id="s-out"
-          type="date"
-          className="field"
-          value={to}
-          min={from || undefined}
-          onChange={(e) => setTo(e.target.value)}
-        />
-      </div>
-      <button type="submit" className="btn btn-primary btn-lg h-[46px]">
+      <button type="submit" className="btn btn-primary btn-lg mt-3 w-full">
         <IconSearch />
         <span>{t("searchSubmit")}</span>
       </button>

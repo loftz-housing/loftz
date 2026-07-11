@@ -8,38 +8,47 @@
 */
 
 @theme {
-  /* Surfaces & ink (warm neutrals) */
-  --color-bg: #ffffff;
-  --color-surface: #f7f6f2;
-  --color-surface-2: #efede7;
-  --color-ink: #1b1a18;
-  --color-ink-soft: #3d3b37;
-  --color-muted: #6f6a62;
-  --color-line: #e5e1d8;
-  --color-line-strong: #d6d1c5;
+  /* LOFTZ brand skin (D-29) — teal identity + coral action, inspired by the
+     2020 wireframe. Cool, bright neutrals. */
 
-  /* Accent — deep teal-green (calm, trustworthy, "home") */
-  --color-accent: #14655b;
-  --color-accent-hover: #0f4e46;
+  /* Surfaces & ink (cool neutrals) */
+  --color-bg: #ffffff;
+  --color-surface: #f3f7f8;
+  --color-surface-2: #e7eef0;
+  --color-ink: #16232a;
+  --color-ink-soft: #3a4a52;
+  --color-muted: #6b7a80;
+  --color-line: #e3eaec;
+  --color-line-strong: #cfdadd;
+
+  /* Accent = brand teal (links, icons, eyebrows, chips, headings-of-sections) */
+  --color-accent: #0e9cb8;
+  --color-accent-hover: #0b7f97;
   --color-accent-ink: #ffffff;
-  --color-accent-soft: #e6f0ee;
-  --color-accent-soft-ink: #0f4e46;
+  --color-accent-soft: #e3f4f8;
+  --color-accent-soft-ink: #0b6b7f;
+
+  /* Coral = primary call-to-action (Book now, submit) */
+  --color-coral: #f26a45;
+  --color-coral-hover: #dd5733;
+  --color-coral-ink: #ffffff;
+  --color-coral-soft: #fde9e2;
 
   /* Feedback */
   --color-success: #1f7a44;
-  --color-danger: #b3261e;
-  --color-danger-soft: #fbe9e7;
+  --color-danger: #d23f2a;
+  --color-danger-soft: #fdeae6;
 
   /* Typography */
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --font-display: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 
-  /* Radius */
-  --radius-sm: 0.375rem;
-  --radius-md: 0.625rem;
-  --radius-lg: 1rem;
-  --radius-xl: 1.5rem;
+  /* Radius (friendly, rounded) */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1.25rem;
+  --radius-xl: 1.75rem;
 
   /* Shadows */
   --shadow-card: 0 1px 2px rgba(27, 26, 24, 0.04), 0 8px 24px rgba(27, 26, 24, 0.06);
@@ -66,8 +75,8 @@
 
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    font-weight: 500;
-    letter-spacing: -0.01em;
+    font-weight: 600;
+    letter-spacing: -0.02em;
     color: var(--color-ink);
     text-wrap: balance;
   }
@@ -110,8 +119,8 @@
     font-weight: 500;
     font-size: 0.95rem;
     line-height: 1;
-    padding: 0.8rem 1.4rem;
-    border-radius: var(--radius-md);
+    padding: 0.8rem 1.5rem;
+    border-radius: 999px;
     transition: background-color 0.18s ease, color 0.18s ease,
       border-color 0.18s ease, transform 0.05s ease;
     cursor: pointer;
@@ -121,11 +130,11 @@
     transform: translateY(1px);
   }
   .btn-primary {
-    background: var(--color-accent);
-    color: var(--color-accent-ink);
+    background: var(--color-coral);
+    color: var(--color-coral-ink);
   }
   .btn-primary:hover {
-    background: var(--color-accent-hover);
+    background: var(--color-coral-hover);
   }
   .btn-secondary {
     background: var(--color-ink);

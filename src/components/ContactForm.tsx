@@ -24,6 +24,7 @@ export function ContactForm({ topic }: { topic?: string }) {
           name: fd.get("name"),
           email: fd.get("email"),
           message: fd.get("message"),
+          company_website: fd.get("company_website"), // honeypot
           topic,
         }),
       });
@@ -48,6 +49,15 @@ export function ContactForm({ topic }: { topic?: string }) {
 
   return (
     <form onSubmit={onSubmit} className="card space-y-4 p-5 sm:p-6">
+      {/* Honeypot: hidden from humans, tempting to bots. */}
+      <input
+        type="text"
+        name="company_website"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="hidden"
+      />
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
           <label className="label" htmlFor="c-name">{t("name")}</label>

@@ -44,7 +44,12 @@ Each topic: build + lint green, then commit + push. Progress:
       submit when the range overlaps a booked night. `/api/requests` server-validates the same (returns
       `unavailable`) so a stale/crafted request can't book a taken room. Calendar reuses the shared helper.
       Verified: server returns `unavailable` for an overlapping range; form warns + disables submit.
-- [ ] 8. Abuse guard · [ ] 9. Admin upgrades · [ ] 10. Polish
+- [x] **8. Abuse guard** — `lib/abuse-guard.ts`: honeypot (`company_website`, hidden field →
+      pretend-success no-op), per-IP fixed-window rate limit (6 / 10 min / route, in-memory), and
+      payload length caps. Wired into `/api/requests` + `/api/contact`; honeypot field added to both
+      forms. 6 unit tests. Verified live: honeypot→200 no-op; 7th request→429. Serverless caveat:
+      in-memory limiter is per-instance (honeypot + caps are not); durable KV/table is the upgrade path.
+- [ ] 9. Admin upgrades · [ ] 10. Polish
 - [ ] 11. E2E tests · [ ] 12. A11y/perf sweep (last)
 
 ## Tracking + hardening (2026-07-11, pass A+B)

@@ -76,6 +76,7 @@ export function RequestForm({
       visit_time: mode === "visit" ? String(fd.get("visit_time") || "") || null : null,
       message: String(fd.get("message") || "") || null,
       accepted_house_rules: fd.get("accept_rules") === "on",
+      company_website: String(fd.get("company_website") || ""), // honeypot
     };
 
     try {
@@ -117,6 +118,16 @@ export function RequestForm({
 
   return (
     <form onSubmit={onSubmit} className="card p-5 sm:p-6">
+      {/* Honeypot: hidden from humans, tempting to bots. */}
+      <input
+        type="text"
+        name="company_website"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="hidden"
+      />
+
       {/* Tabs */}
       <div className="mb-5 grid grid-cols-2 gap-1 rounded-lg bg-surface-2 p-1">
         {(["booking", "visit"] as Mode[]).map((m) => (

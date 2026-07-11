@@ -2,6 +2,12 @@ import { NextResponse } from "next/server";
 import { supabase } from "@/lib/supabase";
 import { checkEligibility } from "@/lib/eligibility";
 import { isValidRange, rangeOverlapsBusy } from "@/lib/availability";
+import {
+  rateLimit,
+  clientIp,
+  isHoneypotTripped,
+  withinLengthCaps,
+} from "@/lib/abuse-guard";
 import { sendOwnerNotification, sendGuestConfirmation } from "@/lib/email";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://loftz.net";
@@ -23,6 +29,7 @@ interface Body {
   visit_time?: string | null;
   message?: string | null;
   accepted_house_rules?: boolean;
+  company_website?: string; // honeypot
 }
 
 const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
@@ -36,6 +43,26 @@ export async function POST(req: Request) {
   }
 
   const locale = body.locale === "pt" ? "pt" : "en";
+
+  // Abuse guard: honeypot (pretend success, do nothing), rate limit, size caps.
+  if (isHoneypotTripped(body.company_website)) {
+    return NextResponse.json({ status: "ok" });
+  }
+  const rl = rateLimit(clientIp(req), "requests");
+  if (!rl.ok) {
+    return NextResponse.json(
+      { status: "rate_limited" },
+      { status: 429, headers: { "Retry-After": String(rl.retryAfterSeconds) } }
+    );
+  }
+  if (
+    !withinLengthCaps(
+      { full_name: body.full_name, email: body.email, message: body.message ?? "" },
+      { full_name: 120, email: 160, message: 2000 }
+    )
+  ) {
+    return NextResponse.json({ status: "error" }, { status: 422 });
+  }
 
   // Validation
   if (

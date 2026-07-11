@@ -3,6 +3,7 @@ import { Link } from "@/i18n/navigation";
 import { Hero } from "@/components/home/Hero";
 import { SearchBar } from "@/components/home/SearchBar";
 import { ValueProps } from "@/components/home/ValueProps";
+import { HowItWorks } from "@/components/home/HowItWorks";
 import { Stats } from "@/components/home/Stats";
 import { ResidenceMap } from "@/components/ResidenceMap";
 import { getResidences, getStats, getHeroPhotos, getSettings } from "@/lib/data";
@@ -64,6 +65,7 @@ export default async function HomePage({
 
       <Stats residences={stats.residences} rooms={stats.rooms} settings={settings} />
       <ValueProps />
+      <HowItWorks />
       <ResidenceMap residences={residences} />
 
       {/* SEO text + CTA */}

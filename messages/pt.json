@@ -53,7 +53,18 @@
     "testimonialsTitle": "O que dizem os nossos residentes",
     "ctaTitle": "Pronto para encontrar o seu quarto?",
     "ctaBody": "Veja todos os quartos disponíveis, filtre pelo que é importante para si e envie um pedido em minutos.",
-    "ctaButton": "Ver quartos"
+    "ctaButton": "Ver quartos",
+    "howTitle": "Como funciona",
+    "howSubtitle": "Do primeiro olhar à mudança — em três passos simples.",
+    "how1_title": "Explore e descubra",
+    "how1_body": "Percorra os quartos das nove residências LOFTZ em Lisboa e encontre os que se adequam ao seu orçamento e zona.",
+    "how1_cta": "Ver quartos",
+    "how2_title": "Marque uma visita",
+    "how2_body": "Gostou de algum? Peça uma visita presencial ou por vídeo antes de decidir — sem compromisso.",
+    "how2_cta": "Marcar visita",
+    "how3_title": "Anuncie o seu imóvel",
+    "how3_body": "Tem um apartamento em Lisboa? Ganhe um rendimento mensal fiável enquanto tratamos de inquilinos e manutenção.",
+    "how3_cta": "Para proprietários"
   },
   "expect": {
     "rent_title": "Renda tudo incluído",

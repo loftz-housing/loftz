@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import { Wordmark } from "@/components/Wordmark";
 import { IconMenu, IconClose } from "@/components/icons";
 
 const NAV = [
@@ -25,12 +26,8 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-bg/90 backdrop-blur-md">
       <div className="container-page flex h-16 items-center justify-between gap-4">
-        <Link
-          href="/"
-          className="font-display text-2xl font-semibold tracking-tight"
-          onClick={() => setOpen(false)}
-        >
-          LOFTZ
+        <Link href="/" aria-label="LOFTZ — home" onClick={() => setOpen(false)}>
+          <Wordmark tone="brand" />
         </Link>
 
         <nav className="hidden items-center gap-7 lg:flex">

@@ -53,7 +53,18 @@
     "testimonialsTitle": "What our residents say",
     "ctaTitle": "Ready to find your room?",
     "ctaBody": "Browse every available room, filter by what matters to you, and send a request in minutes.",
-    "ctaButton": "Browse rooms"
+    "ctaButton": "Browse rooms",
+    "howTitle": "How it works",
+    "howSubtitle": "From first look to move-in — three simple steps.",
+    "how1_title": "Browse & discover",
+    "how1_body": "Explore rooms across nine Lisbon residences and find the ones that fit your budget and neighbourhood.",
+    "how1_cta": "Browse rooms",
+    "how2_title": "Book a visit",
+    "how2_body": "Found one you like? Request a viewing in person or by video before you commit — no pressure.",
+    "how2_cta": "Schedule a visit",
+    "how3_title": "List your property",
+    "how3_body": "Own an apartment in Lisbon? Earn reliable monthly income while we handle tenants and upkeep.",
+    "how3_cta": "For landlords"
   },
   "expect": {
     "rent_title": "All-inclusive rent",

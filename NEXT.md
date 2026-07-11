@@ -4,6 +4,19 @@
 Branch **`main`** on `loftz-housing/loftz` (production branch; Vercel auto-deploys on push).
 `npm run build` passes; verified on a local prod server.
 
+## 🌙 Overnight pass — branch `build/phase-2` (2026-07-12)
+Unattended run against `OVERNIGHT-ASSIGNMENT.md` (12 topics). Preview branch only — never `main`.
+Each topic: build + lint green, then commit + push. Progress:
+
+- [x] **1. Design pass** — refined wordmark **+ mark** (`Wordmark.tsx`, teal roundel + coral door),
+      flat hand-made SVG illustrations (`illustrations.tsx`), new **How-it-works** 3-step band on home,
+      defined the site-wide `.prose-muted` utility (was referenced everywhere but undefined → muted body
+      copy now actually renders). Deliverables: `content/logo-options.pdf` (10 variations) +
+      `content/palette-options.pdf` (teal+coral baseline + 3 alternatives). Teal+coral + wordmark still ship.
+- [ ] 2. Room pages · [ ] 3. MA2 photos · [ ] 4. ES/IT/FR/DE · [ ] 5. Unit tests · [ ] 6. OG images
+- [ ] 7. Availability-aware booking · [ ] 8. Abuse guard · [ ] 9. Admin upgrades · [ ] 10. Polish
+- [ ] 11. E2E tests · [ ] 12. A11y/perf sweep (last)
+
 ## Tracking + hardening (2026-07-11, pass A+B)
 - **GA4 conversion events:** `booking_request`, `visit_request`, `contact_message`,
   `search_rooms` (consent-mode safe) — `src/lib/track.ts`.

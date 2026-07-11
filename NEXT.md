@@ -24,7 +24,11 @@ Each topic: build + lint green, then commit + push. Progress:
       missed it. Added a `norm_label()` (strips `N.` numbering + a leading `LOFTZ` token) + MA2
       `CODE_MAP` keys + folder logging + a `--dry-run`. Ran the full chain (open → migrate → load →
       close): **45 photos uploaded, all 7 MA2 rooms now have photos** (2–6 each). DB photos 381 → 426.
-- [ ] 4. ES/IT/FR/DE · [ ] 5. Unit tests · [ ] 6. OG images
+- [x] **4. Languages ES/IT/FR/DE** — added the 4 locales to `routing.ts`; created
+      `messages/{es,it,fr,de}.json` at **full parity** (326 keys each, 0 missing/extra, ICU tokens
+      intact). Layout `alternates.languages` now derives from `routing.locales`. Build prerenders
+      **509 static pages** across 6 locales, no ICU errors; switcher already scales.
+- [ ] 5. Unit tests · [ ] 6. OG images
 - [ ] 7. Availability-aware booking · [ ] 8. Abuse guard · [ ] 9. Admin upgrades · [ ] 10. Polish
 - [ ] 11. E2E tests · [ ] 12. A11y/perf sweep (last)
 

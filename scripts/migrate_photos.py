@@ -22,6 +22,7 @@ JPEG_Q = 82
 CODE_MAP = {  # Drive label -> (residence_code, residence_slug); ET1/ET2 skipped
     "MS61": ("MS61", "ms-61"), "MS56": ("MS56", "ms-56"),
     "MA 1": ("MA1", "ma-1"), "MA 3": ("MA3", "ma-3"), "MA 5": ("MA5", "ma-5"),
+    "MA2": ("MA2", "ma-2"), "MA 2": ("MA2", "ma-2"),  # MA2 added (7 rooms)
     "CA": ("CA", "ca"), "GF": ("GF", "gf"), "AO": ("AO", "ao"),
 }
 
@@ -56,6 +57,14 @@ def is_image(f): return f["mimeType"].startswith("image/")
 def natkey(n):
     m = re.match(r"\s*(\d+)", n); return (int(m.group(1)) if m else 9999, n.lower())
 
+def norm_label(name):
+    """Drive folder name -> CODE_MAP key. Handles 'N. LOFTZ | MA 2' (pipe) and
+    'N. LOFTZ MA2' (no pipe, e.g. the MA2 folder) alike."""
+    part = name.split("|")[-1]                       # text after last pipe, if any
+    part = re.sub(r"^\s*\d+\.?\s*", "", part)         # strip "11. " numbering
+    part = re.sub(r"(?i)^\s*loftz\s*", "", part)      # strip a leading LOFTZ token
+    return part.strip()
+
 def classify(name):
     n = name.lower()
     if "common" in n: return ("common", None)
@@ -77,13 +86,20 @@ def collect_groups(folder_id, acc):
 
 def build_manifest():
     manifest = []
-    for f in kids(APARTMENTS):
-        if not is_folder(f) or "LOFTZ" not in f["name"]:
+    # Log every top-level folder so a naming mismatch (e.g. MA2 vs "MA 2" vs
+    # "LOFTZ | MA2") is visible instead of silently skipped.
+    top = [f for f in kids(APARTMENTS) if is_folder(f)]
+    print(f"Top-level folders in Apartments ({len(top)}):")
+    matched_codes = set()
+    for f in top:
+        label = norm_label(f["name"])
+        hit = CODE_MAP.get(label)
+        tag = f"-> {hit[0]}" if hit else "(skip)"
+        print(f"  · {f['name']!r:32} label={label!r:8} {tag}")
+        if not hit:
             continue
-        label = f["name"].split("|")[-1].strip()
-        if label not in CODE_MAP:
-            continue
-        code, slug = CODE_MAP[label]
+        code, slug = hit
+        matched_codes.add(code)
         groups = {}
         collect_groups(f["id"], groups)
         for (cat, room), gid in groups.items():
@@ -94,6 +110,9 @@ def build_manifest():
                     "category": cat, "room_no": room,
                     "file_id": img["id"], "order": order,
                 })
+    if "MA2" not in matched_codes:
+        print("  !! MA2 NOT FOUND among top-level folders — check the Drive name "
+              "and CODE_MAP. Skipping MA2 (other residences unaffected).")
     return manifest
 
 def download_bytes(file_id):
@@ -141,6 +160,21 @@ def main():
 
     manifest = build_manifest()
     print(f"Manifest: {len(manifest)} photos")
+
+    # Per-residence summary (rooms + photo counts) — useful to confirm MA2's 7 rooms.
+    by_res = {}
+    for m in manifest:
+        d = by_res.setdefault(m["residence_code"], {"photos": 0, "rooms": set()})
+        d["photos"] += 1
+        if m["category"] == "room":
+            d["rooms"].add(m["room_no"])
+    for code in sorted(by_res):
+        d = by_res[code]
+        print(f"  {code}: {d['photos']} photos, {len(d['rooms'])} rooms {sorted(d['rooms'])}")
+
+    if "--dry-run" in sys.argv:
+        print("Dry run — no uploads.")
+        return
 
     prog_path = os.path.join(HERE, "photo_progress.json")
     progress = {}

@@ -20,7 +20,11 @@ Each topic: build + lint green, then commit + push. Progress:
       titles double-suffixed (`… | LOFTZ | LOFTZ`) because meta strings *and* the layout template
       both added the brand — removed the suffix from the strings (EN+PT). Transports section skipped
       (no distance data in the schema).
-- [ ] 3. MA2 photos · [ ] 4. ES/IT/FR/DE · [ ] 5. Unit tests · [ ] 6. OG images
+- [x] **3. MA2 photos** — the folder is `11. LOFTZ MA2` (**no pipe**), so the old label split
+      missed it. Added a `norm_label()` (strips `N.` numbering + a leading `LOFTZ` token) + MA2
+      `CODE_MAP` keys + folder logging + a `--dry-run`. Ran the full chain (open → migrate → load →
+      close): **45 photos uploaded, all 7 MA2 rooms now have photos** (2–6 each). DB photos 381 → 426.
+- [ ] 4. ES/IT/FR/DE · [ ] 5. Unit tests · [ ] 6. OG images
 - [ ] 7. Availability-aware booking · [ ] 8. Abuse guard · [ ] 9. Admin upgrades · [ ] 10. Polish
 - [ ] 11. E2E tests · [ ] 12. A11y/perf sweep (last)
 
@@ -73,11 +77,9 @@ per ToS) and **(2) set the repo PRIVATE again** (reverts D-10). Same for EL at i
    `loftz.net` in Resend (needs DNS — tied to the Cloudflare move, plan 0.6) and set
    `BOOKING_FROM_EMAIL` to e.g. `bookings@loftz.net`. Until then, guest confirmations
    won't reach arbitrary addresses.
-2. **MA2 photos missing (7 rooms).** The Drive `2. Apartments` folder has `ET1`/`ET2`
-   instead of an `MA2` folder; mapping is ambiguous, so MA2 rooms currently have no
-   photos (they render the neutral placeholder). Ask Henrique which Drive folder(s) are
-   MA2, add the mapping in `scripts/migrate_photos.py` (`CODE_MAP`), re-run
-   `setup-storage --open` → `migrate_photos.py` → `load-photos.mjs` → `--close`.
+2. ~~**MA2 photos missing (7 rooms).**~~ **RESOLVED (2026-07-12, build/phase-2.)** Folder is
+   `11. LOFTZ MA2` (no pipe). Added `norm_label()` + MA2 `CODE_MAP` keys and ran the full chain —
+   45 photos, all 7 rooms covered. DB photos 381 → 426.
 3. **Deploy (plan 1.7/1.8).** Connect the repo to Vercel; set env vars from `.env.example`
    (Supabase URL + publishable key, `RESEND_API_KEY`, `BOOKING_*`, `NEXT_PUBLIC_GA_ID`,
    `NEXT_PUBLIC_SITE_URL`). Then DNS → Cloudflare (Q-01/0.6) and point loftz.net at Vercel.

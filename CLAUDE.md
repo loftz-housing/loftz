@@ -58,6 +58,15 @@ Secrets are read at runtime from `~/.claude/secrets/` (never committed). Runtime
   format, supabase client, email. `src/content/legal.ts` — draft legal copy (D-23).
 - `supabase/migrations/` — schema (0001), RLS (0002), functions (0003).
 
+## Design work — logos, wireframes, visuals (D-32)
+
+For any **design-led artifact** — logo, wireframe, floorplan, marketing comp, slide,
+illustration — use **Claude Design**, not hand-coded SVG/markup. It's Henrique's preferred
+tool for design. Claude drives claude.ai/design from Code via the browser, grounds the brief
+in `content/brand-context.md`, iterates, and lands the output here to wire up. Effectively
+bidirectional: prompt in Code → Code operates Design → output returns. Method + limits:
+`../../docs/06-TOOLING.md`. (Distinct from `/design-sync` below, which syncs the component library.)
+
 ## Design system sync (Claude Design)
 
 The LOFTZ design system lives in code — tokens in `src/app/globals.css` (`@theme`) and

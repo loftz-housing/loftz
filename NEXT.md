@@ -73,6 +73,15 @@ Each topic: build + lint green, then commit + push. Progress:
       **Known finding (SEO, not a11y):** unknown room/residence URLs return HTTP **200** with the
       not-found UI (streamed `notFound()` soft-404). Left as a follow-up.
 
+### Logo recreated from the original (2026-07-12)
+The earlier "wordmark + mark" was invented and did **not** match the brand. Replaced with a
+faithful inline-SVG rebuild of the commissioned **"Option 1"** identity (dsoares ·
+daniela.soares.design) from `Website/Logos/Apresentacao_Logo_LOFTZ*.pdf`: the **O** is a keyhole
+ring with a coral smile (keyhole + face), the **Z** carries a coral crescent — navy ink + coral.
+Lives in `src/components/Wordmark.tsx` (`Wordmark` + `LoftzMark`), shipping in header + footer.
+`content/logo-options.pdf` regenerated to the real logo. **For a pixel-perfect result, drop the
+designer's original AI/SVG in** — there was no editable vector in the assets, only the deck PDFs.
+
 **build/phase-2 open follow-ups (for the morning review / merge):**
 - Soft-404: make unknown room/residence return a real 404 (the `notFound()` fires after streaming
   begins, so the status stays 200). Options: an early non-streamed existence check, or a route-level

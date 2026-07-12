@@ -2,93 +2,72 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>LOFTZ — Logo options</title>
+<title>LOFTZ — Logo (recreated)</title>
 <style>
   @page { size: A4 portrait; margin: 14mm; }
-  :root {
-    --teal: #0e9cb8; --teal-dark: #0b7f97; --coral: #f26a45; --coral-dark: #dd5733;
-    --ink: #16232a; --muted: #6b7a80; --line: #e3eaec; --surface: #f3f7f8;
-  }
+  :root { --teal:#0e9cb8; --coral:#f26a45; --ink:#16232a; --muted:#6b7a80; --line:#e3eaec; --surface:#f3f7f8; }
   * { box-sizing: border-box; }
-  body {
-    font-family: "Poppins", "Segoe UI", system-ui, sans-serif;
-    color: var(--ink); margin: 0; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact;
-  }
-  .head { border-bottom: 3px solid var(--teal); padding-bottom: 12px; margin-bottom: 22px; }
-  .kicker { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--teal); font-weight: 600; }
-  h1 { font-size: 26px; margin: 4px 0 6px; }
-  .sub { color: var(--muted); font-size: 13px; max-width: 62ch; line-height: 1.5; }
-  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
-  .cell { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; break-inside: avoid; }
-  .canvas { height: 118px; display: flex; align-items: center; justify-content: center; gap: 12px; }
-  .canvas.light { background: #fff; }
-  .canvas.soft { background: var(--surface); }
-  .canvas.teal { background: var(--teal); }
-  .canvas.coral { background: var(--coral); }
-  .canvas.ink { background: var(--ink); }
-  .cap { border-top: 1px solid var(--line); padding: 8px 12px; font-size: 11px; color: var(--muted); display:flex; justify-content:space-between; }
-  .cap b { color: var(--ink); font-weight: 600; }
-  .wm { font-weight: 600; letter-spacing: -0.02em; font-size: 30px; line-height: 1; }
-  .wm.sm { font-size: 22px; }
-  .stack { flex-direction: column; gap: 8px; }
-  .foot { margin-top: 20px; font-size: 11px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 10px; line-height:1.5; }
+  body { font-family:"Poppins","Segoe UI",system-ui,sans-serif; color:var(--ink); margin:0; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .head { border-bottom:3px solid var(--ink); padding-bottom:12px; margin-bottom:22px; }
+  .kicker { font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--coral); font-weight:600; }
+  h1 { font-size:26px; margin:4px 0 6px; }
+  .sub { color:var(--muted); font-size:13px; max-width:64ch; line-height:1.5; }
+  .grid { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
+  .cell { border:1px solid var(--line); border-radius:14px; overflow:hidden; break-inside:avoid; }
+  .canvas { height:120px; display:flex; align-items:center; justify-content:center; }
+  .light{background:#fff}.soft{background:var(--surface)}.dark{background:var(--ink)}.coral{background:var(--coral)}.teal{background:var(--teal)}
+  .cap { border-top:1px solid var(--line); padding:8px 12px; font-size:11px; color:var(--muted); display:flex; justify-content:space-between; }
+  .cap b { color:var(--ink); font-weight:600; }
+  svg.wm { height:52px }  svg.mk { height:66px }
+  .foot { margin-top:20px; font-size:11px; color:var(--muted); border-top:1px solid var(--line); padding-top:10px; line-height:1.5; }
 </style>
 </head>
 <body>
   <div class="head">
-    <div class="kicker">LOFTZ · Brand review</div>
-    <h1>Logo options</h1>
-    <p class="sub">Ten refinements of the wordmark + mark, built from the 2020 wireframe concept (teal identity, coral action).
-       The site currently ships variation 1 (primary lockup). Pick a direction — final art swaps in without a rebuild.</p>
+    <div class="kicker">LOFTZ · Brand</div>
+    <h1>Logo — recreated from the original</h1>
+    <p class="sub">Faithful inline-SVG rebuild of the commissioned "Option 1" identity
+       (dsoares · daniela.soares.design) from the brand deck in <code>Website/Logos</code>.
+       The "O" is a keyhole ring with a coral smile (keyhole + face); the "Z" carries a coral crescent.
+       This is what the site now ships. For a pixel-perfect vector, drop the designer's original AI/SVG in.</p>
   </div>
-
   <div class="grid" id="grid"></div>
-
-  <p class="foot"><b>Note.</b> Vectors are hand-made inline SVG (no external stock). Colours are the shipped brand tokens
-     (teal <code>#0e9cb8</code>, coral <code>#f26a45</code>). Wordmark set in Poppins SemiBold. Review-only artefact — the live
-     site is unchanged.</p>
+  <p class="foot"><b>Colours.</b> Navy ink <code>#16232a</code> · coral <code>#f26a45</code>. Full lockup + standalone
+     mark shown across the brand backgrounds. Review-only artefact.</p>
 
 <script>
-// Mark SVG generator (matches src/components/Wordmark.tsx LoftzMark).
-function mark({ size = 40, roundel = "var(--teal)", stroke = "none", strokeW = 0, house = "#fff", houseOp = 0.18, dot = "var(--coral)" }) {
-  return `<svg viewBox="0 0 32 32" width="${size}" height="${size}" aria-label="LOFTZ mark">
-    <rect x="1.25" y="1.25" width="29.5" height="29.5" rx="9" fill="${roundel}" stroke="${stroke}" stroke-width="${strokeW}"/>
-    <path d="M16 7.5 L24.5 14 V24 a1 1 0 0 1-1 1 H8.5 a1 1 0 0 1-1-1 V14 Z" fill="${house}" opacity="${houseOp}"/>
-    <path d="M16 7 L25 14" fill="none" stroke="${house}" stroke-width="2.4" stroke-linecap="round"/>
-    <path d="M16 7 L7 14" fill="none" stroke="${house}" stroke-width="2.4" stroke-linecap="round"/>
-    <rect x="13.6" y="16.4" width="4.8" height="7.6" rx="1.4" fill="${dot}"/>
-  </svg>`;
-}
-function wm(text, color, cls="") { return `<span class="wm ${cls}" style="color:${color}">${text}</span>`; }
+function wordmark(ink, coral){return `
+<svg class="wm" viewBox="0 0 314 104" xmlns="http://www.w3.org/2000/svg">
+  <path fill="${ink}" d="M12 18 h19 v50 h27 v18 h-46 z"/>
+  <circle cx="100" cy="52" r="26" fill="none" stroke="${ink}" stroke-width="17"/>
+  <path d="M80 90 A20 20 0 0 0 120 90" fill="none" stroke="${coral}" stroke-width="14" stroke-linecap="round"/>
+  <path fill="${ink}" d="M150 18 h19 v68 h-19 z"/><path fill="${ink}" d="M150 18 h42 v17 h-42 z"/><path fill="${ink}" d="M150 46 h35 v16 h-35 z"/>
+  <path fill="${ink}" d="M198 18 h56 v17 h-56 z"/><path fill="${ink}" d="M217 18 h19 v68 h-19 z"/>
+  <path fill="${ink}" d="M258 18 h48 v16 h-48 z M258 70 h48 v16 h-48 z M290 34 h16 L274 70 h-16 z"/>
+  <path d="M266 16 A15 15 0 0 0 296 16" fill="none" stroke="${coral}" stroke-width="11" stroke-linecap="round"/>
+</svg>`;}
+function mark(ink, coral){return `
+<svg class="mk" viewBox="0 0 100 108" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="50" cy="44" r="25" fill="none" stroke="${ink}" stroke-width="17"/>
+  <path d="M28 84 A24 24 0 0 0 72 84" fill="none" stroke="${coral}" stroke-width="15" stroke-linecap="round"/>
+</svg>`;}
 
-const OPTIONS = [
-  { n: "01", name: "Primary lockup", tag: "Ships now", bg: "light",
-    html: mark({}) + wm("LOFTZ", "var(--ink)") },
-  { n: "02", name: "Coral roundel", tag: "Warmer", bg: "light",
-    html: mark({ roundel: "var(--coral)", dot: "#fff", houseOp: 0.22 }) + wm("LOFTZ", "var(--ink)") },
-  { n: "03", name: "Stacked", tag: "Compact / social", bg: "soft", stack: true,
-    html: mark({ size: 46 }) + wm("LOFTZ", "var(--ink)", "sm") },
-  { n: "04", name: "Wordmark only", tag: "Text-first", bg: "light",
-    html: wm("LOFT", "var(--ink)") + wm("Z", "var(--coral)") },
-  { n: "05", name: "Monochrome ink", tag: "1-colour", bg: "light",
-    html: mark({ roundel: "var(--ink)", dot: "#fff", houseOp: 0.16 }) + wm("LOFTZ", "var(--ink)") },
-  { n: "06", name: "Reversed on teal", tag: "Dark UI / footer", bg: "teal",
-    html: mark({ roundel: "none", stroke: "#fff", strokeW: 2, houseOp: 0.16 }) + wm("LOFTZ", "#fff") },
-  { n: "07", name: "Reversed on coral", tag: "Campaign", bg: "coral",
-    html: mark({ roundel: "none", stroke: "#fff", strokeW: 2, dot: "#fff", houseOp: 0.16 }) + wm("LOFTZ", "#fff") },
-  { n: "08", name: "Mark only — teal", tag: "App icon", bg: "soft",
-    html: mark({ size: 60 }) },
-  { n: "09", name: "Mark only — coral", tag: "App icon alt", bg: "soft",
-    html: mark({ size: 60, roundel: "var(--coral)", dot: "#fff", houseOp: 0.22 }) },
-  { n: "10", name: "On dark", tag: "Splash", bg: "ink",
-    html: mark({ size: 44 }) + wm("LOFTZ", "#fff") },
+const INK="#16232a", CORAL="#f26a45";
+const OPTIONS=[
+  {n:"01",name:"Primary lockup",tag:"Ships now",bg:"light",svg:wordmark(INK,CORAL)},
+  {n:"02",name:"Reversed on navy",tag:"Footer / dark UI",bg:"dark",svg:wordmark("#ffffff",CORAL)},
+  {n:"03",name:"On coral",tag:"Campaign",bg:"coral",svg:wordmark("#ffffff",INK)},
+  {n:"04",name:"On teal",tag:"Brand accent",bg:"teal",svg:wordmark("#ffffff",CORAL)},
+  {n:"05",name:"Monochrome navy",tag:"1-colour",bg:"soft",svg:wordmark(INK,INK)},
+  {n:"06",name:"Monochrome white",tag:"1-colour reversed",bg:"dark",svg:wordmark("#ffffff","#ffffff")},
+  {n:"07",name:"Mark — navy + coral",tag:"App icon",bg:"soft",svg:mark(INK,CORAL)},
+  {n:"08",name:"Mark — reversed",tag:"App icon dark",bg:"dark",svg:mark("#ffffff",CORAL)},
+  {n:"09",name:"Mark — monochrome",tag:"Favicon",bg:"light",svg:mark(INK,INK)},
+  {n:"10",name:"Mark on coral",tag:"Sticker",bg:"coral",svg:mark("#ffffff",INK)},
 ];
-
-document.getElementById("grid").innerHTML = OPTIONS.map(o => `
-  <div class="cell">
-    <div class="canvas ${o.bg} ${o.stack ? "stack" : ""}">${o.html}</div>
-    <div class="cap"><b>${o.n} · ${o.name}</b><span>${o.tag}</span></div>
-  </div>`).join("");
+document.getElementById("grid").innerHTML=OPTIONS.map(o=>`
+  <div class="cell"><div class="canvas ${o.bg}">${o.svg}</div>
+  <div class="cap"><b>${o.n} · ${o.name}</b><span>${o.tag}</span></div></div>`).join("");
 </script>
 </body>
 </html>

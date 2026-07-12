@@ -1,8 +1,12 @@
 name: Daily DB backup
 
 # Daily pg_dump of the LOFTZ Supabase database → compressed GitHub artifact (D-20).
-# Requires one repo secret: DATABASE_URL (the direct Postgres connection string,
-# same value as in .env.local / Vercel). Add via repo Settings → Secrets → Actions.
+# Requires one repo secret: DATABASE_URL. It MUST be the Supabase **Session pooler**
+# connection string (host aws-*.pooler.supabase.com, user postgres.<project-ref>) —
+# it is IPv4. The *direct* host (db.<ref>.supabase.co:5432) is IPv6-only and GitHub
+# runners are IPv4-only, so the direct string fails with "Network is unreachable".
+# Get it in Supabase → Settings → Database → Connection string → Session pooler.
+# Add via repo Settings → Secrets → Actions.
 # Upgrade path: push to a Supabase private bucket / S3 once a service key exists.
 
 on:
@@ -25,11 +29,22 @@ jobs:
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: |
-          if [ -z "$DATABASE_URL" ]; then echo "DATABASE_URL secret not set"; exit 1; fi
+          set -euo pipefail
+          if [ -z "${DATABASE_URL:-}" ]; then echo "DATABASE_URL secret not set"; exit 1; fi
           ts=$(date -u +%Y-%m-%d)
+          # Dump to a plain file first (no pipe) so pg_dump's own exit code is
+          # honoured — piping straight into gzip masks a failed dump under `set -e`.
           /usr/lib/postgresql/17/bin/pg_dump "$DATABASE_URL" \
-            --no-owner --no-privileges --format=plain \
-            | gzip > "loftz-${ts}.sql.gz"
+            --no-owner --no-privileges --format=plain > "loftz-${ts}.sql"
+          bytes=$(stat -c%s "loftz-${ts}.sql")
+          echo "dump size: ${bytes} bytes"
+          # Guard against a "successful" empty/partial dump (e.g. connection failed
+          # but exited 0). A real schema dump is well over 1 KiB.
+          if [ "$bytes" -lt 1024 ]; then
+            echo "::error::Dump is only ${bytes} bytes — almost certainly failed/empty. Failing."
+            exit 1
+          fi
+          gzip "loftz-${ts}.sql"
           ls -lh loftz-*.sql.gz
 
       - name: Upload artifact

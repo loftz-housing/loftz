@@ -61,7 +61,11 @@ Each topic: build + lint green, then commit + push. Progress:
       residences/[slug], rooms/[slug]; branded localized `error.tsx` (new `error.*` keys in all 6
       locales); shared `BLUR_DATA_URL` applied as `placeholder="blur"` on all remote images
       (RoomCard, ResidenceCard, ResidenceBlock, Gallery hero + thumbs).
-- [ ] 11. E2E tests · [ ] 12. A11y/perf sweep (last)
+- [x] **11. E2E tests (Playwright)** — `@playwright/test` using the **system Chrome** channel (no
+      browser download). `e2e/flows.spec.ts` (4 passing): home→book-now→room, booking submit success
+      (API mocked via `page.route` → no DB/email), language switch to PT, admin login gate. Config
+      boots the prod build on :3210. Script: `npm run test:e2e`. Artifacts gitignored.
+- [ ] 12. A11y/perf sweep (last)
 
 ## Tracking + hardening (2026-07-11, pass A+B)
 - **GA4 conversion events:** `booking_request`, `visit_request`, `contact_message`,

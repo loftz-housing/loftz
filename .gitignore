@@ -45,6 +45,12 @@ scripts/photo_manifest.json
 scripts/photo_progress.json
 scripts/uploaded_photos.json
 
+# playwright e2e artifacts
+/test-results
+/playwright-report
+/blob-report
+/.playwright-mcp
+
 # vercel
 .vercel
 

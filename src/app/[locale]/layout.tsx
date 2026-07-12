@@ -45,11 +45,21 @@ export async function generateMetadata({
         routing.locales.map((l) => [l, `/${l}`])
       ),
     },
+    icons: {
+      icon: [
+        { url: "/brand/loftz-favicon.svg", type: "image/svg+xml" },
+        { url: "/brand/favicon-32.png", sizes: "32x32", type: "image/png" },
+        { url: "/brand/favicon-16.png", sizes: "16x16", type: "image/png" },
+      ],
+      shortcut: "/brand/favicon.ico",
+      apple: "/brand/apple-touch-icon.png",
+    },
     openGraph: {
       type: "website",
       siteName: "LOFTZ",
       locale: locale === "pt" ? "pt_PT" : "en_GB",
       url: `${SITE_URL}/${locale}`,
+      images: [{ url: "/brand/loftz-og.png", width: 1200, height: 630, alt: "LOFTZ" }],
     },
     robots: { index: true, follow: true },
   };

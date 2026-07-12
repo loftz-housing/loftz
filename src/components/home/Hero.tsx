@@ -27,7 +27,7 @@ export function Hero({
   return (
     <section className="relative isolate flex min-h-[88vh] items-center overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-[#0e9cb8] via-[#0b7f97] to-[#16232a]">
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-[#0e9cb8] via-[#0b7f97] to-[#1A2D3F]">
         {hasImages &&
           images.map((src, i) => (
             <div

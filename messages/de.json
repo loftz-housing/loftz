@@ -18,7 +18,10 @@
     "menu": "Menü",
     "availableFrom": "Verfügbar ab",
     "availableNow": "Jetzt verfügbar",
-    "priceOnRequest": "Preis auf Anfrage"
+    "priceOnRequest": "Preis auf Anfrage",
+    "previous": "Zurück",
+    "next": "Weiter",
+    "skipToContent": "Zum Inhalt springen"
   },
   "nav": {
     "home": "Startseite",

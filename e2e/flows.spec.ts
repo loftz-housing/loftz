@@ -52,8 +52,8 @@ test("booking submit shows success (backend mocked)", async ({ page }) => {
 
 test("language switch to Portuguese", async ({ page }) => {
   await page.goto("/en");
-  // Open the language switcher (button shows the current locale).
-  await page.getByRole("button", { name: /^en/i }).first().click();
+  // Open the language switcher (aria-label "Language: English").
+  await page.getByRole("button", { name: /language/i }).first().click();
   await page.getByRole("option", { name: /Português/ }).click();
   await expect(page).toHaveURL(/\/pt(\/|$)/);
 });

@@ -18,7 +18,10 @@
     "menu": "Menú",
     "availableFrom": "Disponible desde",
     "availableNow": "Disponible ahora",
-    "priceOnRequest": "Precio a consultar"
+    "priceOnRequest": "Precio a consultar",
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "skipToContent": "Saltar al contenido"
   },
   "nav": {
     "home": "Inicio",

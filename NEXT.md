@@ -65,7 +65,21 @@ Each topic: build + lint green, then commit + push. Progress:
       browser download). `e2e/flows.spec.ts` (4 passing): home→book-now→room, booking submit success
       (API mocked via `page.route` → no DB/email), language switch to PT, admin login gate. Config
       boots the prod build on :3210. Script: `npm run test:e2e`. Artifacts gitignored.
-- [ ] 12. A11y/perf sweep (last)
+- [x] **12. A11y/perf sweep** — fixed the gallery **close** button (was mislabelled "Gallery" →
+      now localized "Close"); localized the prev/next arrows; gave the lightbox `role="dialog"`
+      + `aria-modal`. Added a localized **skip-to-content** link + `id="main-content"` on `<main>`.
+      Gave the **language switcher** a descriptive `aria-label`. Confirmed: one `<h1>` per page,
+      all remote images have alt + `sizes` + blur. New a11y strings across all 6 locales; e2e updated.
+      **Known finding (SEO, not a11y):** unknown room/residence URLs return HTTP **200** with the
+      not-found UI (streamed `notFound()` soft-404). Left as a follow-up.
+
+**build/phase-2 open follow-ups (for the morning review / merge):**
+- Soft-404: make unknown room/residence return a real 404 (the `notFound()` fires after streaming
+  begins, so the status stays 200). Options: an early non-streamed existence check, or a route-level
+  handler. Non-blocking; affects SEO only.
+- Admin photo **upload** needs the Supabase **service key** (`SUPABASE_SERVICE_KEY`) — reorder/cover/
+  remove already work. Same key unblocks migrate-script privileged writes (existing follow-up #6).
+- Merge `build/phase-2` → `main` after preview review; then re-check the A-15 pre-launch items.
 
 ## Tracking + hardening (2026-07-11, pass A+B)
 - **GA4 conversion events:** `booking_request`, `visit_request`, `contact_message`,

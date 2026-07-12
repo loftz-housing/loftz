@@ -402,5 +402,11 @@
     "title": "Página não encontrada",
     "body": "A página que procura não existe ou foi movida.",
     "home": "Voltar ao início"
+  },
+  "error": {
+    "title": "Algo correu mal",
+    "body": "Ocorreu um erro inesperado. Tente novamente.",
+    "retry": "Tentar novamente",
+    "home": "Voltar ao início"
   }
 }

@@ -57,6 +57,10 @@ Each topic: build + lint green, then commit + push. Progress:
       clear in-UI note; NEXT.md follow-up #6) since no service key exists yet. Verified live with a
       computed admin cookie.
 - [ ] 10. Polish
+- [x] **10. Polish** — `Skeleton` primitives + `loading.tsx` skeletons for book-now, residences,
+      residences/[slug], rooms/[slug]; branded localized `error.tsx` (new `error.*` keys in all 6
+      locales); shared `BLUR_DATA_URL` applied as `placeholder="blur"` on all remote images
+      (RoomCard, ResidenceCard, ResidenceBlock, Gallery hero + thumbs).
 - [ ] 11. E2E tests · [ ] 12. A11y/perf sweep (last)
 
 ## Tracking + hardening (2026-07-11, pass A+B)

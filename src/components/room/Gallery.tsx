@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
+import { BLUR_DATA_URL } from "@/lib/blur";
 import type { Photo } from "@/lib/types";
 import { IconClose, IconChevronRight } from "@/components/icons";
 
@@ -45,6 +46,8 @@ export function Gallery({ photos }: { photos: Photo[] }) {
             alt={hero.alt ?? ""}
             fill
             sizes="(max-width: 768px) 100vw, 600px"
+            placeholder="blur"
+            blurDataURL={BLUR_DATA_URL}
             className="object-cover transition-transform duration-500 hover:scale-105"
             priority
           />
@@ -61,6 +64,8 @@ export function Gallery({ photos }: { photos: Photo[] }) {
               alt={p.alt ?? ""}
               fill
               sizes="300px"
+              placeholder="blur"
+              blurDataURL={BLUR_DATA_URL}
               className="object-cover transition-transform duration-500 hover:scale-105"
             />
             {i === 3 && photos.length > 5 && (

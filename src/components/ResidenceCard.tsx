@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import { BLUR_DATA_URL } from "@/lib/blur";
 import type { Residence, Photo } from "@/lib/types";
 import { IconMapPin, IconArrowRight } from "@/components/icons";
 
@@ -27,6 +28,8 @@ export function ResidenceCard({
             alt={cover.alt ?? residence.name}
             fill
             sizes="(max-width: 768px) 100vw, 560px"
+            placeholder="blur"
+            blurDataURL={BLUR_DATA_URL}
             className="object-cover transition-transform duration-500 group-hover:scale-105"
           />
         ) : (

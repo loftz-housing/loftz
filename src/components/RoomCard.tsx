@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { BLUR_DATA_URL } from "@/lib/blur";
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import type { Room, Residence, Photo } from "@/lib/types";
@@ -38,6 +39,8 @@ export function RoomCard({
             alt={cover.alt ?? `${residence?.name ?? ""} ${room.name}`}
             fill
             sizes="(max-width: 768px) 100vw, 380px"
+            placeholder="blur"
+            blurDataURL={BLUR_DATA_URL}
             className="object-cover transition-transform duration-500 group-hover:scale-105"
           />
         ) : (

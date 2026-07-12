@@ -402,5 +402,11 @@
     "title": "Page introuvable",
     "body": "La page que vous recherchez n'existe pas ou a été déplacée.",
     "home": "Retour à l'accueil"
+  },
+  "error": {
+    "title": "Une erreur est survenue",
+    "body": "Une erreur inattendue s'est produite. Veuillez réessayer.",
+    "retry": "Réessayer",
+    "home": "Retour à l'accueil"
   }
 }

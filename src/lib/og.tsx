@@ -76,16 +76,21 @@ export function loftzOgResponse({
             alignItems: "center",
           }}
         >
-          <div
-            style={{
-              display: "flex",
-              width: 44,
-              height: 44,
-              borderRadius: 12,
-              border: "3px solid #ffffff",
-              marginRight: 16,
-            }}
-          />
+          <svg
+            width="46"
+            height="50"
+            viewBox="0 0 100 108"
+            style={{ marginRight: 16 }}
+          >
+            <circle cx="50" cy="44" r="25" fill="none" stroke="#ffffff" strokeWidth="17" />
+            <path
+              d="M28 84 A24 24 0 0 0 72 84"
+              fill="none"
+              stroke={CORAL}
+              strokeWidth="15"
+              strokeLinecap="round"
+            />
+          </svg>
           <div
             style={{
               display: "flex",

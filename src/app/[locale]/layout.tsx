@@ -45,6 +45,12 @@ export async function generateMetadata({
         routing.locales.map((l) => [l, `/${l}`])
       ),
     },
+    // Google Search Console verification (HTML-tag method). Drop the token from
+    // Search Console into GOOGLE_SITE_VERIFICATION (env) — no code change needed.
+    // Renders <meta name="google-site-verification"> only when the var is set.
+    ...(process.env.GOOGLE_SITE_VERIFICATION
+      ? { verification: { google: process.env.GOOGLE_SITE_VERIFICATION } }
+      : {}),
     icons: {
       icon: [
         { url: "/brand/loftz-favicon.svg", type: "image/svg+xml" },

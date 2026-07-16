@@ -18,7 +18,10 @@
     "menu": "Menu",
     "availableFrom": "Disponível a partir de",
     "availableNow": "Disponível já",
-    "priceOnRequest": "Preço sob consulta"
+    "priceOnRequest": "Preço sob consulta",
+    "previous": "Anterior",
+    "next": "Seguinte",
+    "skipToContent": "Saltar para o conteúdo"
   },
   "nav": {
     "home": "Início",
@@ -53,7 +56,18 @@
     "testimonialsTitle": "O que dizem os nossos residentes",
     "ctaTitle": "Pronto para encontrar o seu quarto?",
     "ctaBody": "Veja todos os quartos disponíveis, filtre pelo que é importante para si e envie um pedido em minutos.",
-    "ctaButton": "Ver quartos"
+    "ctaButton": "Ver quartos",
+    "howTitle": "Como funciona",
+    "howSubtitle": "Do primeiro olhar à mudança — em três passos simples.",
+    "how1_title": "Explore e descubra",
+    "how1_body": "Percorra os quartos das nove residências LOFTZ em Lisboa e encontre os que se adequam ao seu orçamento e zona.",
+    "how1_cta": "Ver quartos",
+    "how2_title": "Marque uma visita",
+    "how2_body": "Gostou de algum? Peça uma visita presencial ou por vídeo antes de decidir — sem compromisso.",
+    "how2_cta": "Marcar visita",
+    "how3_title": "Anuncie o seu imóvel",
+    "how3_body": "Tem um apartamento em Lisboa? Ganhe um rendimento mensal fiável enquanto tratamos de inquilinos e manutenção.",
+    "how3_cta": "Para proprietários"
   },
   "expect": {
     "rent_title": "Renda tudo incluído",
@@ -74,7 +88,7 @@
     "contract_body": "Contrato de arrendamento registado, com recibos — útil para vistos e residência."
   },
   "residences": {
-    "metaTitle": "As nossas residências em Lisboa | LOFTZ",
+    "metaTitle": "As nossas residências em Lisboa",
     "metaDescription": "Explore as nove residências LOFTZ em Lisboa — moradas, comodidades e quartos disponíveis.",
     "title": "As nossas residências",
     "subtitle": "Nove edifícios em Lisboa, cada um com a sua identidade e conjunto de quartos.",
@@ -86,11 +100,11 @@
     "location": "Localização",
     "viewOnMap": "Ver no mapa",
     "noRooms": "Ainda não há quartos listados aqui — volte em breve.",
-    "detailMetaTitle": "{name} — residência em {neighborhood} | LOFTZ",
+    "detailMetaTitle": "{name} — residência em {neighborhood}",
     "aboutResidence": "Sobre esta residência"
   },
   "book": {
-    "metaTitle": "Reservar um quarto em Lisboa | LOFTZ",
+    "metaTitle": "Reservar um quarto em Lisboa",
     "metaDescription": "Veja todos os quartos LOFTZ disponíveis em Lisboa. Filtre por bairro, datas, preço e características e peça a reserva diretamente.",
     "title": "Encontre o seu quarto",
     "subtitle": "{count, plural, =0 {Sem quartos disponíveis} one {# quarto disponível} other {# quartos disponíveis}}",
@@ -110,7 +124,7 @@
     "resultsCount": "{count, plural, =0 {Sem quartos} one {# quarto} other {# quartos}}"
   },
   "room": {
-    "detailMetaTitle": "{residence} · {room} — quarto para arrendar em Lisboa | LOFTZ",
+    "detailMetaTitle": "{residence} · {room} — quarto para arrendar em Lisboa",
     "overview": "Descrição",
     "size": "Área",
     "bed": "Cama",
@@ -120,6 +134,15 @@
     "ref": "Referência",
     "roomContents": "Neste quarto",
     "residenceContents": "No apartamento",
+    "facts": "Num relance",
+    "location": "Localização",
+    "roomType": "Tipo de quarto",
+    "occupancy": "Ocupação",
+    "occupancyValue": "{count, plural, one {Até # pessoa} other {Até # pessoas}}",
+    "singleRoom": "Quarto individual",
+    "doubleRoom": "Quarto duplo",
+    "furnishedRoom": "Quarto mobilado",
+    "viewOnMap": "Como chegar",
     "availability": "Disponibilidade",
     "availabilityNote": "A disponibilidade é sincronizada todas as noites a partir de todas as plataformas onde o quarto está listado.",
     "conditions": "Condições de reserva",
@@ -180,7 +203,10 @@
     "errorTitle": "Ocorreu um erro",
     "error": "Não foi possível enviar o seu pedido. Tente novamente ou envie-nos um email.",
     "tabBooking": "Reservar",
-    "tabVisit": "Visitar"
+    "tabVisit": "Visitar",
+    "dateOrderError": "A saída tem de ser depois da entrada.",
+    "unavailableTitle": "Essas datas não estão disponíveis",
+    "unavailableBody": "Algumas noites que selecionou já estão reservadas. Escolha outras datas — o calendário abaixo mostra o que está livre."
   },
   "eligibility": {
     "blockedTitle": "Este quarto não é compatível",
@@ -193,7 +219,7 @@
     "adjust": "Ajuste as datas ou os dados, ou veja outros quartos compatíveis."
   },
   "landlords": {
-    "metaTitle": "Rendimento garantido para o seu apartamento em Lisboa | LOFTZ",
+    "metaTitle": "Rendimento garantido para o seu apartamento em Lisboa",
     "metaDescription": "Confie-nos o seu apartamento em Lisboa e receba um rendimento mensal garantido, sem preocupações. Mobilamos, divulgamos, gerimos inquilinos, mantemos e pagamos-lhe — todos os meses, ocupado ou não.",
     "eyebrow": "Para proprietários",
     "title": "O seu apartamento a render — sem trabalho",
@@ -205,11 +231,21 @@
     "guaranteed_title": "Rendimento Garantido",
     "guaranteed_tagline": "Uma renda fixa, todos os meses — ocupado ou vazio",
     "guaranteed_body": "Celebramos um contrato de longa duração para o seu apartamento e pagamos-lhe um valor fixo todos os meses, estejam os quartos ocupados ou não. Assumimos todo o risco de vacância e de inquilinos. Tem um rendimento previsível e sem preocupações, e um imóvel cuidado profissionalmente e devolvido em ótimo estado.",
-    "guaranteed_points": ["Pagamento mensal fixo — a vacância é problema nosso", "Contrato de longa duração — estabilidade por anos", "Mobilamos e melhoramos a nosso custo", "Imóvel mantido e devolvido em ótimo estado"],
+    "guaranteed_points": [
+      "Pagamento mensal fixo — a vacância é problema nosso",
+      "Contrato de longa duração — estabilidade por anos",
+      "Mobilamos e melhoramos a nosso custo",
+      "Imóvel mantido e devolvido em ótimo estado"
+    ],
     "managed_title": "Gestão Completa",
     "managed_tagline": "Fique com a valorização, sem o trabalho",
     "managed_body": "Prefere manter o rendimento do arrendamento? Gerimos o seu apartamento de ponta a ponta por uma única comissão: mobiliário, fotografia profissional, anúncios nas principais plataformas, seleção de inquilinos, contratos, cobrança de rendas, limpeza e manutenção. Tem um painel de proprietário e um único ponto de contacto.",
-    "managed_points": ["Divulgado na Uniplaces, Spotahome, HousingAnywhere e mais", "Inquilinos verificados e contratos registados", "Cobrança de rendas, limpeza e manutenção tratadas", "Relatórios mensais transparentes"],
+    "managed_points": [
+      "Divulgado na Uniplaces, Spotahome, HousingAnywhere e mais",
+      "Inquilinos verificados e contratos registados",
+      "Cobrança de rendas, limpeza e manutenção tratadas",
+      "Relatórios mensais transparentes"
+    ],
     "whyTitle": "Porque os proprietários escolhem a LOFTZ",
     "why1_title": "Sem vacância, sem cobranças",
     "why1_body": "Mantemos os quartos ocupados e a renda a entrar — cobranças, atrasos e meses vazios são connosco, não consigo.",
@@ -246,26 +282,65 @@
     "orEmail": "Ou escreva-nos para"
   },
   "faq": {
-    "metaTitle": "Perguntas frequentes | LOFTZ",
+    "metaTitle": "Perguntas frequentes",
     "metaDescription": "Respostas sobre reservas, renda, contratos, cauções e viver numa residência LOFTZ.",
     "title": "Perguntas frequentes",
     "subtitle": "Tudo o que precisa de saber sobre arrendar com a LOFTZ.",
     "stillTitle": "Ainda tem dúvidas?",
     "stillBody": "Não encontra o que procura? Envie-nos uma mensagem e ajudamos.",
     "items": [
-      { "q": "Como reservo um quarto?", "a": "Veja os quartos disponíveis, abra o que gostar e envie um pedido de reserva com os seus dados e datas. Confirmamos a disponibilidade e os passos seguintes por email — sem necessidade de criar conta." },
-      { "q": "Pago alguma taxa de reserva?", "a": "Não. Reservar diretamente com a LOFTZ é gratuito — não há taxas de serviço nem de reserva, ao contrário das plataformas. Paga a renda e uma caução, sem custos extra de reserva para nós." },
-      { "q": "O que está incluído na renda?", "a": "A renda é tudo incluído: água, eletricidade, gás, limpeza das áreas comuns e internet de alta velocidade. O pagamento mensal é o que vê na página do quarto." },
-      { "q": "Há caução?", "a": "Sim, é normalmente exigida uma caução, devolvida no fim da estadia, sujeita ao estado do quarto. O valor e as condições exatas constam do seu contrato." },
-      { "q": "Recebo um contrato registado?", "a": "Sim. Cada arrendamento inclui um contrato de arrendamento registado, com recibos — útil para pedidos de visto, residência e NIF." },
-      { "q": "Qual é a estadia mínima?", "a": "A estadia mínima varia consoante o quarto e é indicada nas condições de reserva de cada página de quarto. A maioria dos quartos adequa-se a um semestre ou ano letivo." },
-      { "q": "Como pago a renda?", "a": "A renda é paga mensalmente, normalmente por transferência bancária. Partilhamos os dados e o calendário de pagamento assim que a reserva for confirmada." },
-      { "q": "Posso visitar antes de reservar?", "a": "Com certeza. Use a opção «Marcar visita» em qualquer página de quarto e combinamos uma hora — presencial ou por vídeo, se estiver no estrangeiro." },
-      { "q": "Estou a mudar-me de outro país — posso reservar do estrangeiro?", "a": "Sim. A maioria dos nossos hóspedes reserva antes de chegar a Lisboa. Tratamos de tudo à distância, incluindo o contrato, para que o quarto esteja pronto quando chegar." },
-      { "q": "Quais são as regras da casa?", "a": "Cada quarto indica as suas condições (por exemplo, idade mínima, estadia mínima e regras sobre fumar, festas ou animais). Vê-as na página do quarto e confirma-as ao pedir a reserva." },
-      { "q": "Quem vive nas residências?", "a": "Sobretudo estudantes e jovens profissionais entre os 18 e os 30 anos, portugueses e internacionais — uma comunidade simpática e respeitadora." },
-      { "q": "E se algo se avariar?", "a": "É só dizer-nos. A manutenção está incluída — a nossa equipa resolve depressa para que não tenha de se preocupar." },
-      { "q": "Em quanto tempo recebo resposta ao pedido?", "a": "Normalmente dentro de um dia útil. Enviamos um email a confirmar a disponibilidade e a explicar os passos seguintes." }
+      {
+        "q": "Como reservo um quarto?",
+        "a": "Veja os quartos disponíveis, abra o que gostar e envie um pedido de reserva com os seus dados e datas. Confirmamos a disponibilidade e os passos seguintes por email — sem necessidade de criar conta."
+      },
+      {
+        "q": "Pago alguma taxa de reserva?",
+        "a": "Não. Reservar diretamente com a LOFTZ é gratuito — não há taxas de serviço nem de reserva, ao contrário das plataformas. Paga a renda e uma caução, sem custos extra de reserva para nós."
+      },
+      {
+        "q": "O que está incluído na renda?",
+        "a": "A renda é tudo incluído: água, eletricidade, gás, limpeza das áreas comuns e internet de alta velocidade. O pagamento mensal é o que vê na página do quarto."
+      },
+      {
+        "q": "Há caução?",
+        "a": "Sim, é normalmente exigida uma caução, devolvida no fim da estadia, sujeita ao estado do quarto. O valor e as condições exatas constam do seu contrato."
+      },
+      {
+        "q": "Recebo um contrato registado?",
+        "a": "Sim. Cada arrendamento inclui um contrato de arrendamento registado, com recibos — útil para pedidos de visto, residência e NIF."
+      },
+      {
+        "q": "Qual é a estadia mínima?",
+        "a": "A estadia mínima varia consoante o quarto e é indicada nas condições de reserva de cada página de quarto. A maioria dos quartos adequa-se a um semestre ou ano letivo."
+      },
+      {
+        "q": "Como pago a renda?",
+        "a": "A renda é paga mensalmente, normalmente por transferência bancária. Partilhamos os dados e o calendário de pagamento assim que a reserva for confirmada."
+      },
+      {
+        "q": "Posso visitar antes de reservar?",
+        "a": "Com certeza. Use a opção «Marcar visita» em qualquer página de quarto e combinamos uma hora — presencial ou por vídeo, se estiver no estrangeiro."
+      },
+      {
+        "q": "Estou a mudar-me de outro país — posso reservar do estrangeiro?",
+        "a": "Sim. A maioria dos nossos hóspedes reserva antes de chegar a Lisboa. Tratamos de tudo à distância, incluindo o contrato, para que o quarto esteja pronto quando chegar."
+      },
+      {
+        "q": "Quais são as regras da casa?",
+        "a": "Cada quarto indica as suas condições (por exemplo, idade mínima, estadia mínima e regras sobre fumar, festas ou animais). Vê-as na página do quarto e confirma-as ao pedir a reserva."
+      },
+      {
+        "q": "Quem vive nas residências?",
+        "a": "Sobretudo estudantes e jovens profissionais entre os 18 e os 30 anos, portugueses e internacionais — uma comunidade simpática e respeitadora."
+      },
+      {
+        "q": "E se algo se avariar?",
+        "a": "É só dizer-nos. A manutenção está incluída — a nossa equipa resolve depressa para que não tenha de se preocupar."
+      },
+      {
+        "q": "Em quanto tempo recebo resposta ao pedido?",
+        "a": "Normalmente dentro de um dia útil. Enviamos um email a confirmar a disponibilidade e a explicar os passos seguintes."
+      }
     ]
   },
   "about": {
@@ -329,6 +404,12 @@
   "notFound": {
     "title": "Página não encontrada",
     "body": "A página que procura não existe ou foi movida.",
+    "home": "Voltar ao início"
+  },
+  "error": {
+    "title": "Algo correu mal",
+    "body": "Ocorreu um erro inesperado. Tente novamente.",
+    "retry": "Tentar novamente",
     "home": "Voltar ao início"
   }
 }

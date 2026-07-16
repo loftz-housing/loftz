@@ -41,13 +41,31 @@ export async function generateMetadata({
     description: t("metaDescription"),
     alternates: {
       canonical: `/${locale}`,
-      languages: { en: "/en", pt: "/pt" },
+      languages: Object.fromEntries(
+        routing.locales.map((l) => [l, `/${l}`])
+      ),
+    },
+    // Google Search Console verification (HTML-tag method). Drop the token from
+    // Search Console into GOOGLE_SITE_VERIFICATION (env) — no code change needed.
+    // Renders <meta name="google-site-verification"> only when the var is set.
+    ...(process.env.GOOGLE_SITE_VERIFICATION
+      ? { verification: { google: process.env.GOOGLE_SITE_VERIFICATION } }
+      : {}),
+    icons: {
+      icon: [
+        { url: "/brand/loftz-favicon.svg", type: "image/svg+xml" },
+        { url: "/brand/favicon-32.png", sizes: "32x32", type: "image/png" },
+        { url: "/brand/favicon-16.png", sizes: "16x16", type: "image/png" },
+      ],
+      shortcut: "/brand/favicon.ico",
+      apple: "/brand/apple-touch-icon.png",
     },
     openGraph: {
       type: "website",
       siteName: "LOFTZ",
       locale: locale === "pt" ? "pt_PT" : "en_GB",
       url: `${SITE_URL}/${locale}`,
+      images: [{ url: "/brand/loftz-og.png", width: 1200, height: 630, alt: "LOFTZ" }],
     },
     robots: { index: true, follow: true },
   };
@@ -63,6 +81,7 @@ export default async function LocaleLayout({
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
+  const t = await getTranslations({ locale, namespace: "common" });
 
   return (
     <html
@@ -95,8 +114,16 @@ export default async function LocaleLayout({
           }}
         />
         <NextIntlClientProvider>
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-bg focus:px-4 focus:py-2 focus:shadow-card"
+          >
+            {t("skipToContent")}
+          </a>
           <Header />
-          <main className="flex-1">{children}</main>
+          <main id="main-content" className="flex-1">
+            {children}
+          </main>
           <Footer />
           <ConsentBanner />
           <Analytics />

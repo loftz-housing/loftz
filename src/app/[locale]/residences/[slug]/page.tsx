@@ -13,6 +13,8 @@ import {
 } from "@/lib/data";
 
 export const revalidate = 3600;
+// Only residences known at build time are valid URLs; any other slug 404s.
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
   const residences = await getResidences();

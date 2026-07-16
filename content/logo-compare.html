@@ -1,0 +1,57 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>LOFTZ logo trace</title>
+<style>
+  body{margin:0;font-family:system-ui;background:#fff}
+  .row{display:flex;align-items:center;gap:0;flex-wrap:wrap}
+  .cell{padding:40px 56px}
+  .light{background:#f2f3f5}.dark{background:#16232a}.coral{background:#f26a45}.blue{background:#6ea8f5}
+  svg{height:120px;display:block}
+  h3{font-family:system-ui;margin:24px 16px 4px;color:#333}
+</style></head><body>
+<h3>Recreation — Option 1 (navy + coral)</h3>
+<div class="row">
+  <div class="cell light" id="a"></div>
+  <div class="cell dark" id="b"></div>
+  <div class="cell coral" id="c"></div>
+</div>
+<h3>Mark only</h3>
+<div class="row">
+  <div class="cell light" id="d"></div>
+  <div class="cell dark" id="e"></div>
+</div>
+
+<script>
+function wordmark(ink, coral){return `
+<svg viewBox="0 0 314 104" xmlns="http://www.w3.org/2000/svg">
+  <!-- L -->
+  <path fill="${ink}" d="M12 18 h19 v50 h27 v18 h-46 z"/>
+  <!-- O ring (keyhole) -->
+  <circle cx="100" cy="52" r="26" fill="none" stroke="${ink}" stroke-width="17"/>
+  <!-- coral smile under O -->
+  <path d="M80 90 A20 20 0 0 0 120 90" fill="none" stroke="${coral}" stroke-width="14" stroke-linecap="round"/>
+  <!-- F -->
+  <path fill="${ink}" d="M150 18 h19 v68 h-19 z"/>
+  <path fill="${ink}" d="M150 18 h42 v17 h-42 z"/>
+  <path fill="${ink}" d="M150 46 h35 v16 h-35 z"/>
+  <!-- T -->
+  <path fill="${ink}" d="M198 18 h56 v17 h-56 z"/>
+  <path fill="${ink}" d="M217 18 h19 v68 h-19 z"/>
+  <!-- Z -->
+  <path fill="${ink}" d="M258 18 h48 v16 h-48 z M258 70 h48 v16 h-48 z M290 34 h16 L274 70 h-16 z"/>
+  <!-- coral crescent on top of Z -->
+  <path d="M266 16 A15 15 0 0 0 296 16" fill="none" stroke="${coral}" stroke-width="11" stroke-linecap="round"/>
+</svg>`;}
+
+function mark(ink, coral){return `
+<svg viewBox="0 0 100 108" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="50" cy="44" r="25" fill="none" stroke="${ink}" stroke-width="17"/>
+  <path d="M28 84 A24 24 0 0 0 72 84" fill="none" stroke="${coral}" stroke-width="15" stroke-linecap="round"/>
+</svg>`;}
+
+document.getElementById('a').innerHTML=wordmark('#16232a','#f26a45');
+document.getElementById('b').innerHTML=wordmark('#ffffff','#f26a45');
+document.getElementById('c').innerHTML=wordmark('#ffffff','#16232a');
+document.getElementById('d').innerHTML=mark('#16232a','#f26a45');
+document.getElementById('e').innerHTML=mark('#ffffff','#f26a45');
+</script>
+</body></html>

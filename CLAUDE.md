@@ -58,6 +58,38 @@ Secrets are read at runtime from `~/.claude/secrets/` (never committed). Runtime
   format, supabase client, email. `src/content/legal.ts` — draft legal copy (D-23).
 - `supabase/migrations/` — schema (0001), RLS (0002), functions (0003).
 
+## Design work — logos, wireframes, visuals (D-32)
+
+For any **design-led artifact** — logo, wireframe, floorplan, marketing comp, slide,
+illustration — use **Claude Design**, not hand-coded SVG/markup. It's Henrique's preferred
+tool for design. Claude drives claude.ai/design from Code via the browser, grounds the brief
+in `content/brand-context.md`, iterates, and lands the output here to wire up. Effectively
+bidirectional: prompt in Code → Code operates Design → output returns. Method + limits:
+`../../docs/06-TOOLING.md`. (Distinct from `/design-sync` below, which syncs the component library.)
+
+## Design system sync (Claude Design)
+
+The LOFTZ design system lives in code — tokens in `src/app/globals.css` (`@theme`) and
+components in `src/components/`. Claude Design mirrors it via the **`/design-sync`** skill,
+which reads those tokens + React components directly and pushes an updated system to the
+**LOFTZ** project on claude.ai/design. No GitHub needed; it uses the claude.ai login
+(`/design-login` once if not authorized). It's an *update* of the existing system, not a rebuild.
+
+`/design-sync` is a **user-invoked** slash command (some sessions block model invocation).
+So the standing rule is: **whenever a change alters the brand surface, proactively tell
+Henrique to run `/design-sync` in the same session** (one keystroke) — don't make him
+remember. Trigger surfaces:
+- design tokens (`@theme` colours / type / radius / shadow),
+- the logo (`Wordmark.tsx` or `public/brand/`),
+- shared presentational components in `src/components/` (layout, home, cards, forms).
+
+Skip it for logic-only, data, admin, API, or copy-only changes. For small token/component
+updates to an *existing* system, Claude may push directly via the `DesignSync` tool instead.
+After a sync, note it in the session summary so Henrique knows the design system moved.
+
+Keep LOFTZ and Erasmus Lisboa as **separate** Claude Design systems (D-02 brand separation)
+— never sync one brand's components into the other's system.
+
 ## Verify before declaring done
 
 `npm run build` must pass, **and** drive the change in the running app

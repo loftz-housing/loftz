@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 import { IconGlobe, IconChevronDown, IconCheck } from "@/components/icons";
@@ -18,6 +18,7 @@ const LANG_NAMES: Record<string, string> = {
 
 export function LanguageSwitcher() {
   const locale = useLocale();
+  const nav = useTranslations("nav");
   const router = useRouter();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -35,6 +36,7 @@ export function LanguageSwitcher() {
         onClick={() => setOpen((v) => !v)}
         aria-haspopup="listbox"
         aria-expanded={open}
+        aria-label={`${nav("language")}: ${LANG_NAMES[locale] ?? locale}`}
         className="inline-flex items-center gap-1.5 rounded-full border border-line-strong px-3 py-2 text-sm font-medium transition-colors hover:border-ink"
       >
         <IconGlobe style={{ fontSize: "1rem" }} className="text-muted" />

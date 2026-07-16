@@ -1,5 +1,6 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import { Wordmark } from "@/components/Wordmark";
 import { IconFacebook, IconLinkedin } from "@/components/icons";
 
 const COMPLAINTS_URL = "https://www.livroreclamacoes.pt/inicio";
@@ -18,7 +19,7 @@ export function Footer() {
     <footer className="mt-auto bg-accent text-white">
       <div className="container-page grid gap-10 py-14 md:grid-cols-[1.5fr_1fr_1fr_1fr]">
         <div>
-          <div className="font-display text-2xl font-semibold text-white">LOFTZ</div>
+          <Wordmark tone="onDark" />
           <p className="mt-3 max-w-xs text-sm text-white/80">{t("tagline")}</p>
           <div className="mt-5 flex gap-3">
             {SOCIALS.map(({ href, label, Icon }) => (

@@ -3,11 +3,13 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
+import { BLUR_DATA_URL } from "@/lib/blur";
 import type { Photo } from "@/lib/types";
 import { IconClose, IconChevronRight } from "@/components/icons";
 
 export function Gallery({ photos }: { photos: Photo[] }) {
   const t = useTranslations("room");
+  const c = useTranslations("common");
   const [open, setOpen] = useState<number | null>(null);
 
   useEffect(() => {
@@ -45,6 +47,8 @@ export function Gallery({ photos }: { photos: Photo[] }) {
             alt={hero.alt ?? ""}
             fill
             sizes="(max-width: 768px) 100vw, 600px"
+            placeholder="blur"
+            blurDataURL={BLUR_DATA_URL}
             className="object-cover transition-transform duration-500 hover:scale-105"
             priority
           />
@@ -61,6 +65,8 @@ export function Gallery({ photos }: { photos: Photo[] }) {
               alt={p.alt ?? ""}
               fill
               sizes="300px"
+              placeholder="blur"
+              blurDataURL={BLUR_DATA_URL}
               className="object-cover transition-transform duration-500 hover:scale-105"
             />
             {i === 3 && photos.length > 5 && (
@@ -75,11 +81,14 @@ export function Gallery({ photos }: { photos: Photo[] }) {
       {open !== null && (
         <div
           className="fixed inset-0 z-[70] flex items-center justify-center bg-black/90 p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-label={t("gallery")}
           onClick={() => setOpen(null)}
         >
           <button
             className="absolute right-4 top-4 text-3xl text-white/80 hover:text-white"
-            aria-label={t("gallery")}
+            aria-label={c("close")}
             onClick={() => setOpen(null)}
           >
             <IconClose />
@@ -90,7 +99,7 @@ export function Gallery({ photos }: { photos: Photo[] }) {
               e.stopPropagation();
               setOpen((i) => (i! - 1 + photos.length) % photos.length);
             }}
-            aria-label="Previous"
+            aria-label={c("previous")}
           >
             <span className="inline-block rotate-180"><IconChevronRight /></span>
           </button>
@@ -112,7 +121,7 @@ export function Gallery({ photos }: { photos: Photo[] }) {
               e.stopPropagation();
               setOpen((i) => (i! + 1) % photos.length);
             }}
-            aria-label="Next"
+            aria-label={c("next")}
           >
             <IconChevronRight />
           </button>

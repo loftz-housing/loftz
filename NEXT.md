@@ -4,6 +4,104 @@
 Branch **`main`** on `loftz-housing/loftz` (production branch; Vercel auto-deploys on push).
 `npm run build` passes; verified on a local prod server.
 
+## 🧹 Follow-up pass — brand + SEO cleanup (build/phase-2, 2026-07-16)
+- **Logo:** canonical traced kit (D-31) now ships everywhere. Regenerated `content/logo-options.pdf`
+  from the traced paths + D-31 tokens (`#1A2D3F` / `#E96054`) — it had lagged on the old approximation.
+- **OG card:** now renders the full traced LOFTZ wordmark (was mark + plain text).
+- **Soft-404 fixed:** `dynamicParams = false` on room + residence detail routes → unknown slugs return a
+  real **404** (was a soft 200). Verified EN+PT. ⚠️ Tradeoff: a room/residence added via admin becomes
+  linkable only after a **redeploy** (rebuild regenerates `generateStaticParams`); wire on-demand
+  revalidation if that cadence ever bites.
+- Favicons/app icons confirmed wired via `metadata.icons`. Build + lint + 26 unit + 4 e2e green.
+- Vercel preview URL: no open PR exists, so it couldn't be read via GitHub tools — check the Vercel
+  dashboard, or open a `build/phase-2 → main` PR to surface the preview check.
+
+## 🌙 Overnight pass — branch `build/phase-2` (2026-07-12)
+Unattended run against `OVERNIGHT-ASSIGNMENT.md` (12 topics). Preview branch only — never `main`.
+Each topic: build + lint green, then commit + push. Progress:
+
+- [x] **1. Design pass** — refined wordmark **+ mark** (`Wordmark.tsx`, teal roundel + coral door),
+      flat hand-made SVG illustrations (`illustrations.tsx`), new **How-it-works** 3-step band on home,
+      defined the site-wide `.prose-muted` utility (was referenced everywhere but undefined → muted body
+      copy now actually renders). Deliverables: `content/logo-options.pdf` (10 variations) +
+      `content/palette-options.pdf` (teal+coral baseline + 3 alternatives). Teal+coral + wordmark still ship.
+- [x] **2. Room pages** — added an "at a glance" facts grid (location/type/occupancy/size),
+      an "In the apartment" facilities list, a single-pin **Location map** (`RoomMap.tsx`) +
+      Get-directions link, a check-grid for room contents, and a mobile **sticky booking bar**
+      (`StickyBookingBar.tsx` → scrolls to `#request`). Also fixed a site-wide SEO bug: page
+      titles double-suffixed (`… | LOFTZ | LOFTZ`) because meta strings *and* the layout template
+      both added the brand — removed the suffix from the strings (EN+PT). Transports section skipped
+      (no distance data in the schema).
+- [x] **3. MA2 photos** — the folder is `11. LOFTZ MA2` (**no pipe**), so the old label split
+      missed it. Added a `norm_label()` (strips `N.` numbering + a leading `LOFTZ` token) + MA2
+      `CODE_MAP` keys + folder logging + a `--dry-run`. Ran the full chain (open → migrate → load →
+      close): **45 photos uploaded, all 7 MA2 rooms now have photos** (2–6 each). DB photos 381 → 426.
+- [x] **4. Languages ES/IT/FR/DE** — added the 4 locales to `routing.ts`; created
+      `messages/{es,it,fr,de}.json` at **full parity** (326 keys each, 0 missing/extra, ICU tokens
+      intact). Layout `alternates.languages` now derives from `routing.locales`. Build prerenders
+      **509 static pages** across 6 locales, no ICU errors; switcher already scales.
+- [x] **5. Automated tests** — added **vitest** (`vitest.config.ts`, `@` alias). Unit tests:
+      `eligibility.test.ts` (13) + `ical.test.ts` (7) = **20 passing** (one caught a wrong test
+      assumption about RFC 5545 unfolding — fixed the test, lib was right). Route **smoke test**
+      (`test/smoke.test.ts`) boots `next start` and asserts 10 public routes + a room page + a 404 =
+      12 passing. Scripts: `npm test` (unit, fast), `test:watch`, `test:smoke`.
+- [x] **6. Dynamic OG images** — branded 1200×630 cards via the Next 16 `opengraph-image` file
+      convention (async params) for **rooms** and **residences** (`src/lib/og.tsx` shared card:
+      real photo + teal gradient + wordmark + eyebrow + coral price pill). Removed the room page's
+      manual `openGraph.images` so the dynamic card is the referenced image. Verified: both routes
+      return valid `image/png`, `og:image` meta points at them.
+- [x] **7. Availability-aware booking** — shared `lib/availability.ts` (daysBooked, isValidRange,
+      rangeOverlapsBusy, minCheckIn). Booking form now: `min` = max(today, available_from), auto-clears
+      check-out when it precedes check-in, shows an inline "dates aren't available" warning and disables
+      submit when the range overlaps a booked night. `/api/requests` server-validates the same (returns
+      `unavailable`) so a stale/crafted request can't book a taken room. Calendar reuses the shared helper.
+      Verified: server returns `unavailable` for an overlapping range; form warns + disables submit.
+- [x] **8. Abuse guard** — `lib/abuse-guard.ts`: honeypot (`company_website`, hidden field →
+      pretend-success no-op), per-IP fixed-window rate limit (6 / 10 min / route, in-memory), and
+      payload length caps. Wired into `/api/requests` + `/api/contact`; honeypot field added to both
+      forms. 6 unit tests. Verified live: honeypot→200 no-op; 7th request→429. Serverless caveat:
+      in-memory limiter is per-instance (honeypot + caps are not); durable KV/table is the upgrade path.
+- [x] **9. Admin upgrades** — (a) **Requests CSV export**: `/admin/requests/export` route (admin-only,
+      401 otherwise) → CSV with all fields + a button on the requests page. (b) **iCal sync status**:
+      table on the dashboard (busy-period count + last-synced per room, from `max(availability.created_at)`).
+      (c) **Photo management** (`/admin/photos`): reorder (up/down, reindex-based), set-cover, remove —
+      all direct-pg. Upload is gated on a Supabase **service key** (`SUPABASE_SERVICE_KEY`, absent →
+      clear in-UI note; NEXT.md follow-up #6) since no service key exists yet. Verified live with a
+      computed admin cookie.
+- [ ] 10. Polish
+- [x] **10. Polish** — `Skeleton` primitives + `loading.tsx` skeletons for book-now, residences,
+      residences/[slug], rooms/[slug]; branded localized `error.tsx` (new `error.*` keys in all 6
+      locales); shared `BLUR_DATA_URL` applied as `placeholder="blur"` on all remote images
+      (RoomCard, ResidenceCard, ResidenceBlock, Gallery hero + thumbs).
+- [x] **11. E2E tests (Playwright)** — `@playwright/test` using the **system Chrome** channel (no
+      browser download). `e2e/flows.spec.ts` (4 passing): home→book-now→room, booking submit success
+      (API mocked via `page.route` → no DB/email), language switch to PT, admin login gate. Config
+      boots the prod build on :3210. Script: `npm run test:e2e`. Artifacts gitignored.
+- [x] **12. A11y/perf sweep** — fixed the gallery **close** button (was mislabelled "Gallery" →
+      now localized "Close"); localized the prev/next arrows; gave the lightbox `role="dialog"`
+      + `aria-modal`. Added a localized **skip-to-content** link + `id="main-content"` on `<main>`.
+      Gave the **language switcher** a descriptive `aria-label`. Confirmed: one `<h1>` per page,
+      all remote images have alt + `sizes` + blur. New a11y strings across all 6 locales; e2e updated.
+      **Known finding (SEO, not a11y):** unknown room/residence URLs return HTTP **200** with the
+      not-found UI (streamed `notFound()` soft-404). Left as a follow-up.
+
+### Logo recreated from the original (2026-07-12)
+The earlier "wordmark + mark" was invented and did **not** match the brand. Replaced with a
+faithful inline-SVG rebuild of the commissioned **"Option 1"** identity (dsoares ·
+daniela.soares.design) from `Website/Logos/Apresentacao_Logo_LOFTZ*.pdf`: the **O** is a keyhole
+ring with a coral smile (keyhole + face), the **Z** carries a coral crescent — navy ink + coral.
+Lives in `src/components/Wordmark.tsx` (`Wordmark` + `LoftzMark`), shipping in header + footer.
+`content/logo-options.pdf` regenerated to the real logo. **For a pixel-perfect result, drop the
+designer's original AI/SVG in** — there was no editable vector in the assets, only the deck PDFs.
+
+**build/phase-2 open follow-ups (for the morning review / merge):**
+- Soft-404: make unknown room/residence return a real 404 (the `notFound()` fires after streaming
+  begins, so the status stays 200). Options: an early non-streamed existence check, or a route-level
+  handler. Non-blocking; affects SEO only.
+- Admin photo **upload** needs the Supabase **service key** (`SUPABASE_SERVICE_KEY`) — reorder/cover/
+  remove already work. Same key unblocks migrate-script privileged writes (existing follow-up #6).
+- Merge `build/phase-2` → `main` after preview review; then re-check the A-15 pre-launch items.
+
 ## Tracking + hardening (2026-07-11, pass A+B)
 - **GA4 conversion events:** `booking_request`, `visit_request`, `contact_message`,
   `search_rooms` (consent-mode safe) — `src/lib/track.ts`.
@@ -53,11 +151,9 @@ per ToS) and **(2) set the repo PRIVATE again** (reverts D-10). Same for EL at i
    `loftz.net` in Resend (needs DNS — tied to the Cloudflare move, plan 0.6) and set
    `BOOKING_FROM_EMAIL` to e.g. `bookings@loftz.net`. Until then, guest confirmations
    won't reach arbitrary addresses.
-2. **MA2 photos missing (7 rooms).** The Drive `2. Apartments` folder has `ET1`/`ET2`
-   instead of an `MA2` folder; mapping is ambiguous, so MA2 rooms currently have no
-   photos (they render the neutral placeholder). Ask Henrique which Drive folder(s) are
-   MA2, add the mapping in `scripts/migrate_photos.py` (`CODE_MAP`), re-run
-   `setup-storage --open` → `migrate_photos.py` → `load-photos.mjs` → `--close`.
+2. ~~**MA2 photos missing (7 rooms).**~~ **RESOLVED (2026-07-12, build/phase-2.)** Folder is
+   `11. LOFTZ MA2` (no pipe). Added `norm_label()` + MA2 `CODE_MAP` keys and ran the full chain —
+   45 photos, all 7 rooms covered. DB photos 381 → 426.
 3. **Deploy (plan 1.7/1.8).** Connect the repo to Vercel; set env vars from `.env.example`
    (Supabase URL + publishable key, `RESEND_API_KEY`, `BOOKING_*`, `NEXT_PUBLIC_GA_ID`,
    `NEXT_PUBLIC_SITE_URL`). Then DNS → Cloudflare (Q-01/0.6) and point loftz.net at Vercel.

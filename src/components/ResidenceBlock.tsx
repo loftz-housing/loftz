@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import { BLUR_DATA_URL } from "@/lib/blur";
 import type { Residence, Room, Photo } from "@/lib/types";
 import { formatPrice } from "@/lib/format";
 import { IconMapPin, IconArrowRight, IconBath } from "@/components/icons";
@@ -90,6 +91,8 @@ export function ResidenceBlock({
                     alt={cover.alt ?? `${residence.name} ${room.name}`}
                     fill
                     sizes="(max-width: 768px) 50vw, 220px"
+                    placeholder="blur"
+                    blurDataURL={BLUR_DATA_URL}
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 ) : (

@@ -4,6 +4,18 @@
 Branch **`main`** on `loftz-housing/loftz` (production branch; Vercel auto-deploys on push).
 `npm run build` passes; verified on a local prod server.
 
+## 🧹 Follow-up pass — brand + SEO cleanup (build/phase-2, 2026-07-16)
+- **Logo:** canonical traced kit (D-31) now ships everywhere. Regenerated `content/logo-options.pdf`
+  from the traced paths + D-31 tokens (`#1A2D3F` / `#E96054`) — it had lagged on the old approximation.
+- **OG card:** now renders the full traced LOFTZ wordmark (was mark + plain text).
+- **Soft-404 fixed:** `dynamicParams = false` on room + residence detail routes → unknown slugs return a
+  real **404** (was a soft 200). Verified EN+PT. ⚠️ Tradeoff: a room/residence added via admin becomes
+  linkable only after a **redeploy** (rebuild regenerates `generateStaticParams`); wire on-demand
+  revalidation if that cadence ever bites.
+- Favicons/app icons confirmed wired via `metadata.icons`. Build + lint + 26 unit + 4 e2e green.
+- Vercel preview URL: no open PR exists, so it couldn't be read via GitHub tools — check the Vercel
+  dashboard, or open a `build/phase-2 → main` PR to surface the preview check.
+
 ## 🌙 Overnight pass — branch `build/phase-2` (2026-07-12)
 Unattended run against `OVERNIGHT-ASSIGNMENT.md` (12 topics). Preview branch only — never `main`.
 Each topic: build + lint green, then commit + push. Progress:

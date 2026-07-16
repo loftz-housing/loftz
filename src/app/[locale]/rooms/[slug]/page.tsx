@@ -34,6 +34,9 @@ import {
 } from "@/lib/data";
 
 export const revalidate = 3600;
+// Only the rooms known at build time are valid URLs; any other slug returns a
+// real 404 (not a soft 200). A room added later becomes linkable on redeploy.
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
   const rooms = await getRooms();
